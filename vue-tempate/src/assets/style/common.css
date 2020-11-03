@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    background: #f5f7f9;
+}
+
+#app{position:relative}
+a{
+    text-decoration: none !important;
+}
+.page-box{
+    text-align: right;
+    margin-top: 10px;
+}
+ul,li{
+    list-style:none;
+}
+.span-but-list{
+    font-size: 14px;
+    color: #2d8cf0;
+    cursor: pointer;
+}
+.addBtn{
+    position: fixed;
+    left: 230px;
+    bottom: 0;
+    width:100%;
+    height: 56px;
+    background: #ffffff;
+    padding: 0 24px;
+    line-height: 56px;
+    right: 0;
+    border-top: 1px solid #e8eaec;
+}
+.label-name{
+    font-weight:bold;
+}
+.label-required-name{
+    font-weight:bold;
+}
+.label-required-name:before{
+    content: '*';
+    display: inline-block;
+    margin-right: 4px;
+    line-height: 1;
+    font-family: SimSun;
+    font-size: 14px;
+    color: #ed4014;
+}
+.label-info{
+    font-size:12px;
+    margin-top:10px;
+    line-height: 20px;
+}
+.search-button{
+    margin-right: 10px;
+}
+.demo-spin-icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+}
+@keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+}
+.list-btn{
+    margin-right: 10px;
+}
+.page-box-fix{
+    text-align: right;
+    position: fixed;
+    /*left: 230px;*/
+    bottom: 0;
+    width:100%;
+    height: 60px;
+    background: #ffffff;
+    padding: 0 24px;
+    line-height: 56px;
+    right: 0;
+    border-top: 1px solid #e8eaec;
+}
+.main-list-box{
+    margin-bottom: 50px;
+}

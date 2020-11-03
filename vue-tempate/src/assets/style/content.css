@@ -1,0 +1,46 @@
+.contentMangeBtn{
+    color: #515a6e;
+}
+.contentMangeBtn:hover{
+    color: #2d8cf0;
+}
+.add-content-btn{
+    height: 50px;
+    margin-bottom: 60px;
+}
+.content-title{
+    color: #181817 !important;
+    text-transform: uppercase !important;
+    font-size: 20px !important;
+    line-height: 1.1 !important;
+    font-weight: 500 !important;
+    margin: 0 0 10px !important;;
+}
+.content-title:hover{
+    color: #2d8cf0 !important;
+}
+.content-info{
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    color: #808695 !important;
+    font-size: 13px !important;
+    padding-top: 4px;
+}
+.content-info .author{
+    margin-right: 20px;
+
+}
+.content-info .category{
+    margin-right: 20px;
+
+}
+.content-tag{
+    margin-top: 20px;
+}
+.ivu-list-vertical .ivu-list-item-meta {
+    margin-bottom: 5px !important;
+}
+
+
+
+

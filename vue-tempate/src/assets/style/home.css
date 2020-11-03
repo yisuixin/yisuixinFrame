@@ -1,0 +1,38 @@
+.web-info-box{
+    min-height: 220px;
+}
+.web-info-box li{
+    padding: 7px 8px;
+}
+.count-person-box{
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+.count-person-box .count-person{
+    display: block;
+}
+.count-person-bumber{
+    font-size: 48px;
+}
+.admin-data-count-box .number-data{
+    font-size: 30px;
+    font-weight: 700;
+}
+.admin-data-count-box .number-data-name{
+    font-size: 14px;
+}
+.view-top-list li{
+    margin-bottom: 12px;
+}
+/*.ivu-card-head .ivu-avatar .ivu-icon{*/
+/*    vertical-align: 0.1em !important;*/
+/*}*/
+.ivu-avatar-small {
+    line-height: 24px !important;
+}
+.card-title-slot{
+    font-size: 14px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+}

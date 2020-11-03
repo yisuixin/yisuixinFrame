@@ -1,0 +1,38 @@
+.category-btn-list{
+    margin-bottom: 10px;
+}
+.category-btn-list button{
+    margin-right: 10px;
+}
+/*.addBtn{*/
+/*    position: fixed;*/
+/*    left: 200px;*/
+/*    bottom: 0;*/
+/*    width:100%;*/
+/*    height: 56px;*/
+/*    background: #ffffff;*/
+/*    padding: 0 24px;*/
+/*    line-height: 56px;*/
+/*    right: 0;*/
+/*    border-top: 1px solid #e8eaec;*/
+/*}*/
+/*.label-name{*/
+/*    font-weight:bold;*/
+/*}*/
+/*.label-required-name{*/
+/*    font-weight:bold;*/
+/*}*/
+/*.label-required-name:before{*/
+/*    content: '*';*/
+/*    display: inline-block;*/
+/*    margin-right: 4px;*/
+/*    line-height: 1;*/
+/*    font-family: SimSun;*/
+/*    font-size: 14px;*/
+/*    color: #ed4014;*/
+/*}*/
+/*.label-info{*/
+/*    font-size:12px;*/
+/*    margin-top:10px;*/
+/*    line-height: 20px;*/
+/*}*/

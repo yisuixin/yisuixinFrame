@@ -1,0 +1,127 @@
+.info-list{
+    font-size: 14px;
+    color: #666;
+    padding: 3px 3px;
+}
+.ivu-card-head{
+    padding: 10px 10px !important;
+}
+.ivu-card-head p, .ivu-card-head-inner{
+    height: 30px !important;
+    line-height: 30px !important;
+}
+/*服务器数据css*/
+.serve-info{
+    color: #666;
+}
+.serve-info-button-list{
+    margin-left: 20px;
+}
+.serve-info-button{
+    margin-left: 10px;
+    font-size: 12px !important;
+    background: #2d8cf0 !important;
+    border: 1px solid #2d8cf0;
+}
+.serve-info-list{
+    height: 140px;
+    /*border: 1px solid #ddd;*/
+    text-align: center;
+}
+.serve-info-list .info-name{
+    /*line-height: 159px;*/
+    /*color: #fff;*/
+    margin-bottom: 12px;
+}
+.serve-info-list .info-number{
+    font-size: 32px;
+    color: #464c5b;
+    height: 68px;
+    line-height: 60px;
+    overflow: hidden;
+    padding-top: 8px;
+    text-align: center;
+}
+.serve-info-list .info-setting{
+    height: 27px;
+    line-height:  22px;
+    color: #515a6e;
+    display: block;
+    font-size: 14px;
+    padding-top: 5px;
+    text-align: center;
+}
+.serve-info-list .info-setting span{
+    color: #515a6e;
+    font-size: 16px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.serve-info-list .info-setting span:hover{
+    color: #2d8cf0;
+}
+/*后台数据css*/
+.admin-data-info-list{
+    height: 90px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.admin-data-info-list .info-name{
+    line-height: 89px;
+    border-right: 1px solid #2d8cf0;
+    background: #2d8cf0;
+    color: #fff;
+}
+.admin-data-info-list .info-number{
+    font-size: 32px;
+    color: #464c5b;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    padding-top: 10px;
+    text-align: center;
+}
+.admin-data-info-list .info-setting{
+    height: 15px;
+    line-height:  15px;
+    color: #515a6e;
+    display: block;
+    font-size: 12px;
+    padding-top: 5px;
+    text-align: center;
+}
+.admin-data-info-list .info-setting span{
+    color: #515a6e;
+    font-size: 16px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.admin-data-info-list .info-setting span:hover{
+    color: #2d8cf0;
+}
+/*登录日志css*/
+.page-box{
+    text-align: right;
+    margin-top: 10px;
+}
+
+
+
+
+.admin-data-count-box{
+    text-align: center;
+}
+.admin-data-count-box .data-info-box{
+    display: block;
+    margin: 8px 0 4px;
+}
+.admin-data-count-box .number-data{
+    font-size: 30px;
+    font-weight: 700;
+}
+.admin-data-count-box .number-data-name{
+    font-size: 14px;
+}
+.view-top-list li{
+    margin-top: 12px;
+}
