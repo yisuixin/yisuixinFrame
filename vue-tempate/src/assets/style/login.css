@@ -103,6 +103,13 @@ button{
     width:120px;
     height:52px;
 }
+.login-page  .captcha-box{
+    width:120px;
+    height:52px;
+    position: absolute;
+    top: -6px;
+    right: 0;
+}
 
  .demo-spin-icon-load{
      animation: ani-demo-spin 1s linear infinite;

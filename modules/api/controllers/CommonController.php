@@ -16,9 +16,9 @@ class CommonController extends ApiController{
         // 更多api请访问yii\captcha\CaptchaAction类文档
         $CodeImgGenerate->maxLength = 4;                         // 最大显示个数
         $CodeImgGenerate->minLength = 4;                         // 最少显示个数
-        $CodeImgGenerate->padding  = 0;                          // 间距
-        $CodeImgGenerate->height = 58;                           // 高度
-        $CodeImgGenerate->width  = 156;                          // 宽度
+        $CodeImgGenerate->padding   = 12;                          // 间距
+        $CodeImgGenerate->height    = 52;                           // 高度
+        $CodeImgGenerate->width     = 120;                          // 宽度
         $CodeImgGenerate->backColor = CodeImgGenerate::captcha_color(1);    // 背景颜色
         $CodeImgGenerate->foreColor = CodeImgGenerate::captcha_color(2);    // 字体颜色
         $CodeImgGenerate->offset = 4;                            // 字符之间的偏移量

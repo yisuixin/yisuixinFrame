@@ -30,24 +30,30 @@
                                         <input type="password" placeholder="请输入登录密码" class="input-material" v-model="formInline.password">
                                     </FormItem>
                                     <Row>
-                                        <Col span="17">
+                                        <Col span="24">
                                             <FormItem prop="captchaCode">
                                                 <input type="text"
                                                        placeholder="请输入验证码"
                                                        class="input-material"
-                                                       @on-focus="changeCaptcha"
+                                                       @focus="changeCaptcha"
                                                        v-model="formInline.captchaCode">
+                                                <div class="captcha-box">
+                                                    <Spin fix v-if="captchaLoading">
+                                                        <Icon type="ios-loading" size=18 class="demo-spin-icon-load" title="验证码正在加载中"></Icon>
+                                                    </Spin>
+                                                    <img :src="captcha.url" class="captcha" @click="changeCaptcha" v-else/>
+                                                </div>
+
                                             </FormItem>
                                         </Col>
-                                        <Col span="7">
-                                            <Spin fix v-if="captchaLoading">
-                                                <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
-                                                <div>Loading</div>
-                                            </Spin>
-                                            <img :src="captcha.url" class="captcha" @click="changeCaptcha" v-else/>
-                                        </Col>
+<!--                                        <Col span="7">-->
+<!--                                            <Spin fix v-if="captchaLoading">-->
+<!--                                                <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>-->
+<!--                                                <div>Loading</div>-->
+<!--                                            </Spin>-->
+<!--                                            <img :src="captcha.url" class="captcha" @click="changeCaptcha" v-else/>-->
+<!--                                        </Col>-->
                                     </Row>
-
                                     <FormItem>
                                         <Button type="primary"
                                                 @click="handleSubmit('formInline')"
@@ -109,7 +115,6 @@
         },
         methods: {
             handleSubmit(name) {
-
                 const that =this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
@@ -157,6 +162,7 @@
             },
             //更新验证码
             changeCaptcha(){
+                console.log(1111)
                 this.getCaptcha();
             },
            //获取验证码
