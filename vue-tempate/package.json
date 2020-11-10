@@ -12,8 +12,6 @@
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.9.3",
-    "iview-select-tree": "^1.0.9",
-    "iview-tree-select": "^1.1.1",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "screenfull": "^5.0.2",
