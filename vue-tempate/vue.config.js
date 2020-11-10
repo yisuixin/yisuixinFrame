@@ -13,12 +13,12 @@ module.exports = {
     // },
     devServer: {
         proxy: {
-            '/v1': {
-                target: 'http://YsuixinCMS.com',
+            '/mork': {
+                target: 'http://yisuixinFrame.com',
                 changeOrigin: true,
                 ws: true,
                 pathRewrite: {
-                    '^/v1': ''
+                    '^/mork': ''
                 }
             },
         }

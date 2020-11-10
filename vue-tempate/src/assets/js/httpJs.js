@@ -7,7 +7,7 @@ Vue.component('Message', Message);
 
 
 axios.defaults.timeout = 20000;
-axios.defaults.baseURL ='v1'; //填写域名
+axios.defaults.baseURL ='mork'; //填写域名
 
 
 //http request 拦截器

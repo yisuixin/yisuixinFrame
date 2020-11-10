@@ -18,6 +18,12 @@ $config = [
         'rabc' => [
             'class' => 'app\modules\rabc\Module',
         ],
+        'account' => [
+            'class' => 'app\modules\account\v1\Module',
+        ],
+        'common' => [
+            'class' => 'app\modules\common\v1\Module',
+        ],
     ],
     'components' => [
         'cache' => [

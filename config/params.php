@@ -9,12 +9,13 @@ return [
     'vue_template_cata' => __DIR__ . '/../vueTempate/src/views',
     'default_pass'=>'123456',
     'common_url'=>[//公共权限，全部可以访问
-        'api/user/login',
+        'common/captcha/get-captcha',
+        'account/user/login',
         'api/user/get-user-info',
         'api/user/edit-user-info',
         'api/user/edit-user-pass',
         'api/upload/upload-one-img',
-        'api/common/get-captcha',
+
         'api/log/list',
         'api/system-info/server-info',
         'api/to-do/list',

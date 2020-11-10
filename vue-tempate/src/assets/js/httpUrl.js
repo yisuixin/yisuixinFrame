@@ -49,7 +49,7 @@ module.exports = {
         ADD_ROLE_PERMISSION:'/rabc/role/add-role-permission',
     },
     COMMON:{//公共控制器管理相关接口
-        GET_CAPTCHA:'/api/common/get-captcha',
+        GET_CAPTCHA:'/common/captcha/get-captcha',
     },
     QUICK_OPERATION:{//快捷操作相关接口
         GET_QUICK_OPERATION:'/api/quick-operation/get-quick-list',
