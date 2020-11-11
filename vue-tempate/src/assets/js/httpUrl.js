@@ -3,6 +3,22 @@ module.exports = {
     COMMON:{//公共模块控制器管理相关接口
         GET_CAPTCHA:'/common/captcha/get-captcha',//获取验证码
         USER_LOGIN : '/common/user/login',//用户登录
+        QUICK_OPERATION:{//快捷操作相关接口
+            GET_QUICK_OPERATION:'/common/quick-operation/get-quick-list',
+            GET_USER_MENU_LIST : '/common/quick-operation/get-user-menu-list',
+            ADD_QUICK : '/common/quick-operation/add-quick',
+        },
+        SYSTEMINFO:{//服务器信息相关接口列表
+            SERVERINFO : '/common/system-info/server-info',
+        },
+        NOTICE:{//通知消息相关接口
+            GET_USER_NOTICE_LIST:'/common/notice/get-user-notice-list',
+            GET_NOTICE_INFO:'/common/notice/get-notice-info',
+            GET_ADMIN_NOTICE_LIST:'/common/notice/get-admin-notice-list',
+            ADD_NOTICE:'/common/notice/add-notice',
+            DEL_NOTICE:'/common/notice/delete-notice',
+            TOPPING_NOTICE:'/common/notice/topping-notice',
+        },
     },
     ACCOUNT:{//用户模块控制器管理相关接口
         GET_USER_INFO:'/account/user/get-user-info',//获取用户信息
@@ -21,9 +37,7 @@ module.exports = {
         ADDOREDIT : '/api/to-do/add-or-edit',
         DELETETODO : '/api/to-do/delete-todo',
     },
-    SYSTEMINFO:{//服务器信息相关接口列表
-        SERVERINFO : '/api/system-info/server-info',
-    },
+
     MENU:{//菜单相关接口列表
         LIST : '/rabc/menu/list',//全部菜单列表
         GET_ROLE_MENU_LIST : '/rabc/menu/get-role-menu-list',//整站权限菜单列表
@@ -50,17 +64,5 @@ module.exports = {
         DELETE_ROLE:'/rabc/role/delete-role',
         ADD_ROLE_PERMISSION:'/rabc/role/add-role-permission',
     },
-    QUICK_OPERATION:{//快捷操作相关接口
-        GET_QUICK_OPERATION:'/api/quick-operation/get-quick-list',
-        GET_USER_MENU_LIST : '/api/quick-operation/get-user-menu-list',
-        ADD_QUICK : '/api/quick-operation/add-quick',
-    },
-    NOTICE:{//通知消息相关接口
-        GET_USER_NOTICE_LIST:'/api/notice/get-user-notice-list',
-        GET_NOTICE_INFO:'/api/notice/get-notice-info',
-        GET_ADMIN_NOTICE_LIST:'/api/notice/get-admin-notice-list',
-        ADD_NOTICE:'/api/notice/add-notice',
-        DEL_NOTICE:'/api/notice/delete-notice',
-        TOPPING_NOTICE:'/api/notice/topping-notice',
-    },
+
 };

@@ -70,7 +70,7 @@
       this.getQuickOperationList();
     },
     methods: {
-      //获取待办事项
+      //获取快捷操作
       getQuickOperationList:function () {
         const that =this;
         that.quickOperation.loading = true;
@@ -87,7 +87,7 @@
           that.quickOperation.loading = false;
           that.quickOperation.list = [];
         }
-        that.HTTPJS.get(that.HTTPURL.QUICK_OPERATION.GET_QUICK_OPERATION,that.quickOperation.search,successCallback,failCallback,otherCallback);
+        that.HTTPJS.get(that.HTTPURL.COMMON.QUICK_OPERATION.GET_QUICK_OPERATION,that.quickOperation.search,successCallback,failCallback,otherCallback);
       },
       //点击快捷菜单设置菜单显示以及跳转
       clickQulciItem(index){

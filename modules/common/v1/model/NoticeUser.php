@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\api\model;
+namespace app\modules\common\v1\model;
 
 use app\models\BaseModel;
 

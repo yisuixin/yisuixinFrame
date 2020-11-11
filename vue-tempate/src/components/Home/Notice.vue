@@ -36,7 +36,6 @@
   </div>
 </template>
 <script>
-  import event from "../../assets/js/event";
   import NoticeListModel from '../../components/Home/NoticeListModel'
   import NoticeInfoModel from '../../components/Home/NoticeInfoModel'
   export default {
@@ -83,7 +82,7 @@
                 that.noticeList.loading = false;
                 that.noticeList.list = [];
             }
-            that.HTTPJS.get(that.HTTPURL.NOTICE.GET_USER_NOTICE_LIST,that.noticeList.search,successCallback,failCallback,otherCallback);
+            that.HTTPJS.get(that.HTTPURL.COMMON.NOTICE.GET_USER_NOTICE_LIST,that.noticeList.search,successCallback,failCallback,otherCallback);
       },
     }
   }

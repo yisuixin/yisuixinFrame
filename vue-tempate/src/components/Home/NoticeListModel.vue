@@ -152,7 +152,7 @@
           that.noticeModel.loading = false;
           that.noticeModel.list = [];
         }
-        that.HTTPJS.get(that.HTTPURL.NOTICE.GET_USER_NOTICE_LIST,that.noticeModel.search,successCallback,failCallback,otherCallback);
+        that.HTTPJS.get(that.HTTPURL.COMMON.NOTICE.GET_USER_NOTICE_LIST,that.noticeModel.search,successCallback,failCallback,otherCallback);
       },
       //显示整站权限设置对话框
       showModel:function(type){//type == 1显示，2关闭

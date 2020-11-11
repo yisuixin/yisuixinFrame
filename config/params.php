@@ -11,20 +11,24 @@ return [
     'common_url'=>[//公共权限，全部可以访问
         'common/captcha/get-captcha',
         'common/user/login',
-        'api/user/get-user-info',
-        'api/user/edit-user-info',
-        'api/user/edit-user-pass',
+        'common/quick-operation/get-quick-list',
+        'common/quick-operation/add-quick',
+        'common/quick-operation/get-user-menu-list',
+        'common/system-info/server-info',
+        'account/user/get-user-info',
+        'account/user/edit-user-info',
+        'account/user/edit-user-pass',
         'upload/upload/upload-one-img',
 
         'api/log/list',
-        'api/system-info/server-info',
+
         'api/to-do/list',
         'api/to-do/get-to-do-list',
         'api/to-do/get-month-to-do-list',
         'api/to-do/add-or-edit',
-        'api/quick-operation/get-quick-list',
-        'api/quick-operation/get-user-menu-list',
-        'api/quick-operation/add-quick',
+
+
+
         'api/notice/get-user-notice-list',
         'api/notice/get-notice-info',
     ],

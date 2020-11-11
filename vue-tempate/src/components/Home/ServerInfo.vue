@@ -55,7 +55,7 @@
                     that.info.loading = false;
                     that.info.list = [];
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEMINFO.SERVERINFO,{},successCallback,failCallback,otherCallback);
+                that.HTTPJS.get(that.HTTPURL.COMMON.SYSTEMINFO.SERVERINFO,{},successCallback,failCallback,otherCallback);
             },
         }
     }

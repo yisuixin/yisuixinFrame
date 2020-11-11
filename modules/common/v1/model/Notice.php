@@ -1,10 +1,10 @@
 <?php
-namespace app\modules\api\model;
+namespace app\modules\common\v1\model;
 
 
 use app\common\lib\ModelHelper;
 use app\models\User;
-use app\modules\api\model\NoticeUser;
+use app\modules\common\v1\model\NoticeUser;
 use Yii;
 use app\models\BaseModel;
 

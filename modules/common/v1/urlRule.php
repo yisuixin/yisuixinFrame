@@ -24,5 +24,39 @@ return [
             'POST upload-one-img'=>'upload-one-img', //上传单图
         ]
     ],
+    //快捷菜单
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['common/quick-operation'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'GET  get-quick-list' => 'get-quick-list',//获取快捷方式列表
+            'GET  get-user-menu-list' => 'get-user-menu-list',
+            'POST  add-quick' => 'add-quick',
+        ]
+    ],
+    //服务器信息
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['common/system-info'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'GET  server-info' => 'server-info',
+        ]
+    ],
+    //通知公告
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['common/notice'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'GET  get-user-notice-list' => 'get-user-notice-list',//获取通知列表
+            'GET  get-admin-notice-list' => 'get-admin-notice-list',//获取通知列表
+            'GET  get-notice-info' => 'get-notice-info',
+            'POST  add-notice' => 'add-notice',
+            'POST  delete-notice' => 'delete-notice',
+            'POST  topping-notice' => 'topping-notice',
+        ]
+    ],
 
 ];

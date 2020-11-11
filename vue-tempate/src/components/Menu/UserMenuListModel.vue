@@ -54,7 +54,7 @@
                         content:'用户菜单列表数据获取失败'
                     })
                 }
-                that.HTTPJS.get(that.HTTPURL.QUICK_OPERATION.GET_USER_MENU_LIST,'',successCallback,failCallback);
+                that.HTTPJS.get(that.HTTPURL.COMMON.QUICK_OPERATION.GET_USER_MENU_LIST,'',successCallback,failCallback);
             },
             //添加角色权限
             addRolePermission(){
@@ -84,7 +84,7 @@
                         }
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.QUICK_OPERATION.ADD_QUICK,{menuIds:that.menuIds},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.COMMON.QUICK_OPERATION.ADD_QUICK,{menuIds:that.menuIds},successCallback,failCallback);
             },
             //获取勾选权限的id
             getCheckMenuId(){
