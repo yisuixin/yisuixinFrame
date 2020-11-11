@@ -44,7 +44,6 @@
 </template>
 <script>
   import UploadOneImg from '../../components/Upload/UploadOneImg'
-  import handleMenu from "../../assets/js/handleMenu";
   export default {
       components: {UploadOneImg},
     data () {
@@ -89,7 +88,7 @@
             let successCallback = function(res){
                 that.formInline = res.data.data;
             }
-            that.HTTPJS.get(that.HTTPURL.USER.GET_USER_INFO,{},successCallback);
+            that.HTTPJS.get(that.HTTPURL.ACCOUNT.GET_USER_INFO,{},successCallback);
         },
         //修改基本信息
           handleSubmit(name) {
@@ -117,7 +116,7 @@
                               }
                           })
                       }
-                      that.HTTPJS.post(that.HTTPURL.USER.EDIT_USER_INFO,that.formInline,successCallback,failCallback);
+                      that.HTTPJS.post(that.HTTPURL.ACCOUNT.EDIT_USER_INFO,that.formInline,successCallback,failCallback);
                   }
               })
           },

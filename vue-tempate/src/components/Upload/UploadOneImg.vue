@@ -84,6 +84,7 @@
                 requestHeader: '',//附件上传请求头
                 imgUrl:'',
                 visible: false,
+                postUrl: 'mork'+this.HTTPURL.UPLOAD.UPLOAD_ONE_IMG
             }
         },
         watch: {
@@ -94,7 +95,6 @@
         mounted: function() {},
         created() {
             // 设置文件按上传请求头
-            this.postUrl = 'v1/'+this.HTTPURL.UPLOAD.UPLOAD_ONE_IMG;
             this.requestHeader = {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
             }

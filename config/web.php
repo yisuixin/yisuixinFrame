@@ -12,11 +12,14 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
-        'api' => [
-            'class' => 'app\modules\api\Module',
-        ],
-        'rabc' => [
-            'class' => 'app\modules\rabc\Module',
+//        'api' => [
+//            'class' => 'app\modules\api\Module',
+//        ],
+//        'rabc' => [
+//            'class' => 'app\modules\rabc\Module',
+//        ],
+        'upload' => [
+            'class' => 'app\modules\upload\v1\Module',
         ],
         'account' => [
             'class' => 'app\modules\account\v1\Module',

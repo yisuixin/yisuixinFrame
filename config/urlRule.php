@@ -3,7 +3,8 @@
 $common =  require __DIR__ . '/../modules/common/v1/urlRule.php';
 //用户模块url
 $account =  require __DIR__ . '/../modules/account/v1/urlRule.php';
-//rabc模块url
-$rabc =  require __DIR__ . '/../modules/rabc/urlRule.php';
+//文件上传模块url
+$upload =  require __DIR__ . '/../modules/upload/v1/urlRule.php';
 
-return array_merge($common,$account,$rabc);
+
+return array_merge($common,$account,$upload);

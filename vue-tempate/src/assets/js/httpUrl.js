@@ -1,8 +1,16 @@
 //配置所有url列表接口
 module.exports = {
-    COMMON:{//公共控制器管理相关接口
+    COMMON:{//公共模块控制器管理相关接口
         GET_CAPTCHA:'/common/captcha/get-captcha',//获取验证码
         USER_LOGIN : '/common/user/login',//用户登录
+    },
+    ACCOUNT:{//用户模块控制器管理相关接口
+        GET_USER_INFO:'/account/user/get-user-info',//获取用户信息
+        EDIT_USER_INFO:'/account/user/edit-user-info',//修改用户信息
+        EDIT_USER_PASS:'/account/user/edit-user-pass',//修改用户密码
+    },
+    UPLOAD:{//上传模块文件相关接口
+        UPLOAD_ONE_IMG:'/upload/upload/upload-one-img'//上传单图
     },
     LOG:{//log日志相关接口列表
         LIST : '/api/log/list',
@@ -29,14 +37,7 @@ module.exports = {
         GET_PAGE_PERMISSION_ITEM : '/rabc/menu/get-page-permission-list',//获取页面权限
         GET_ROLE_PAGE_PERMISSION_ITEM : '/rabc/menu/get-role-page-permission-list',
     },
-    USER:{//用户信息相关接口
-        GET_USER_INFO:'/api/user/get-user-info',
-        EDIT_USER_INFO:'/api/user/edit-user-info',
-        EDIT_USER_PASS:'/api/user/edit-user-pass',
-    },
-    UPLOAD:{//上传文件相关接口
-        UPLOAD_ONE_IMG:'/api/upload/upload-one-img'
-    },
+
     MANAGER:{//管理员管理相关接口
         ADD_MANAGER:'/rabc/rabc/add-manager',
         GET_USER_LIST:'/rabc/rabc/get-user-list',
@@ -49,7 +50,6 @@ module.exports = {
         DELETE_ROLE:'/rabc/role/delete-role',
         ADD_ROLE_PERMISSION:'/rabc/role/add-role-permission',
     },
-
     QUICK_OPERATION:{//快捷操作相关接口
         GET_QUICK_OPERATION:'/api/quick-operation/get-quick-list',
         GET_USER_MENU_LIST : '/api/quick-operation/get-user-menu-list',

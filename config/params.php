@@ -14,7 +14,7 @@ return [
         'api/user/get-user-info',
         'api/user/edit-user-info',
         'api/user/edit-user-pass',
-        'api/upload/upload-one-img',
+        'upload/upload/upload-one-img',
 
         'api/log/list',
         'api/system-info/server-info',

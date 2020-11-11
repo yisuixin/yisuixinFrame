@@ -88,7 +88,7 @@
                               }
                           })
                       }
-                      that.HTTPJS.post(that.HTTPURL.USER.EDIT_USER_PASS,that.passwordInline,successCallback,failCallback);
+                      that.HTTPJS.post(that.HTTPURL.ACCOUNT.EDIT_USER_PASS,that.passwordInline,successCallback,failCallback);
                   }
               })
           }
