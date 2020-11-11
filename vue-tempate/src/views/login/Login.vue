@@ -154,7 +154,7 @@
                             that.loginLoading = false;
                             that.loginText = '登录';
                         }
-                        that.HTTPJS.post(that.HTTPURL.LOGINAPI.login,that.formInline,successCallback,failCallback,otherCallback);
+                        that.HTTPJS.post(that.HTTPURL.COMMON.USER_LOGIN,that.formInline,successCallback,failCallback,otherCallback);
                     } else {
                         this.$Message.error('请输入账号或者密码');
                     }

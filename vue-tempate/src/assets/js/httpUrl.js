@@ -1,7 +1,8 @@
 //配置所有url列表接口
 module.exports = {
-    LOGINAPI:{//登录相关接口列表
-        login : '/api/user/login',
+    COMMON:{//公共控制器管理相关接口
+        GET_CAPTCHA:'/common/captcha/get-captcha',//获取验证码
+        USER_LOGIN : '/common/user/login',//用户登录
     },
     LOG:{//log日志相关接口列表
         LIST : '/api/log/list',
@@ -48,9 +49,7 @@ module.exports = {
         DELETE_ROLE:'/rabc/role/delete-role',
         ADD_ROLE_PERMISSION:'/rabc/role/add-role-permission',
     },
-    COMMON:{//公共控制器管理相关接口
-        GET_CAPTCHA:'/common/captcha/get-captcha',
-    },
+
     QUICK_OPERATION:{//快捷操作相关接口
         GET_QUICK_OPERATION:'/api/quick-operation/get-quick-list',
         GET_USER_MENU_LIST : '/api/quick-operation/get-user-menu-list',

@@ -1,18 +1,11 @@
 <?php
-namespace app\modules\api\controllers;
+namespace app\modules\common\v1\controllers;
 
-use app\common\lib\Tree;
-use app\components\ApiController;
-use app\modules\rabc\model\PagePermission;
-use app\modules\rabc\model\RolePermissionItem;
+
 use Yii;
+use app\components\ApiController;
 use app\models\User;
 use app\models\LoginForm;
-use app\modules\rabc\model\Menu;
-use app\models\Log;
-use app\modules\rabc\model\Role;
-use yii\db\Query;
-use yii\db\Expression;
 use app\modules\rabc\model\Rbac;
 use app\models\CodeImgGenerate;
 

@@ -10,7 +10,7 @@ return [
     'default_pass'=>'123456',
     'common_url'=>[//公共权限，全部可以访问
         'common/captcha/get-captcha',
-        'account/user/login',
+        'common/user/login',
         'api/user/get-user-info',
         'api/user/edit-user-info',
         'api/user/edit-user-pass',
