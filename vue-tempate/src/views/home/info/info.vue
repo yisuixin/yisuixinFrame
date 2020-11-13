@@ -23,7 +23,8 @@
         </Row>
         <Row  style="margin-bottom: 15px;">
             <Col span="24">
-                <ToDoList></ToDoList>
+<!--                <ToDoList></ToDoList>-->
+                <ToDo></ToDo>
             </Col>
         </Row>
     </div>
@@ -38,11 +39,10 @@
     import Notice from '../../../components/Home/Notice'
     import Weather from '../../../components/Home/Weather'
     import QuickOperation from '../../../components/Home/QuickOperation'
-
-
+    import ToDo from '../../../components/Home/ToDo'
 
     export default {
-        components: {WebInfo,ServerInfo,ToDoList,CountPerson,LoginLog,Notice,Weather,QuickOperation},
+        components: {WebInfo,ServerInfo,ToDoList,CountPerson,LoginLog,Notice,Weather,QuickOperation,ToDo},
         data () {
             return {
                 // countPerson:{

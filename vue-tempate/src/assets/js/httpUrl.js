@@ -19,15 +19,16 @@ module.exports = {
             DEL_NOTICE:'/common/notice/delete-notice',
             TOPPING_NOTICE:'/common/notice/topping-notice',
         },
+        UPLOAD:{//上传模块文件相关接口
+            UPLOAD_ONE_IMG:'/upload/upload/upload-one-img'//上传单图
+        },
     },
     ACCOUNT:{//用户模块控制器管理相关接口
         GET_USER_INFO:'/account/user/get-user-info',//获取用户信息
         EDIT_USER_INFO:'/account/user/edit-user-info',//修改用户信息
         EDIT_USER_PASS:'/account/user/edit-user-pass',//修改用户密码
     },
-    UPLOAD:{//上传模块文件相关接口
-        UPLOAD_ONE_IMG:'/upload/upload/upload-one-img'//上传单图
-    },
+
     LOG:{//log日志相关接口列表
         LIST : '/api/log/list',
     },

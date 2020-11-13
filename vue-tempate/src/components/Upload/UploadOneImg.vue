@@ -84,7 +84,7 @@
                 requestHeader: '',//附件上传请求头
                 imgUrl:'',
                 visible: false,
-                postUrl: 'mork'+this.HTTPURL.UPLOAD.UPLOAD_ONE_IMG
+                postUrl: 'mork'+this.HTTPURL.COMMON.UPLOAD.UPLOAD_ONE_IMG
             }
         },
         watch: {

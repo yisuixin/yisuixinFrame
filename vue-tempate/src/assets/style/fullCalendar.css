@@ -1,0 +1,16 @@
+/deep/ .fc-day {
+    /*width: 90px !important;*/
+}
+/deep/ .fc-col-header{
+    width: 100% !important;
+}
+/deep/ .fc-daygrid-body {
+    width: 100% !important;
+}
+/deep/ .fc-scrollgrid-sync-table {
+    width: 100% !important;
+}
+/deep/ .fc-scrollgrid-sync-table tr td{
+    background: red;
+    width: 80px !important;
+}

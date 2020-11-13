@@ -8,6 +8,9 @@ import commonJs from "./assets/js/common.js"; //公共操作显示文本配置�
 import "./assets/style/common.css"; //公共样式文件
 Vue.prototype.COMMONJS=commonJs;//公共js文件挂载
 
+import less from 'less'
+Vue.use(less)
+
 import VCharts from 'v-charts'
 Vue.use(VCharts)
 Vue.config.productionTip = false

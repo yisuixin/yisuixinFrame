@@ -8,6 +8,15 @@ return [
             'GET  get-captcha' => 'get-captcha',//获取验证码
         ]
     ],
+    //上传文件
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['common/upload'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'POST upload-one-img'=>'upload-one-img',
+        ]
+    ],
     [
         'class' => 'yii\rest\UrlRule',
         'controller' => ['common/user'],
