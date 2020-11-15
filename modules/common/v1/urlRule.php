@@ -67,5 +67,16 @@ return [
             'POST  topping-notice' => 'topping-notice',
         ]
     ],
-
+    //待办事项
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['common/to-do'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'GET  get-to-do-list' => 'get-to-do-list',
+            'GET  get-month-to-do-list' => 'get-month-to-do-list',
+            'POST add-or-edit'=>'add-or-edit',
+            'POST delete-todo'=>'delete-todo'
+        ]
+    ],
 ];

@@ -22,6 +22,12 @@ module.exports = {
         UPLOAD:{//上传模块文件相关接口
             UPLOAD_ONE_IMG:'/upload/upload/upload-one-img'//上传单图
         },
+        TODO:{//待办事项相关接口列表
+            LIST : '/common/to-do/get-to-do-list',
+            MONTH_LIST : '/common/to-do/get-month-to-do-list',
+            ADDOREDIT : '/common/to-do/add-or-edit',
+            DELETETODO : '/common/to-do/delete-todo',
+        },
     },
     ACCOUNT:{//用户模块控制器管理相关接口
         GET_USER_INFO:'/account/user/get-user-info',//获取用户信息
@@ -32,12 +38,7 @@ module.exports = {
     LOG:{//log日志相关接口列表
         LIST : '/api/log/list',
     },
-    TODO:{//待办事项相关接口列表
-        LIST : '/api/to-do/get-to-do-list',
-        MONTH_LIST : '/api/to-do/get-month-to-do-list',
-        ADDOREDIT : '/api/to-do/add-or-edit',
-        DELETETODO : '/api/to-do/delete-todo',
-    },
+
 
     MENU:{//菜单相关接口列表
         LIST : '/rabc/menu/list',//全部菜单列表

@@ -23,6 +23,19 @@ export const formatTime10 = (value, format = 'YYYY-MM-DD hh:mm:ss') => {
 export const formatTime13 = (value, format = 'YYYY-MM-DD hh:mm:ss') => {
     return dayjs(value).format(format)
 }
+export const dateCompare = (date1,date2)=>{
+    date1 = date1.replace(/\-/gi,"/");
+    date2 = date2.replace(/\-/gi,"/");
+    var time1 = new Date(date1).getTime();
+    var time2 = new Date(date2).getTime();
+    if(time1 > time2){
+        return 1;
+    }else if(time1 == time2){
+        return 2;
+    }else{
+        return 3;
+    }
+}
 
 
 dayjs.unix(1318781876)
@@ -31,5 +44,6 @@ export default {
     install (Vue) {
         Vue.filter('relativeTime', relativeTime)
         Vue.filter('formatTime', formatTime)
+        Vue.filter('dateCompare', dateCompare)
     }
 }
