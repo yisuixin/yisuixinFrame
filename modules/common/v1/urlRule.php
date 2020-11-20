@@ -75,6 +75,7 @@ return [
         'extraPatterns' => [
             'GET  get-to-do-list' => 'get-to-do-list',
             'GET  get-month-to-do-list' => 'get-month-to-do-list',
+            'GET  view-todo' => 'view-todo',
             'POST add-or-edit'=>'add-or-edit',
             'POST delete-todo'=>'delete-todo'
         ]

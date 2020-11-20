@@ -27,6 +27,7 @@ module.exports = {
             MONTH_LIST : '/common/to-do/get-month-to-do-list',
             ADDOREDIT : '/common/to-do/add-or-edit',
             DELETETODO : '/common/to-do/delete-todo',
+            VIEWTODO : '/common/to-do/view-todo',//查看待办事项
         },
     },
     ACCOUNT:{//用户模块控制器管理相关接口

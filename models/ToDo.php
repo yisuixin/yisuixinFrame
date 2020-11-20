@@ -16,7 +16,7 @@ class ToDo extends BaseModel{
     public function scenarios(){
         $s = parent::scenarios();
         $s['add_todo']  = ['type','title','desc','start','end','user_id','status'];
-        $s['edit_todo'] = ['type','title','desc','date','user_id','id','status'];
+        $s['edit_todo'] = ['type','title','desc','start','end','user_id','id','status'];
         return $s;
     }
     //规则

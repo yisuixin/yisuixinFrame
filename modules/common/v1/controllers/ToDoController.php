@@ -73,6 +73,21 @@ class ToDoController extends ApiController{
             return $this->ajaxFail($info.'失败.'.current($model->getErrors())[0]);
         }
     }
+    //查看待办事项
+    public function actionViewTodo(){
+        $id     = $this->get('id');
+        if($id == ''){
+            return $this->ajaxFail('获取失败,参数异常');
+        }
+        $model = (new ToDo())->findOne($id);
+        if(is_null($model)){
+            return $this->ajaxFail('获取失败，未找到待办事项信息');
+        }
+        if($model->user_id != $this->uId){
+            return $this->ajaxFail('获取失败，不能删除别人的待办事项');
+        }
+        return $this->ajaxSuccess('获取成功',$model->attributes);
+    }
     //删除待办事项
     public function actionDeleteTodo(){
         $post     = Yii::$app->request->post();

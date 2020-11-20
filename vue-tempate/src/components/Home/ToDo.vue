@@ -121,10 +121,10 @@
                 <FullCalendar ref="fullCalendar" :options="calendarOptions">
                     <template v-slot:eventContent='arg'>
                         <span style="font-size: 14px;">
-                            {{ arg.timeText }}{{ arg.event.title }}
-                            <Icon type="md-create"  color="#17233d" title="编辑" style="padding-left: 5px;" @click="ttt(arg.event.id)"/>
-                            <Icon type="md-eye" color="#17233d" title="查看" style="padding-left: 5px;"/>
-                            <Icon type="md-trash" color="#17233d" title="删除" style="padding-left: 5px;"/>
+                            {{ arg.timeText }} — {{ arg.event.title }}
+                            <Icon type="md-create"  color="#515a6e" title="编辑" style="padding-left: 5px;" @click="addToDoModelShow(2,arg.event.id)"/>
+                            <Icon type="md-eye" color="#515a6e" title="查看" style="padding-left: 5px;" @click="viewToDo(arg.event.id)"/>
+                            <Icon type="md-trash" color="#515a6e" title="删除" style="padding-left: 5px;" @click="deleToDo(arg.event.id)"/>
                         </span>
                     </template>
                 </FullCalendar>
@@ -174,6 +174,36 @@
             </div>
         </Modal>
         <!--添加待办事项结束-->
+        <!--查看待办事项开始-->
+        <Modal v-model="viewToDoModel.show"
+               :loading="viewToDoModel.loading"
+               :footer-hide="true"
+               title="待办事项详情">
+            <Spin v-if="viewToDoModel.loading"></Spin>
+            <Form :label-width="95" v-else>
+                <FormItem label="标题">
+                    {{viewToDoModel.data.title}}
+                </FormItem>
+                <FormItem label="说明">
+                   {{viewToDoModel.data.desc}}
+                </FormItem>
+                <FormItem label="开始时间">
+                    {{viewToDoModel.data.start | formatTime10}}
+                </FormItem>
+                <FormItem label="结束时间">
+                    {{viewToDoModel.data.end | formatTime10}}
+                </FormItem>
+                <FormItem label="状态">
+                    <RadioGroup v-model="viewToDoModel.data.status">
+                        <Radio :label='1' disabled>未开始</Radio>
+                        <Radio :label='2' disabled>进行中</Radio>
+                        <Radio :label='3' disabled>已完成</Radio>
+                        <Radio :label='4' disabled>已过期</Radio>
+                    </RadioGroup>
+                </FormItem>
+            </Form>
+        </Modal>
+        <!--查看待办事项结束-->
     </div>
 </template>
 <script>
@@ -184,7 +214,6 @@
     import cnLocale from '@fullcalendar/core/locales/zh-cn'
     import timeGridPlugin from '@fullcalendar/timegrid';
     import listPlugin from '@fullcalendar/list';
-
     export default {
         components: {
             FullCalendar // make the <FullCalendar> tag available
@@ -217,7 +246,6 @@
                         week: '周',
                         day: '天',
                         listYear:'本年事项列表',
-
                     },
                     noEventsText:'暂时没有待办事项',
                     height: '800px',
@@ -287,7 +315,12 @@
                         ],
                     }
                 },
-
+                //查看待办事项模型
+                viewToDoModel:{
+                    loading:false,
+                    show:false,
+                    data:{}
+                }
             }
         },
         mounted:function(){
@@ -295,9 +328,60 @@
 
         },
         methods: {
-            ttt(id){
+            //编辑待办事项
+            editToDo(id){
+                const that = this;
+                that.toDoAdd.show = true;
+                that.toDoAdd.loading = true;
+                let successCallback = function(res){
+                    that.toDoAdd.loading = false;
+                    let data = res.data.data;
+                    that.toDoAdd.title='编辑待办事项';
+                    that.toDoAdd.formInline.type      = 2;
+                    that.toDoAdd.formInline.title = data.title;
+                    that.toDoAdd.formInline.id =  data.id;
+                    that.toDoAdd.formInline.desc =  data.desc;
+                    that.toDoAdd.formInline.start =  that.dayjs.unix(data.start).format('YYYY-MM-DD HH:mm:ss');
+                    that.toDoAdd.formInline.end =    that.dayjs.unix(data.end).format('YYYY-MM-DD HH:mm:ss');
+                    that.toDoAdd.formInline.status =  data.status.toString();
+                    console.log(that.toDoAdd.formInline)
+                }
+                let failCallback = function(res){
+                    that.$Message.error({
+                        content:res.data.message,
+                        onClose:function () {
+                            that.viewToDoModel.loading = false;
+                            that.viewToDoModel.loading = false;
+                        }
+                    })
+                }
+                that.getToDoView({id:id},successCallback,failCallback);
+            },
+            //查看待办事项
+            viewToDo(id){
+                const that = this;
+                that.viewToDoModel.loading = true;
+                that.viewToDoModel.show = true;
+                let successCallback = function(res){
+                    that.viewToDoModel.loading = false;
+                    that.viewToDoModel.data = res.data.data;
+                }
+                let failCallback = function(res){
+                    that.$Message.error({
+                        content:res.data.message,
+                        onClose:function () {
+                            that.viewToDoModel.loading = false;
+                            that.viewToDoModel.loading = false;
+                        }
+                    })
+                }
+                that.getToDoView({id:id},successCallback,failCallback);
+            },
+            //删除待办事项
+            deleToDo(id){
                 alert(id);
             },
+            //改变日历日期事件
             changeDate(dateInfo){
                 let that = this;
                 let calendarApi = this.$refs.fullCalendar.getApi()
@@ -321,10 +405,11 @@
             //     this.toDoAdd.formInline.start = arg.dateStr +' 00:00:00';
             //     this.addToDoModelShow(1);
             // },
-            toDoClick (arg) {//获取事项详情
-                console.log(arg.event);
+            //获取待办事项详情
+            getToDoView:function (parms,successCallback,failCallback) {
+                this.HTTPJS.get(this.HTTPURL.COMMON.TODO.VIEWTODO,parms,successCallback,failCallback);
             },
-            //获取待办事项
+            //获取待办事项列表
             getToDoList:function () {
                 const that =this;
                 that.toDoList.loading = true;
@@ -333,17 +418,20 @@
                     let list = res.data.data.list;
                     list.map((item, index, arr) => {
                         if(item.status == 1){
-                            item.color = "#ff9900";
+                            item.backgroundColor = '#2db7f5';
+                            item.backgroundColor = '#2db7f5';
                         }else if(item.status == 2){
-                            item.color = "#2db7f5";
+                            item.backgroundColor = '#2d8cf0';
+                            item.backgroundColor = '#2d8cf0';
                         }else if(item.status == 3){
-                            item.color = "#19be6b";
+                            item.backgroundColor = '#19be6b';
+                            item.backgroundColor = '#19be6b';
                         }else{
-                            item.color = "#ed4014";
+                            item.backgroundColor = '#ed4014';
+                            item.backgroundColor = '#ed4014';
                         }
                     })
-                    that.calendarOptions.events = res.data.data.list;
-                    // console.log(res.data.data.list);
+                    that.calendarOptions.events = list;
                 }
                 let failCallback = function(res){
                     that.toDoList.loading = false;
@@ -356,19 +444,13 @@
                 that.HTTPJS.get(that.HTTPURL.COMMON.TODO.LIST,that.toDoList.search,successCallback,failCallback,otherCallback);
             },
             //点击添加事项,显示model
-            addToDoModelShow:function(type,index){
+            addToDoModelShow:function(type,id){
                 if(type == 1){//增加
                     this.toDoAdd.show = true;
                     this.toDoAdd.formInline.type   = 1;
                     //this.$refs["formValidate"].resetFields();//重置表单
                 }else if(type == 2){//编辑
-                    this.toDoAdd.show = true;
-                    this.toDoAdd.title='编辑待办事项';
-                    this.toDoAdd.formInline.type      = 2;
-                    this.toDoAdd.formInline.id        =  this.toDoList.list[index].id;
-                    this.toDoAdd.formInline.desc      =  this.toDoList.list[index].desc;
-                    this.toDoAdd.formInline.date      =  this.dayjs.unix(this.toDoList.list[index].date).format('YYYY-MM-DD HH:mm:ss');
-                    this.toDoAdd.formInline.completed =  this.toDoList.list[index].completed;
+                    this.editToDo(id);
                 }else{
                     this.toDoAdd.loading = false;
                     this.toDoAdd.show = false;
@@ -376,7 +458,7 @@
                     this.$refs["formValidate"].resetFields();//重置表单
                 }
             },
-            //添加待办事项model
+            //添加待办事项
             addToDo:function(name){
                 const that =this;
                 let type = that.toDoAdd.formInline.type;
