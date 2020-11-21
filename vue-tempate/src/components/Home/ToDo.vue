@@ -111,6 +111,10 @@
         display: block;
         text-align: right !important;
     }
+    .to-do-list-event-icon{
+        padding-left: 5px;
+        cursor: pointer;
+    }
 
 </style>
 <template>
@@ -121,10 +125,19 @@
                 <FullCalendar ref="fullCalendar" :options="calendarOptions">
                     <template v-slot:eventContent='arg'>
                         <span style="font-size: 14px;">
-                            {{ arg.timeText }} — {{ arg.event.title }}
-                            <Icon type="md-create"  color="#515a6e" title="编辑" style="padding-left: 5px;" @click="addToDoModelShow(2,arg.event.id)"/>
-                            <Icon type="md-eye" color="#515a6e" title="查看" style="padding-left: 5px;" @click="viewToDo(arg.event.id)"/>
-                            <Icon type="md-trash" color="#515a6e" title="删除" style="padding-left: 5px;" @click="deleToDo(arg.event.id)"/>
+                            <span>{{ arg.timeText }}</span>
+                            <span v-if="arg.view.type != 'listYear'"> - </span>
+                            <span>{{ arg.event.title | reBytesStr(14)}}</span>
+                            <Icon type="md-create"  color="#515a6e" title="编辑" class="to-do-list-event-icon" @click="addToDoModelShow(2,arg.event.id)"/>
+                            <Icon type="md-eye" color="#515a6e" title="查看" class="to-do-list-event-icon" @click="viewToDo(arg.event.id)"/>
+                            <Poptip
+                                    confirm
+                                    transfer
+                                    title="确定删除此待办事项吗?"
+                                    @on-ok="deleToDo(arg.event.id)">
+                                        <Icon type="md-trash" color="#515a6e" title="删除" class="to-do-list-event-icon"/>
+                                    </Poptip>
+
                         </span>
                     </template>
                 </FullCalendar>
@@ -136,6 +149,7 @@
                :title="toDoAdd.title"
                :closable="false"
                :mask-closable="false">
+            <Spin v-if="toDoAdd.formInline.type == 2 && toDoAdd.loading"></Spin>
             <Form ref="formValidate" :model="toDoAdd.formInline" :rules="toDoAdd.ruleValidate" :label-width="95">
                 <FormItem label="标题" prop="title">
                     <Input type="text" v-model="toDoAdd.formInline.title" placeholder="最多30个字符"></Input>
@@ -155,6 +169,7 @@
                 <FormItem label="结束时间" prop="end">
                     <DatePicker type="datetime"
                                 :editable="false"
+                                :options="toDoAdd.startDateOptions"
                                 :value="toDoAdd.formInline.end"
                                 @on-change='toDoAdd.formInline.end=$event'
                                 placeholder="事项结束时间" format="yyyy-MM-dd HH:mm:ss"></DatePicker>
@@ -344,7 +359,6 @@
                     that.toDoAdd.formInline.start =  that.dayjs.unix(data.start).format('YYYY-MM-DD HH:mm:ss');
                     that.toDoAdd.formInline.end =    that.dayjs.unix(data.end).format('YYYY-MM-DD HH:mm:ss');
                     that.toDoAdd.formInline.status =  data.status.toString();
-                    console.log(that.toDoAdd.formInline)
                 }
                 let failCallback = function(res){
                     that.$Message.error({
@@ -379,7 +393,16 @@
             },
             //删除待办事项
             deleToDo(id){
-                alert(id);
+                const that =this;
+                let successCallback = function(res){
+                    that.$Message.info({
+                        content: '删除成功',
+                        onClose:function () {
+                            that.getToDoList();
+                        }
+                    });
+                }
+                that.HTTPJS.post(that.HTTPURL.COMMON.TODO.DELETETODO,{id:id},successCallback);
             },
             //改变日历日期事件
             changeDate(dateInfo){

@@ -14,7 +14,7 @@ class ToDoController extends ApiController{
         $page      = $this->get('page', 0);
         $pageSize  = $this->get('pageSize', $this->getParams('default_page_size'));
         $offset    = ($page - 1) * $pageSize;
-        $type      = $this->get('type', 2);//1获取今日待办，2获取全部待办，3获取已经完成的待办
+        $type      = $this->get('type', 2);//1获取今日待办，2获取全部待办，3获取已经完成的待办；（暂时未用到）
         $date      = $this->get('date', '');
         $startDate  = $this->get('startDate', '');
         $endtDate   = $this->get('endtDate', '');
