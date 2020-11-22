@@ -23,10 +23,10 @@
 <!--                                </Select>-->
 <!--                            </FormItem>-->
 <!--                        </Col>-->
-                        <Col span="6">
+                        <Col span="8">
                             <FormItem>
-                                <Button type="primary" @click="handleSubmit(1)">搜索</Button>
-                                <Button type="default" @click="handleSubmit(2)">重置</Button>
+                                <Col span="4"><Button type="primary" @click="handleSubmit(1)">搜索</Button></Col>
+                                <Col span="4"><Button type="default" @click="handleSubmit(2)">重置</Button></Col>
                             </FormItem>
                         </Col>
                     </Row>

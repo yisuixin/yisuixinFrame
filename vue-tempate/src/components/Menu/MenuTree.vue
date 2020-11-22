@@ -1,6 +1,8 @@
 <template>
     <div>
-        <Spin v-if="loading"></Spin>
+        <Spin v-if="loading" class="spinClass">
+            <span>菜单数据正在加载中，请稍后<span class="dot">...</span></span>
+        </Spin>
        <Tree :data="data5" :render="renderContent" class="demo-tree-render" v-else></Tree>
     </div>
 </template>
