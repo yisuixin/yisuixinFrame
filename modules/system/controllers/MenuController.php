@@ -1,8 +1,7 @@
 <?php
-namespace app\modules\menu\v1\controllers;
+namespace app\modules\system\controllers;
 
 
-use app\common\lib\ModelHelper;
 
 use yii;
 use app\components\ApiController;
@@ -12,6 +11,8 @@ use app\models\User;
 use app\models\rbac\PermissionItem;
 use app\models\rbac\RolePermissionItem;
 use app\models\rbac\PagePermission;
+use app\common\lib\ModelHelper;
+
 class MenuController extends ApiController{
     /**
      * 菜单列表

@@ -93,7 +93,7 @@
                         let otherCallback = function(res){
                             that.pagePermission.saveBtnLoading = false;
                         }
-                        that.HTTPJS.post(that.HTTPURL.MENU.ADD_PAGE_PERMISSION,{menuId:that.treeData.id,data:that.pagePermission.items},successCallback,failCallback,otherCallback);
+                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.ADD_PAGE_PERMISSION,{menuId:that.treeData.id,data:that.pagePermission.items},successCallback,failCallback,otherCallback);
                     }
                 })
             },

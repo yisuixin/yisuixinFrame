@@ -2,6 +2,18 @@
 return [
     [
         'class' => 'yii\rest\UrlRule',
+        'controller' => ['common/user'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'POST login' => 'login',
+            'GET  reg' => 'reg',
+            'GET  get-user-info' => 'get-user-info',
+            'POST edit-user-info' => 'edit-user-info',
+            'POST edit-user-pass' => 'edit-user-pass'
+        ]
+    ],
+    [
+        'class' => 'yii\rest\UrlRule',
         'controller' => ['common/captcha'],
         'pluralize' => false,
         'extraPatterns' => [
@@ -60,11 +72,8 @@ return [
         'pluralize' => false,
         'extraPatterns' => [
             'GET  get-user-notice-list' => 'get-user-notice-list',//获取通知列表
-            'GET  get-admin-notice-list' => 'get-admin-notice-list',//获取通知列表
             'GET  get-notice-info' => 'get-notice-info',
-            'POST  add-notice' => 'add-notice',
-            'POST  delete-notice' => 'delete-notice',
-            'POST  topping-notice' => 'topping-notice',
+
         ]
     ],
     //待办事项

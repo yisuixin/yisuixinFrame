@@ -1,6 +1,5 @@
 <?php
-
-namespace app\modules\rbac\v1\controllers;
+namespace app\modules\system\controllers;
 
 
 use Yii;

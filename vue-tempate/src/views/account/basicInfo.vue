@@ -88,7 +88,7 @@
             let successCallback = function(res){
                 that.formInline = res.data.data;
             }
-            that.HTTPJS.get(that.HTTPURL.ACCOUNT.GET_USER_INFO,{},successCallback);
+            that.HTTPJS.get(that.HTTPURL.COMMON.ACCOUNT.GET_USER_INFO,{},successCallback);
         },
         //修改基本信息
           handleSubmit(name) {
@@ -116,7 +116,7 @@
                               }
                           })
                       }
-                      that.HTTPJS.post(that.HTTPURL.ACCOUNT.EDIT_USER_INFO,that.formInline,successCallback,failCallback);
+                      that.HTTPJS.post(that.HTTPURL.COMMON.ACCOUNT.EDIT_USER_INFO,that.formInline,successCallback,failCallback);
                   }
               })
           },

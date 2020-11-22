@@ -8,7 +8,7 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 use OAuth2\Storage\UserCredentialsInterface;
-use app\models\Log;
+use app\models\log\Log;
 use app\models\BaseModel;
 
 class User extends BaseModel implements IdentityInterface

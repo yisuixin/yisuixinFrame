@@ -1,20 +1,14 @@
 <?php
-namespace app\modules\api\model;
+namespace app\modules\common\v1\model;
 
-use app\modules\rabc\model\Menu;
-use Yii;
 use app\models\BaseModel;
-use app\common\lib\Tree;
-use app\common\lib\File;
-use app\modules\rabc\model\Role;
-use yii\db\Expression;
 
 
-class QuickOperation extends BaseModel{
-
+class NoticeUser extends BaseModel{
+    const NOTICE_STATUS_ONE = 1;const NOTICE_STATUS_TWO = 2;//用户通知状态，1未读，2已读
     //表名
     public static function tableName(){
-        return "{{%quick_operation}}";
+        return "{{%notice_user}}";
     }
     public function getMenuList(){
         return $this->hasOne(Menu::className(),['id'=>'menu_id'])->select('id,parent_id,icon,name,title,href')->asArray();

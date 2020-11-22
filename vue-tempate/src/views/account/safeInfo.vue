@@ -75,6 +75,7 @@
                                   that.$refs[name].resetFields();
                                   that.editPass.loading = false;
                                   that.editPass.txt = '修改密码';
+                                  sessionStorage.clear();
                                   that.$router.replace('/login')
                               }
                           })
@@ -88,7 +89,7 @@
                               }
                           })
                       }
-                      that.HTTPJS.post(that.HTTPURL.ACCOUNT.EDIT_USER_PASS,that.passwordInline,successCallback,failCallback);
+                      that.HTTPJS.post(that.HTTPURL.COMMON.ACCOUNT.EDIT_USER_PASS,that.passwordInline,successCallback,failCallback);
                   }
               })
           }

@@ -255,7 +255,7 @@
                     let failCallback = function(res){
                         that.$Message.error(res.data.message);
                     }
-                    that.HTTPJS.post(that.HTTPURL.MENU.DELETE_MENU,{id:id},successCallback,failCallback);
+                    that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.DELETE_MENU,{id:id},successCallback,failCallback);
             },
             //获取菜单列表
             getMenuList(){
@@ -273,7 +273,7 @@
                         that.data5[0].children = [];
                         that.loading = false;
                     }
-                    that.HTTPJS.get(that.HTTPURL.MENU.LIST,'',successCallback,failCallback,otherCallback);
+                    that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.MENU.LIST,'',successCallback,failCallback,otherCallback);
             },
             //点击排序按钮
             updateMenuSort(data,sortVal){
@@ -291,7 +291,7 @@
                         content:'排序失败，未知错误',
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.MENU.SORT_MENU,{id:data.id,sortVal:sortVal},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.SORT_MENU,{id:data.id,sortVal:sortVal},successCallback,failCallback);
             }
         }
     }
