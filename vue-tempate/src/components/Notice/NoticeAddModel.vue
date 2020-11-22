@@ -182,7 +182,7 @@
             let failCallback = function(res){
                 that.roleList.loading = false;
             }
-            that.HTTPJS.get(that.HTTPURL.ROLE.GET_ROLE_LIST,that.roleList.search,successCallback,failCallback);
+            that.HTTPJS.get(that.HTTPURL.RBAC.ROLE.GET_ROLE_LIST,that.roleList.search,successCallback,failCallback);
         },
         //获取角色列表页码改变
         getUserListPageChange(page){
@@ -199,7 +199,7 @@
             let failCallback = function(res){
                 that.userList.loading = false;
             }
-            that.HTTPJS.get(that.HTTPURL.MANAGER.GET_USER_LIST,that.userList.search,successCallback,failCallback);
+            that.HTTPJS.get(that.HTTPURL.RBAC.MANAGER.GET_USER_LIST,that.userList.search,successCallback,failCallback);
         },
         //点击发布公告
         submitNotice(){

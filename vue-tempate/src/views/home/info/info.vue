@@ -16,14 +16,11 @@
                     <Col span="6">
                         <Notice></Notice>
                     </Col>
-
-
                 </Row>
             </Col>
         </Row>
         <Row  style="margin-bottom: 15px;">
             <Col span="24">
-<!--                <ToDoList></ToDoList>-->
                 <ToDo></ToDo>
             </Col>
         </Row>
@@ -33,7 +30,6 @@
 <script>
     import WebInfo from '../../../components/Home/WebInfo'
     import ServerInfo from '../../../components/Home/ServerInfo'
-    import ToDoList from '../../../components/Home/ToDoList'
     import CountPerson from '../../../components/Home/CountPerson'
     import LoginLog from '../../../components/Log/LoginLog'
     import Notice from '../../../components/Home/Notice'
@@ -42,7 +38,7 @@
     import ToDo from '../../../components/Home/ToDo'
 
     export default {
-        components: {WebInfo,ServerInfo,ToDoList,CountPerson,LoginLog,Notice,Weather,QuickOperation,ToDo},
+        components: {WebInfo,ServerInfo,CountPerson,LoginLog,Notice,Weather,QuickOperation,ToDo},
         data () {
             return {
                 // countPerson:{

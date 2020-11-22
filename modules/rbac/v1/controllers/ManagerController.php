@@ -1,13 +1,14 @@
 <?php
 
-namespace app\modules\rabc\controllers;
+namespace app\modules\rbac\v1\controllers;
 
-use app\modules\rabc\model\Role;
+
 use Yii;
 use app\components\ApiController;
 use app\models\User;
 use yii\db\Query;
-class RabcController extends ApiController{
+use app\models\rbac\Role;
+class ManagerController extends ApiController{
 
     /**
      * 增加管理员
@@ -32,7 +33,7 @@ class RabcController extends ApiController{
     /**
      *获取管理员列表
      */
-    public function actionGetUserList(){
+    public function actionGetManagerList(){
         $page      = $this->get('page', 0);
         $pageSize  = $this->get('pageSize', $this->getParams('default_page_size'));
         $offset    = ($page - 1) * $pageSize;

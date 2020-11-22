@@ -89,7 +89,7 @@
                         }
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.ROLE.ADD_ROLE_PERMISSION,{roleId:that.roleId,permissionsData:that.permissionsData},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.RBAC.ROLE.ADD_ROLE_PERMISSION,{roleId:that.roleId,permissionsData:that.permissionsData},successCallback,failCallback);
             },
             //获取勾选权限的id
             getCheckMenuId(){

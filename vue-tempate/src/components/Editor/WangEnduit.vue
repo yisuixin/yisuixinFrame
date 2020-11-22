@@ -86,7 +86,7 @@
             seteditor() {
                 this.editor = new E(this.$refs.toolbar, this.$refs.editor)
                 this.editor.config.uploadImgShowBase64 = false // base 64 存储图片
-                this.editor.config.uploadImgServer = 'v1/'+this.HTTPURL.UPLOAD.UPLOAD_ONE_IMG// 配置服务器端地址
+                this.editor.config.uploadImgServer = 'mork/'+this.HTTPURL.COMMON.UPLOAD.UPLOAD_ONE_IMG// 配置服务器端地址
                 this.editor.config.uploadImgHeaders = {  'Authorization': 'Bearer ' + sessionStorage.getItem('token'),}// 自定义 header
 
                 this.editor.config.uploadFileName = 'file' // 后端接受上传文件的参数名

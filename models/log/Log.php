@@ -1,10 +1,8 @@
 <?php
 
-namespace app\models;
+namespace app\models\log;
 
 use Yii;
-use yii\base\Model;
-use yii\db\ActiveRecord;
 use app\models\BaseModel;
 //username、password、desc、ip、login_time
 class Log extends BaseModel{

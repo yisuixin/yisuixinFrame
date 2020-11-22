@@ -4,17 +4,13 @@
  */
 namespace app\components;
 
-use app\models\User;
-use app\modules\rabc\model\PagePermission;
-use app\modules\rabc\model\Role;
-use yii\rest\ActiveController;
-use Yii;
-use yii\filters\auth\HttpBearerAuth;
-use app\modules\rabc\model\PermissionItem;
-use yii\web\ForbiddenHttpException;
-use app\modules\rabc\model\RolePermissionItem;
-use app\modules\rabc\model\Rbac;
 
+use Yii;
+use yii\rest\ActiveController;
+use yii\filters\auth\HttpBearerAuth;
+use yii\web\ForbiddenHttpException;
+use app\models\rbac\Rbac;
+use app\models\rbac\Role;
 
 class ApiController extends ActiveController{
     public $modelClass = '';
@@ -46,9 +42,11 @@ class ApiController extends ActiveController{
         $beforeAction = parent::beforeAction($action);
         $this->uId = Yii::$app->user->identity->id;
         $this->user = Yii::$app->user->identity;
-        $url = Yii::$app->controller->module->id.'/'. Yii::$app->controller->id.'/'.Yii::$app->controller->action->id;
-
-        if($this->user->role == Role::TYPE_ONE){//超级管理员直接返回true
+        $modelId      = Yii::$app->controller->module->id;
+        $controllerId = Yii::$app->controller->id;
+        $actionId     = Yii::$app->controller->action->id;
+        $url = $modelId.'/'. $controllerId.'/'.$actionId;
+        if($this->user->role == Role::TYPE_ONE || $modelId == $this->getParams('commonId')){//超级管理员或者是公共模块的直接返回true
             return true;
         }else{
             $validationPermission =  Rbac::validationRolePermission($this->user,$url);

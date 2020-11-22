@@ -6,7 +6,7 @@ use Yii;
 use app\components\ApiController;
 use app\models\User;
 use app\models\LoginForm;
-use app\modules\rabc\model\Rbac;
+use app\models\rbac\Rbac;
 use app\models\CodeImgGenerate;
 
 

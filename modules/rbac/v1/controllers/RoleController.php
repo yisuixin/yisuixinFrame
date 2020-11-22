@@ -1,17 +1,13 @@
 <?php
+namespace app\modules\rbac\v1\controllers;
 
-namespace app\modules\rabc\controllers;
-
-use app\modules\rabc\model\Menu;
-use app\modules\rabc\model\RoleMenuItem;
 use Yii;
 use app\components\ApiController;
-use app\modules\rabc\model\Role;
 use app\common\lib\ModelHelper;
-use app\modules\rabc\model\RolePermissionItem;
-
+use app\models\rbac\RolePermissionItem;
+use app\models\rbac\Role;
+use app\models\rbac\RoleMenuItem;
 class RoleController extends ApiController{
-
     /**
      * 增加管理角色
      * @return int[]
@@ -113,6 +109,9 @@ class RoleController extends ApiController{
             $post   = Yii::$app->request->post();
             $items  = $post['permissionsData'];
             $roleId =  $post['roleId'];
+            if(empty($items['urlItems'])){
+                return $this->ajaxFail('添加失败，请选择角色权限.');
+            }
             $urlItems     = array_unique($items['urlItems']);
             $menuItems    = $items['menuIdItems'];
             $roleInfo = (new Role())->findOne(['id'=>$roleId]);

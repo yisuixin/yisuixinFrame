@@ -1,19 +1,17 @@
 <?php
-
-namespace app\modules\rabc\controllers;
+namespace app\modules\menu\v1\controllers;
 
 
 use app\common\lib\ModelHelper;
-use app\modules\rabc\model\PagePermission;
+
 use yii;
 use app\components\ApiController;
-use app\modules\rabc\model\menu;
-use app\common\lib\File;
+use app\models\menu\menu;
 use app\common\lib\Tree;
 use app\models\User;
-use app\modules\rabc\model\PermissionItem;
-use app\modules\rabc\model\PagePermissionItem;
-use app\modules\rabc\model\RolePermissionItem;
+use app\models\rbac\PermissionItem;
+use app\models\rbac\RolePermissionItem;
+use app\models\rbac\PagePermission;
 class MenuController extends ApiController{
     /**
      * 菜单列表

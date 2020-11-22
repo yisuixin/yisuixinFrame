@@ -12,20 +12,20 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
-//        'api' => [
-//            'class' => 'app\modules\api\Module',
-//        ],
-//        'rabc' => [
-//            'class' => 'app\modules\rabc\Module',
-//        ],
-        'upload' => [
-            'class' => 'app\modules\upload\v1\Module',
+        'rbac' => [
+            'class' => 'app\modules\rbac\v1\Module',
         ],
         'account' => [
             'class' => 'app\modules\account\v1\Module',
         ],
         'common' => [
             'class' => 'app\modules\common\v1\Module',
+        ],
+        'menu' => [
+            'class' => 'app\modules\menu\v1\Module',
+        ],
+        'log' => [
+            'class' => 'app\modules\log\v1\Module',
         ],
     ],
     'components' => [

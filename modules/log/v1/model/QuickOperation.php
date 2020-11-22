@@ -1,10 +1,14 @@
 <?php
-namespace app\modules\common\v1\model;
+namespace app\modules\api\model;
 
-
+use app\modules\rabc\model\Menu;
 use Yii;
 use app\models\BaseModel;
-use app\models\menu\Menu;
+use app\common\lib\Tree;
+use app\common\lib\File;
+use app\modules\rabc\model\Role;
+use yii\db\Expression;
+
 
 class QuickOperation extends BaseModel{
 

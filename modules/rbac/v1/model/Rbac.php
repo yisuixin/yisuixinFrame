@@ -87,9 +87,7 @@ class Rbac extends BaseModel{
         }else{
             $permissionList = (new RolePermissionItem())->find()->where(['role_id'=>$user->role])->asArray()->all();
             $permissionUrl  = array_column($permissionList, 'url');
-            $no_login_url   = Yii::$app->params['common_url'];//公共url列表
-            $validatePermissionList = array_merge($permissionUrl,$no_login_url);
-            return $validatePermissionList;
+            return $permissionUrl;
         }
     }
     /**
