@@ -65,33 +65,8 @@ module.exports = {
             LOGIN_LOG : '/system/login-log/list',
         },
     },
-    MENU:{//菜单模块相关接口列表
-        LIST : '/menu/menu/list',//全部菜单列表
-        GET_ROLE_MENU_LIST : '/menu/menu/get-role-menu-list',//整站权限菜单列表
-        ADD : '/menu/menu/add-menu',
-        ADD_OR_EDIT : '/menu/menu/add-or-edit',
-        GET_LEVEL_LMANU : '/menu/menu/get-level-menu',
-        GET_ONLY_LMANU : '/menu/menu/get-only-menu',
-        DELETE_MENU : '/menu/menu/delete-menu',//删除菜单
-        SORT_MENU : '/menu/menu/sort-menu',//排序菜单
-        ADD_PAGE_PERMISSION : '/menu/menu/add-page-permission',//添加页面权限
-        GET_PAGE_PERMISSION_ITEM : '/menu/menu/get-page-permission-list',//获取页面权限
-        GET_ROLE_PAGE_PERMISSION_ITEM : '/menu/menu/get-role-page-permission-list',
-    },
-    RBAC:{//rbac模块相关接口
-        MANAGER:{//管理员管理相关接口
-            ADD_MANAGER:'/rbac/manager/add-manager',
-            GET_USER_LIST:'/rbac/manager/get-manager-list',
-            EDIT_MANAGER:'/rbac/manager/edit-manager',
-        },
-        ROLE:{//管理员角色管理相关接口
-            ADD_ROLE:'/rbac/role/add-role',
-            GET_ROLE_INFO:'/rbac/role/get-role-info',
-            GET_ROLE_LIST:'/rbac/role/get-role-list',
-            DELETE_ROLE:'/rbac/role/delete-role',
-            ADD_ROLE_PERMISSION:'/rbac/role/add-role-permission',
-        },
-    },
+
+
 
 
 

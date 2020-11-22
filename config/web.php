@@ -12,18 +12,6 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
-//        'rbac' => [
-//            'class' => 'app\modules\rbac\v1\Module',
-//        ],
-//        'account' => [
-//            'class' => 'app\modules\account\v1\Module',
-//        ],
-//        'menu' => [
-//            'class' => 'app\modules\menu\v1\Module',
-//        ],
-//        'log' => [
-//            'class' => 'app\modules\log\v1\Module',
-//        ],
         'common' => [//公共模块，此模块全部可以访问
             'class' => 'app\modules\common\v1\Module',
         ],
