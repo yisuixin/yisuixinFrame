@@ -256,7 +256,7 @@
                     that.notice.loading = false;
                     that.notice.list = [];
                 }
-                that.HTTPJS.get(that.HTTPURL.COMMON.NOTICE.GET_ADMIN_NOTICE_LIST,that.notice.search,successCallback,failCallback,otherCallback);
+                that.HTTPJS.get(that.HTTPURL.CONTENT.NOTICE.GET_ADMIN_NOTICE_LIST,that.notice.search,successCallback,failCallback,otherCallback);
             },
             //点击搜索
             searchSubmit(){
@@ -288,7 +288,7 @@
                         }
                     });
                 }
-                that.HTTPJS.post(that.HTTPURL.COMMON.NOTICE.DEL_NOTICE,{id:id},successCallback);
+                that.HTTPJS.post(that.HTTPURL.CONTENT.NOTICE.DEL_NOTICE,{id:id},successCallback);
             },
             //置顶或者取消置顶
             toppingNotice(key,type){
@@ -304,7 +304,7 @@
                         }
                     });
                 }
-                that.HTTPJS.post(that.HTTPURL.COMMON.NOTICE.TOPPING_NOTICE,{id:id,type:type},successCallback);
+                that.HTTPJS.post(that.HTTPURL.CONTENT.NOTICE.TOPPING_NOTICE,{id:id,type:type},successCallback);
             },
             showNoticeInfoModel:function(type,id){//type == 1显示，2关闭
                 this.$refs.NoticeInfoModel.showModel(type,id,'admin');

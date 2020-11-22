@@ -229,7 +229,7 @@
                           }
                       })
                   }
-                  that.HTTPJS.post(that.HTTPURL.COMMON.NOTICE.ADD_NOTICE,that.noticeAddModel.formInline,successCallback,failCallback);
+                  that.HTTPJS.post(that.HTTPURL.CONTENT.NOTICE.ADD_NOTICE,that.noticeAddModel.formInline,successCallback,failCallback);
               } else {
                   this.noticeAddModel.loading = false;
               }

@@ -1,12 +1,12 @@
 <?php
-namespace app\modules\common\v1\controllers;
+namespace app\modules\common\controllers;
 
 use app\components\ApiController;
 use app\models\User;
 use app\modules\rabc\model\Role;
 use Yii;
-use app\modules\common\v1\model\Notice;
-use app\modules\common\v1\model\NoticeUser;
+use app\models\common\Notice;
+use app\models\common\NoticeUser;
 use yii\db\Query;
 
 class NoticeController extends ApiController{

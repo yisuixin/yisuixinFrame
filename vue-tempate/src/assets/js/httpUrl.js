@@ -18,11 +18,7 @@ module.exports = {
         },
         NOTICE:{//通知消息相关接口
             GET_USER_NOTICE_LIST:'/common/notice/get-user-notice-list',
-            GET_NOTICE_INFO:'/content/notice/get-notice-info',
-            GET_ADMIN_NOTICE_LIST:'/content/notice/get-admin-notice-list',
-            ADD_NOTICE:'/content/notice/add-notice',
-            DEL_NOTICE:'/content/notice/delete-notice',
-            TOPPING_NOTICE:'/content/notice/topping-notice',
+            GET_NOTICE_INFO:'/common/notice/get-notice-info',
         },
         UPLOAD:{//上传模块文件相关接口
             UPLOAD_ONE_IMG:'/common/upload/upload-one-img'//上传单图
@@ -33,6 +29,15 @@ module.exports = {
             ADDOREDIT : '/common/to-do/add-or-edit',
             DELETETODO : '/common/to-do/delete-todo',
             VIEWTODO : '/common/to-do/view-todo',//查看待办事项
+        },
+    },
+    CONTENT:{//内容管理模块相关接口
+        NOTICE:{//通知消息
+            GET_NOTICE_INFO:'/content/notice/get-notice-info',
+            GET_ADMIN_NOTICE_LIST:'/content/notice/get-admin-notice-list',
+            ADD_NOTICE:'/content/notice/add-notice',
+            DEL_NOTICE:'/content/notice/delete-notice',
+            TOPPING_NOTICE:'/content/notice/topping-notice',
         },
     },
     SYSTEM_SRRTING:{//系统设置管理模块相关接口列表

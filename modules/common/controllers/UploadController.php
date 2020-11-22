@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\common\v1\controllers;
+namespace app\modules\common\controllers;
 //文件上传相关类
 use app\components\ApiController;
 use yii\web\UploadedFile;

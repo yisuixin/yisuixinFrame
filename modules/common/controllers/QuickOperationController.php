@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\common\v1\controllers;
+namespace app\modules\common\controllers;
 
 
 use app\common\lib\ModelHelper;
@@ -9,7 +9,7 @@ use app\models\menu\Menu;
 use app\models\rbac\Role;
 use app\models\rbac\RoleMenuItem;
 use Yii;
-use app\modules\common\V1\model\QuickOperation;
+use app\models\common\QuickOperation;
 use yii\db\Query;
 
 class QuickOperationController extends ApiController{

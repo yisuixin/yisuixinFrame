@@ -13,7 +13,7 @@ $config = [
     ],
     'modules' => [
         'common' => [//公共模块，此模块全部可以访问
-            'class' => 'app\modules\common\v1\Module',
+            'class' => 'app\modules\common\Module',
         ],
         'content' => [//内容设置模块
             'class' => 'app\modules\content\Module',

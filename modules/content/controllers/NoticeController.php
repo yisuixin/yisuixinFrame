@@ -5,8 +5,7 @@ use app\components\ApiController;
 use app\models\User;
 use app\models\rbac\Role;
 use Yii;
-use app\modules\common\v1\model\Notice;
-use app\modules\common\v1\model\NoticeUser;
+use app\models\common\Notice;
 use yii\db\Query;
 
 class NoticeController extends ApiController{
@@ -19,9 +18,6 @@ class NoticeController extends ApiController{
         $sql->leftJoin(User::tableName().' AS u','u.id = a.author');
 
         $data =  $sql->one();
-        if($type == 'user'){
-          Notice::updateNoticeStatus($this->uId,$data);
-        }
         //$this->printSql($sql);
        //p($data);
         return $this->ajaxSuccess('获取成功',$data);
