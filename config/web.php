@@ -25,6 +25,9 @@ $config = [
             'class' => 'app\modules\common\v1\Module',
         ],
     ],
+    'on beforeRequest' => function ($event) {
+        (new app\models\systemModel\ModelsList())->getModelList();//获取第三方模块
+    },
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
