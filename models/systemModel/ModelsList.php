@@ -18,18 +18,19 @@ class ModelsList extends BaseModel{
         $s['edit_todo'] = ['type','title','desc','start','end','user_id','id','status'];
         return $s;
     }
-     public function getModelList(){
+    /**
+     * 进入加载第三方模块
+     */
+     public function loadModelList(){
         $list = $this->find()->select('name,status')->where(['status'=>self::STATUS_ONE])->asArray()->all();
 
         foreach ($list as $k => $v){
             $modules[$v['name']]['class'] =  'app\modules\\'.$v['name'].'\\Module';
         }
-
          Yii::configure(Yii::$app, [
                  'modules' => $modules
              ]
          );
-        //return $modules;
      }
 
 

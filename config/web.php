@@ -26,7 +26,7 @@ $config = [
         ],
     ],
     'on beforeRequest' => function ($event) {
-        (new app\models\systemModel\ModelsList())->getModelList();//获取第三方模块
+        (new app\models\systemModel\ModelsList())->loadModelList();//加载第三方模块
     },
     'components' => [
         'cache' => [

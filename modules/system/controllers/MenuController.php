@@ -11,6 +11,7 @@ use app\models\User;
 use app\models\rbac\PermissionItem;
 use app\models\rbac\RolePermissionItem;
 use app\models\rbac\PagePermission;
+use app\models\rbac\PagePermissionItem;
 use app\common\lib\ModelHelper;
 
 class MenuController extends ApiController{
@@ -160,21 +161,31 @@ class MenuController extends ApiController{
         if(is_null($model)){
             return $this->ajaxFail('保存失败，未找到菜单信息');
         }
+        $pagePermission = (new PagePermission());
+        $permissionList['permissionList'] = $data;
+        if(!$pagePermission->load($permissionList,'') || !$pagePermission->validate()){
+            return $this->ajaxFail('保存失败.'.current($pagePermission->getErrors())[0]);
+        }
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            $pagePermission = (new PagePermission());
-            //添加之前先清空菜单权限
-            $deletePagemission = $pagePermission->deleteAll(['menuId'=>$menuId]);
-            $row = [];
+            $deletePagemission = $pagePermission->deleteAll(['menuId'=>$menuId]);//添加之前先清空菜单权限
+            $pagePermissionItem = (new PagePermissionItem());
+            $saveRes = true;
+            //循环添加权限组表,添加完成之后再添加权限url
             foreach($data as $k => $v){
-                $row[$k]['menuId'] = $menuId;
-                $row[$k]['url'] = $v['url'];
-                $row[$k]['title'] = $v['title'];
-                $row[$k]['created_at'] = time();
-                $row[$k]['updated_at'] = time();
+                $_model = clone $pagePermission;
+                $_model->menuId = $menuId;
+                $_model->title = $v['title'];
+                $_model->created_at = time();
+                $_model->updated_at = time();
+                $_model->save();
+                $savepagePermissionItem =  $pagePermissionItem->addPageMissionItem($_model->id,$v['pagePermissionItem']);//插入权限组url
+                if(!$savepagePermissionItem){
+                    $saveRes = false;
+                    break;//如果保存权限名称和权限url列表失败，直接结束循环
+                }
             }
-            $res = ModelHelper::saveAll('page_permission',$row);
-            if($res){
+            if($saveRes){
                 $transaction->commit();
                 return $this->ajaxSuccess('保存成功');
             }else{
@@ -197,6 +208,7 @@ class MenuController extends ApiController{
             return $this->ajaxFail('获取失败,参数异常');
         }
         $model = (new Menu())->findOne($menuId);
+
         if(is_null($model)){
             return $this->ajaxFail('获取失败，未找到菜单信息');
         }

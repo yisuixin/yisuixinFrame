@@ -1,50 +1,38 @@
 <template>
-        <div>
-<!--            <Spin size="large" fix v-if="loading"></Spin>-->
-            <Card :bordered="false" dis-hover>
-                <p slot="title">
-                    页面权限组
+    <div>
+        <Spin size="large" fix v-if="loading"></Spin>
+        <Card :bordered="false" dis-hover>
+            <p slot="title">
+                页面权限组
+            </p>
+            <Card :dis-hover="true" :bordered="true" style="margin-bottom: 10px;" v-for="(item, index) in tabs.items" :key="index" >
+                <p slot="title">{{item.title}}</p>
+                <p slot="extra">
+                    <ButtonGroup size="small">
+                        <Button icon="ios-create-outline" type="dashed"@click="changeTabsTitle(index)" title="修改权限组标题">修改</Button>
+                        <Poptip
+                                :transfer="true"
+                                confirm
+                                title="确定删除此权限组?"
+                                @on-ok="deleteTabs(index)">
+                            <Button icon="ios-trash-outline" type="dashed" size="small" title="删除此权限组">删除</Button>
+                        </Poptip>
+                    </ButtonGroup>
                 </p>
-                <Form ref="pagePermission" :model="pagePermission" :label-width="80">
-                        <div v-for="(item, index) in pagePermission.items" :key="index">
-                                <Row :gutter="16">
-                                    <Col span="4">
-                                        <FormItem
-                                                :label="'权限 ' + (index+1)"
-                                                :prop="'items.' + index + '.title'"
-                                                :rules="{required: true, message: '请输入权限名称', trigger: 'blur'}">
-                                            <Input type="text" v-model="item.title" placeholder="请输入权限名称" style="width:200px"></Input>
-                                        </FormItem>
-                                    </Col>
-                                    <Col span="4" offset="1">
-                                        <FormItem
-                                                :prop="'items.' + index + '.url'"
-                                                :rules="{required: true, message: '请输入权限URL', trigger: 'blur'}">
-                                            <Input type="text" v-model="item.url" placeholder="请输入权限URL" style="width:200px"></Input>
-                                        </FormItem>
-                                    </Col>
-                                    <Col span="4" offset="2">
-                                        <Button @click="handleRemove(index)" icon="ios-trash-outline">删除</Button>
-                                    </Col>
-                                </Row>
-                        </div>
-                    <FormItem>
-                        <Row>
-                            <Col span="12">
-                                <Button type="dashed" long @click="handleAdd" icon="md-add">增加权限</Button>
-                            </Col>
-                        </Row>
-                    </FormItem>
-                    <FormItem>
-                        <Row>
-                            <Col span="12">
-                                <Button type="primary" long :loading="pagePermission.saveBtnLoading" @click="handleSubmit('pagePermission')">保存权限</Button>
-                            </Col>
-                        </Row>
-                    </FormItem>
-                </Form>
+                <p style="display: inline-block;" >
+                    <Input v-model="item1.url"
+                           style="width: 250px;float: left;margin-right: 10px;margin-bottom: 10px;"
+                           placeholder="model / controller / action"
+                           v-for="(item1, index1) in item.pagePermissionItem" :key="index1">
+                        <span slot="append"  @click="removeUrlItem(index,index1)" title="删除"><Icon type="md-close" /></span>
+                    </Input>
+                    <Button icon="ios-add" type="dashed" size="default" @click="addUrlItem(index)">添加</Button>
+                </p>
             </Card>
-        </div>
+            <Button type="dashed" icon="md-add" long class="add-content-btn" @click="addTasItem" style="margin-bottom: 10px;"size="large">添加权限组</Button>
+            <Button type="primary" long class="add-content-btn" @click="saveData" :loading="tabs.loadning" style="margin-bottom: 10px;" size="large">保存权限组</Button>
+        </Card>
+    </div>
 </template>
 <script>
     import handleMenu from "../../assets/js/handleMenu";
@@ -52,68 +40,116 @@
     export default {
         data () {
             return {
-                pagePermission:{
-                    saveBtnLoading:false,
-                    items: [],
+                tabs: {
+                    loadning:false,
+                    loadingText:'保存权限组',
+                    items:[],
                 },
+                loading:false,
                 treeData:{},
             }
         },
         methods: {
-            handleSubmit (name) {
-                const that = this;
-                that.$refs[name].validate((valid) => {
-                    if (valid) {
-                        that.pagePermission.saveBtnLoading = true;
-                        if(that.pagePermission.items.length < 1){
-                            that.$Message.error({
-                                content:'请先添加权限',
-                                onClose:function () {
-                                    that.pagePermission.saveBtnLoading = false;
+            addUrlItem (index) {
+                this.tabs.items[index].pagePermissionItem.push({url:''});
+            },
+            removeUrlItem (index, index1) {
+                this.tabs.items[index].pagePermissionItem.splice(index1, 1);
+            },
+            deleteTabs (index) {
+                this.tabs.items.splice(index, 1);
+            },
+            addTasItem(){
+                this.tabs.items.push( {
+                    id:'',
+                    title:'新增',
+                    pagePermissionItem:[]
+                });
+            },
+            //修改权限组名称
+            changeTabsTitle (index) {
+                this.$Modal.confirm({
+                    render: (h) => {
+                        return h('Input', {
+                            props: {
+                                value: this.tabs.items[index].title,
+                                autofocus: true,
+                                placeholder: '请输入权限组标题...'
+                            },
+                            on: {
+                                input: (val) => {
+                                    if(val != ''){
+                                        this.tabs.items[index].title = val;
+                                    }
                                 }
-                            })
-                            return
-                        }
-                        let successCallback = function(res){
-                            that.$Message.info({
-                                content:'保存成功',
-                                onClose:function () {
-                                    that.pagePermission.saveBtnLoading = false;
-                                }
-                            })
-                        }
-                        let failCallback = function(res){
-                            that.$Message.error({
-                                content:res.data.message,
-                                onClose:function () {
-                                    that.pagePermission.saveBtnLoading = false;
-                                }
-                            })
-                        }
-                        let otherCallback = function(res){
-                            that.pagePermission.saveBtnLoading = false;
-                        }
-                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.ADD_PAGE_PERMISSION,{menuId:that.treeData.id,data:that.pagePermission.items},successCallback,failCallback,otherCallback);
+                            }
+                        })
                     }
                 })
             },
-            handleAdd () {
-                this.pagePermission.items.push({
-                    title: '',
-                    url: '',
-                });
+            //保存权限组数据
+            saveData(){
+                const parms = {
+                    menuId:this.treeData.id,
+                    data:this.tabs.items
+                };
+                //console.log(parms)
+                const that =this;
+                that.tabs.loadingText = '正在保存...';
+                that.tabs.loadning = true;
+                let successCallback = function(res){
+                    that.$Message.info({
+                        content:'保存成功',
+                        onClose:function () {
+                            that.tabs.loadingText = '保存权限组';
+                            that.tabs.loadning = false;
+                        }
+                    })
+                }
+                let failCallback = function(res){
+                    that.$Message.error({
+                        content:res.data.message,
+                        onClose:function () {
+                            that.tabs.loadingText = '保存权限组';
+                            that.tabs.loadning = false;
+                        }
+                    })
+                }
+                let otherCallback = function(res){
+                    that.tabs.loadingText = '保存权限组';
+                    that.tabs.loadning = false;
+                }
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.ADD_PAGE_PERMISSION,parms,successCallback,failCallback,otherCallback);
+
             },
-            handleRemove (index) {
-                this.pagePermission.items.splice(index,1);
+            //获取权限列表数据
+            getPagePermissionList(){
+                const that =this;
+                that.loading = true;
+                let successCallback = function(res){
+                    that.tabs.items = res.data.data;
+                    that.loading = false;
+                }
+                let failCallback = function(res){
+                    that.tabs.items = [];
+                    that.loading = false;
+                }
+                let otherCallback = function(res){
+                    that.tabs.items = [];
+                    that.loading = false;
+                }
+
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.MENU.GET_PAGE_PERMISSION_ITEM,{menuId:this.treeData.id},successCallback,failCallback,otherCallback);
             },
             //通过父组件访问此方法//用来保存tree菜单的数据
             setParent(parentList,parentData){
                 this.treeData = parentData;
-                if(parentData.pagePermissionList && parentData.pagePermissionList.length >= 1){
-                    this.pagePermission.items = parentData.pagePermissionList;
-                }else{
-                    this.pagePermission.items = [];
-                }
+                this.getPagePermissionList();
+                // if(parentData.pagePermission && parentData.pagePermission.list.length >= 1){
+                //     this.formDynamic.items = parentData.pagePermission.list;
+                // }else{
+                //     this.formDynamic.items = [];
+                // }
                 //console.log(this.treeData)
             },
         }
