@@ -1,12 +1,9 @@
 <?php
 namespace app\models\rbac;
 
-use app\common\lib\File;
 use app\common\lib\Tree;
-use app\modules\rabc\model\RolePermissionItem;
-use Yii;
+use app\models\rbac\RolePermissionItem;
 use app\models\BaseModel;
-use yii\db\Expression;
 use yii\db\Query;
 use app\models\menu\Menu;
 
@@ -84,9 +81,12 @@ class Rbac extends BaseModel{
         if($user->role ==  Role::TYPE_ONE){//超级管理员，直接返回true
             return true;
         }else{
-            $permissionList = (new RolePermissionItem())->find()->where(['role_id'=>$user->role])->asArray()->all();
-            $permissionUrl  = array_column($permissionList, 'url');
-            return $permissionUrl;
+            $rolePermissionItem = (new RolePermissionItem())->find()->where(['role_id'=>$user->role])->asArray()->all();
+            $rolePermissionIds  = array_column($rolePermissionItem, 'page_permission_id');
+            //通过角色的权限组id查找所有的权限url
+            $pagePermissionItem =  (new PagePermissionItem())->find()->where(['page_permission_id'=>$rolePermissionIds])->asArray()->all();
+            $rolePermissionUrl  = array_column($pagePermissionItem, 'url');
+            return $rolePermissionUrl;
         }
     }
     /**

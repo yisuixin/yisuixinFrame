@@ -46,7 +46,8 @@
                 },
                 permissionsData:{
                     urlItems:[],
-                    menuIdItems:[]
+                    menuIdItems:[],
+                    permissionItems:[]
                 }
             }
         },
@@ -96,11 +97,13 @@
                 let that = this;
                 that.permissionsData.urlItems = [];
                 that.permissionsData.menuIdItems = [];
+                that.permissionsData.permissionItems = [];
                 const data = that.roleModel.items;
                 data.map((item, index, arr) => {
                     item.pagePermissionList.map((item1, index1, arr1) => {
                         if(item1.checked != undefined && item1.checked === true){
                             that.permissionsData.menuIdItems.push(item.all_parent_id);
+                            that.permissionsData.permissionItems.push(item1.id);
                             that.permissionsData.urlItems.push(item1.url);
                         }
                     })

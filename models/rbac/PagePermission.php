@@ -16,7 +16,7 @@ class PagePermission extends BaseModel{
     }
     public function rules(){
         return [
-            ['permissionList', 'validatePpermissionList','message'=>'账号或者密码错误'],
+            ['permissionList', 'validatePpermissionList'],
         ];
     }
     /**验证添加权限组时的数据格式

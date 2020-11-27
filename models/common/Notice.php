@@ -4,7 +4,7 @@ namespace app\models\common;
 
 use app\common\lib\ModelHelper;
 use app\models\User;
-use app\modules\common\v1\model\NoticeUser;
+use app\models\common\NoticeUser;
 use Yii;
 use app\models\BaseModel;
 

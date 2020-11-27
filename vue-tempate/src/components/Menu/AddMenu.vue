@@ -194,10 +194,11 @@
                                     if(that.formInline.is_add == 1){//新增
                                         const children = that.treeData.children || [];
                                         children.push({
-                                            id:parseInt(res.data.data.id),
+                                            id:res.data.data.id.toString(),
                                             type: that.formInline.type,
                                             label: that.formInline.title,
                                             title: that.formInline.title,
+                                            sort: 1,
                                             expand: true
                                         });
                                         that.$set(that.treeData, 'children', children);
@@ -206,6 +207,7 @@
                                         that.treeData.type = that.formInline.type;
                                         that.treeData.label = that.formInline.title;
                                         that.treeData.title = that.formInline.title;
+                                        that.treeData.sort = 1;
                                     }
                                 }
                             })

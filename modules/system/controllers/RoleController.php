@@ -1,12 +1,16 @@
 <?php
 namespace app\modules\system\controllers;
 
+use app\models\menu\Menu;
+use app\models\rbac\PagePermissionItem;
 use Yii;
 use app\components\ApiController;
 use app\common\lib\ModelHelper;
+use app\models\rbac\PagePermission;
 use app\models\rbac\RolePermissionItem;
 use app\models\rbac\Role;
 use app\models\rbac\RoleMenuItem;
+use app\common\lib\Tree;
 class RoleController extends ApiController{
     /**
      * 增加管理角色
@@ -109,11 +113,10 @@ class RoleController extends ApiController{
             $post   = Yii::$app->request->post();
             $items  = $post['permissionsData'];
             $roleId =  $post['roleId'];
-            if(empty($items['urlItems'])){
-                return $this->ajaxFail('添加失败，请选择角色权限.');
+            $menuItems = $items['menuIdItems'];
+            if(empty($menuItems)){
+                return $this->ajaxFail('添加失败，请先选择权限.');
             }
-            $urlItems     = array_unique($items['urlItems']);
-            $menuItems    = $items['menuIdItems'];
             $roleInfo = (new Role())->findOne(['id'=>$roleId]);
             if(is_null($roleInfo)){
                 return $this->ajaxFail('添加失败，未找到用户角色信息.');
@@ -132,27 +135,28 @@ class RoleController extends ApiController{
                 $roleMenuRows[$k]['menu_id'] = $v;
                 $roleMenuRows[$k]['role_id'] = $roleId;
             }
-            //处理所有的权限Url数组，然后批量插入数据库
-            $permissionRows =  [];
-            foreach ($urlItems as $k=>$v){
-                $permissionRows[$k]['url'] = $v;
-                $permissionRows[$k]['role_id'] = $roleId;
+
+//            $roleMenuRows =  [];
+//            foreach ($allMenuIds as $k=>$v){
+//                $roleMenuRows[$k]['menu_id'] = $v;
+//                $roleMenuRows[$k]['role_id'] = $roleId;
+//            }
+
+            //处理所有的权限数组，然后批量插入数据库
+            $permissionItems = $items['permissionItems'];
+            foreach ($permissionItems as $k => $v){
+                    $permissionRows[$k]['page_permission_id'] = $v;
+                    $permissionRows[$k]['role_id'] = $roleId;
             }
             //批量插入之前，先删除数据库之前的数据
             RolePermissionItem::deleteAll('role_id = :roleId', [':roleId' => $roleId]);//删除当前角色的菜单的id
             RoleMenuItem::deleteAll('role_id = :roleId', [':roleId' => $roleId]);//删除当前角色的权限的url
-            //插入用户权限菜单
-            if (!ModelHelper::saveAll(RoleMenuItem::tableName(), $roleMenuRows)) {
-                $transaction->rollBack();
-                return $this->ajaxFail('添加失败，未知错误.');
+            if(ModelHelper::saveAll(RoleMenuItem::tableName(), $roleMenuRows) && ModelHelper::saveAll(RolePermissionItem::tableName(), $permissionRows)){
+                $transaction->commit();
+                return $this->ajaxSuccess('添加成功');
             }
-            //插入用户权限url
-            if (!ModelHelper::saveAll(RolePermissionItem::tableName(), $permissionRows)) {
-                $transaction->rollBack();
-                return $this->ajaxFail('添加失败，未知错误.');
-            }
-            $transaction->commit();
-            return $this->ajaxSuccess('添加成功');
+            $transaction->rollBack();
+            return $this->ajaxFail('添加失败，未知错误.');
         }catch (Exception $e) {
             $transaction->rollBack();
             return $this->ajaxFail('添加失败,服务器异常');

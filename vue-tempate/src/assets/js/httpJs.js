@@ -49,10 +49,10 @@ axios.interceptors.response.use(response => {
 
                 break;
             case 403:
-                router.push({
-                    path:'/403',
-                })
-                //Message.error('请求失败，没有访问权限')
+                // router.push({
+                //     path:'/403',
+                // })
+                Message.error('请求失败，没有访问权限')
                 break;
             case 404:
                 // router.push({

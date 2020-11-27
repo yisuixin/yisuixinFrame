@@ -41,11 +41,10 @@ class PagePermissionItem extends BaseModel{
         $data = [];
         foreach ($arr as $k =>$v){
             $data[$k]['page_permission_id'] = $pageMissionId;
-            $data[$k]['title'] =  $v['title'];
             $data[$k]['url']   = $v['url'];
         }
 
-        return Yii::$app->db->createCommand()->batchInsert(self::tableName(), ['page_permission_id','title','url'], $data)->execute();
+        return Yii::$app->db->createCommand()->batchInsert(self::tableName(), ['page_permission_id','url'], $data)->execute();
     }
 
 

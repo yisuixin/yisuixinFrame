@@ -46,16 +46,16 @@ class ApiController extends ActiveController{
         $controllerId = Yii::$app->controller->id;
         $actionId     = Yii::$app->controller->action->id;
         $url = $modelId.'/'. $controllerId.'/'.$actionId;
-//        if($this->user->role == Role::TYPE_ONE || $modelId == $this->getParams('commonId')){//超级管理员或者是公共模块的直接返回true
-//            return true;
-//        }else{
-//            $validationPermission =  Rbac::validationRolePermission($this->user,$url);
-//            if($validationPermission){
-//                return true;
-//            }else{
-//                throw new ForbiddenHttpException('你没有权限，请联系管理员');
-//            }
-//        }
+        if($this->user->role == Role::TYPE_ONE || $modelId == $this->getParams('commonId')){//超级管理员或者是公共模块的直接返回true
+            return true;
+        }else{
+            $validationPermission =  Rbac::validationRolePermission($this->user,$url);
+            if($validationPermission){
+                return true;
+            }else{
+                throw new ForbiddenHttpException('你没有权限，请联系管理员');
+            }
+        }
         return $beforeAction;
     }
     /**

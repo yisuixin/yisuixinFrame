@@ -1,6 +1,7 @@
 <?php
 namespace app\models\menu;
 
+use app\models\rbac\PagePermissionItem;
 use Yii;
 use app\models\BaseModel;
 use app\common\lib\Tree;
@@ -25,7 +26,7 @@ class Menu extends BaseModel{
     public function scenarios(){
         $s = parent::scenarios();
         $s['add_menu']  = ['parent_id','title','name','type','status','icon','href','level','template','create_template'];//新增菜单规则
-        $s['edit_menu']  = ['parent_id','title','name','type','status','icon','href','level','create_template'];//编辑菜单规则
+        $s['edit_menu']  = ['parent_id','title','name','type','status','icon','href','level','create_template','all_parent_title'];//编辑菜单规则
         return $s;
     }
     //规则
@@ -46,7 +47,7 @@ class Menu extends BaseModel{
             'e_name' => '菜单别名',
             'type' => '菜单类型',
             'status' => '菜单状态',
-            'template'=>'vue模板文件'
+            'template'=>'vue模板文件',
         ];
     }
     /**
@@ -79,11 +80,12 @@ class Menu extends BaseModel{
             $vueTempContent = '<template><div>This is '.$this->href.'</div></template>';
             if($this->parent_id != 0 ){
                 $careteFile = (new File())->create_file($fileName);//创建前端vue文件
-                $writeContent = (new File())->writeContent($fileName,$vueTempContent);//创建前端vue文件
+                $writeContent = (new File())->writeContent($fileName,$vueTempContent);//写入前端vue文件
             }
         } else {
             //这里是更新数据
         }
+
     }
     /**
      * 获取页面权限列表
@@ -101,14 +103,15 @@ class Menu extends BaseModel{
             ->asArray()->all();
         foreach ($pagePermissionList as $k => $v){
             $all_parent_title =  Tree::getMenuColumns($allMenuList,$v['id'],'parent_id','id','title');
-           $all_parent_id    =  Tree::getMenuColumns($allMenuList,$v['id'],'parent_id','id','id');
+            $all_parent_id    =  Tree::getMenuColumns($allMenuList,$v['id'],'parent_id','id','id');
 
             $pagePermissionList[$k]['all_parent_title'] = implode(' / ',$all_parent_title);
-           $pagePermissionList[$k]['all_parent_id']    =  $all_parent_id;
+            $pagePermissionList[$k]['all_parent_id']    =  $all_parent_id;
         }
         return $pagePermissionList;
     }
     public function getPagePermissionList(){
+        //return $this->hasMany(Group::className(), ['id' => 'group_id'])->viaTable(GroupUserRelation::tableName(), ['user_id' => 'id']);
         return $this->hasMany(PagePermission::className(),['menuId'=>'id'])->asArray();
     }
     public function getRoleMenuList(){

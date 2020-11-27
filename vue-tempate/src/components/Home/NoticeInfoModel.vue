@@ -70,7 +70,12 @@
           that.noticeModel.loading = false;
           that.noticeModel.data = {};
         }
-        that.HTTPJS.get(that.HTTPURL.CONTENT.NOTICE.GET_NOTICE_INFO,{id:id,userType:userType},successCallback,failCallback,otherCallback);
+        if(userType == 'admin'){
+            var url = that.HTTPURL.CONTENT.NOTICE.GET_NOTICE_INFO;
+        }else{
+            var url = that.HTTPURL.COMMON.NOTICE.GET_NOTICE_INFO;
+        }
+        that.HTTPJS.get(url,{id:id,userType:userType},successCallback,failCallback,otherCallback);
       },
       showModel:function(type,id,userType){//type == 1显示，2关闭
         if(type == 1){

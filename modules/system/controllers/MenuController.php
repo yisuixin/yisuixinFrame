@@ -59,6 +59,8 @@ class MenuController extends ApiController{
     public function actionAddOrEdit(){
         $post     = Yii::$app->request->post();
         $is_add     = $post['is_add'];
+
+        $parent_id = $this->post('parent_id',0);
         if($is_add == 1){
             $model = new menu();
             $model->setScenario('add_menu');
@@ -75,24 +77,19 @@ class MenuController extends ApiController{
             $model->setScenario('edit_menu');
             $info = '编辑';
         }
-        //查找父级菜单信息
-        $parent_id = $this->post('parent_id',0);
-        if($parent_id != 0){
+        if($parent_id != 0){//查找父级菜单信息
             $parent = (new Menu())->findOne($parent_id);
             if(is_null($parent)){
                 return $this->ajaxFail($info.'失败,未找到菜单父级信息');
             }
-            $post['template'] = $parent->template.'/'.$post['href'];
-            $model->setMenuLevel($parent->level);
+            $post['template']         = $parent->template.'/'.$post['href'];
+            $model->setMenuLevel($parent->level);//设置菜单等级
         }else{
-            $post['template'] = $post['href'];
+            $post['template']         = $post['href'];
             $model->setMenuLevel(0);
         }
+        $post['name'] = $post['href'];
         //添加数据
-        $post['name'] = $this->post('href');
-        if($post['type'] == Menu::MENU_TYPE1){//如果是添加页面菜单，则在page_permisson增加数据默认数据
-
-        }
         if($model->load($post,'') && $model->validate()){
             if(!$model->save(false)){
                 return $this->ajaxFail($info.'失败,未知错误',$model->attributes);
@@ -216,7 +213,7 @@ class MenuController extends ApiController{
         return $this->ajaxSuccess('获取成功',$list);
     }
     /**
-     * 获取页面权限列表
+     * 获取角色的页面权限列表
      * @return array
      */
     public function actionGetRolePagePermissionList(){
@@ -225,21 +222,21 @@ class MenuController extends ApiController{
         if($roleId == ''){
             return $this->ajaxFail('获取失败,参数异常');
         }
-        $list =  (new Menu())->getRolePagePermissionList();//获取用户所拥有的权限组url的id
-        $rolePermissionItem   = (new RolePermissionItem())->getPermissionList(['role_id'=>$roleId]);//获取用户所拥有的权限的url
-        $rolePermissionItemUrl = array_column($rolePermissionItem,'url');
+        $permissionList =  (new Menu())->getRolePagePermissionList();//获取菜单列表
+        $rolePermissionList    = (new RolePermissionItem())->getPermissionList(['role_id'=>$roleId]);//获取用户所拥有的权限的url
+        $rolePermissionItemtId = array_column($rolePermissionList,'page_permission_id');
 
-        foreach ($list as $k=>$v){//去除没有的
+        foreach ($permissionList as $k=>$v){//去除没有的
             if(!empty($v['pagePermissionList'])){
                 foreach ($v['pagePermissionList'] as $kk => $vv){
-                    if(in_array($vv['url'],$rolePermissionItemUrl)){
-                        $list[$k]['pagePermissionList'][$kk]['checked'] = true;
+                    if(in_array($vv['id'],$rolePermissionItemtId)){
+                        $permissionList[$k]['pagePermissionList'][$kk]['checked'] = true;
                     }else{
-                        $list[$k]['pagePermissionList'][$kk]['checked'] = false;
+                        $permissionList[$k]['pagePermissionList'][$kk]['checked'] = false;
                     }
                 }
             }
         }
-        return $this->ajaxSuccess('获取成功',$list);
+        return $this->ajaxSuccess('获取成功',$permissionList);
     }
 }

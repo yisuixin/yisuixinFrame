@@ -6,7 +6,7 @@ return [
     'senderName' => 'Example.com mailer',
     'user.apiTokenExpire' => 1*24*3600,
     'default_page_size' => '10',
-    'vue_template_cata' => __DIR__ . '/../vueTempate/src/views',
+    'vue_template_cata' => __DIR__ . '/../vue-tempate/src/views',
     'default_pass'=>'123456',
     'commonId'=>'common',//公共权限模块名称，这个模块下的url全部可以访问，不受rbac限制
 //    'common_url'=>[//公共权限，全部可以访问
