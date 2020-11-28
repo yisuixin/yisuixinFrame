@@ -111,7 +111,7 @@ class Menu extends BaseModel{
         return $pagePermissionList;
     }
     public function getPagePermissionList(){
-        //return $this->hasMany(Group::className(), ['id' => 'group_id'])->viaTable(GroupUserRelation::tableName(), ['user_id' => 'id']);
+        //->joinWith(['pagePermissionItem'])
         return $this->hasMany(PagePermission::className(),['menuId'=>'id'])->asArray();
     }
     public function getRoleMenuList(){

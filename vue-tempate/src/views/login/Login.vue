@@ -136,6 +136,7 @@
                                         sessionStorage.setItem('userInfo',JSON.stringify(res.data.data.userInfo));
                                         sessionStorage.setItem('allMenu',JSON.stringify(res.data.data.menuList));
                                         sessionStorage.setItem('routeList',JSON.stringify(res.data.data.vueRoute));
+                                        sessionStorage.setItem('btnPermission',JSON.stringify(res.data.data.btnPermission));
                                         that.$router.push('/info')
                                     }
                                 })
@@ -162,7 +163,6 @@
             },
             //更新验证码
             changeCaptcha(){
-                console.log(1111)
                 this.getCaptcha();
             },
            //获取验证码

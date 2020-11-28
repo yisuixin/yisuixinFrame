@@ -32,6 +32,9 @@
                 showCurrPage: '',
             }
         },
+        activated() {
+            this.showCurrPage = '';
+        },
         methods: {
             //根据子组件返回的值进行显示右侧内容，showCurrPagetype(显示页面类型，1为添加一级菜单，2为编辑菜单，3显示页面的权限列表)
             addMenuPage:function (showCurrPagetype,TreeRoot,TreeData) {

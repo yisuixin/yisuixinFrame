@@ -56,6 +56,7 @@ class PagePermission extends BaseModel{
         return $list;
     }
     public function getPagePermissionItem(){
+//        ->select('id as t,page_permission_id,url')
         return $this->hasMany(PagePermissionItem::className(),['page_permission_id'=>'id'])->asArray();
     }
 

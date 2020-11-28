@@ -8,6 +8,8 @@ import commonJs from "./assets/js/common.js"; //公共操作显示文本配置�
 import "./assets/style/common.css"; //公共样式文件
 Vue.prototype.COMMONJS=commonJs;//公共js文件挂载
 
+import has from './assets/js/btnPermissions.js';//权限按钮自定义指令
+
 import less from 'less'
 Vue.use(less)
 

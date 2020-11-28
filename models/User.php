@@ -2,7 +2,7 @@
 namespace app\models;
 
 
-use app\modules\rabc\model\Role;
+
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
@@ -10,7 +10,7 @@ use yii\web\IdentityInterface;
 use OAuth2\Storage\UserCredentialsInterface;
 use app\models\log\Log;
 use app\models\BaseModel;
-
+use app\models\rbac\Role;
 class User extends BaseModel implements IdentityInterface
 {
     const STATUS_DELETED = 0;
@@ -220,6 +220,7 @@ class User extends BaseModel implements IdentityInterface
         $d['avatar'] = $userInfo['avatar'];
         $d['email'] = $userInfo['email'];
         $d['mark'] = $userInfo['mark'];
+        $d['role'] = $userInfo['role'] ==  Role::TYPE_ONE ? '' : 1;//返回空则是超级管理员，否则是角色
         return $d;
     }
     /** 添加登录日志

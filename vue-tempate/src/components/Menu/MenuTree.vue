@@ -62,7 +62,13 @@
                                                 this.getMenuList();
                                                 //this.$emit('addMenuPage',1,root,data);//点击子组件的添加菜单按钮父组件显示右侧内容
                                             }
-                                        }
+                                        },
+                                        directives:[
+                                            {
+                                                name:'auth',
+                                                value:'view-menu',
+                                            }
+                                        ]
                                     })
                                 ]),
                                 //添加一级菜单按钮
@@ -154,7 +160,7 @@
                                 //添加权限
                                 h('Button', {
                                     domProps: {
-                                        title: '添加页面权限',
+                                        title: '添加页面权限1',
                                     },
                                     props: Object.assign({}, this.buttonProps, {
                                         icon: 'ios-link-outline',
@@ -167,7 +173,13 @@
                                         click: () => {
                                             this.$emit('addMenuPage',3,root,data);//点击子组件的添加菜单按钮父组件显示右侧内容
                                         }
-                                    }
+                                    },
+                                    directives:[
+                                        {
+                                            name:'auth',
+                                            value:'view-permission',
+                                        }
+                                    ],
                                 }),
                                 //编辑按钮
                                 h('Button', {
@@ -212,6 +224,12 @@
                                         style: {
                                             marginRight: '8px'
                                         },
+                                        directives:[
+                                            {
+                                                name:'auth',
+                                                value:'del-menu',
+                                            }
+                                        ],
                                     })
                                 ]),
                                 //排序输入框
@@ -232,7 +250,13 @@
                                             //data.sort = sortVal;
                                             this.updateMenuSort(data,sortVal);//输入框数字改变时的方法
                                         }
-                                    }
+                                    },
+                                    directives:[
+                                        {
+                                            name:'auth',
+                                            value:'sort-menu',
+                                        }
+                                    ]
                                 }),
                             ])
                     ]);

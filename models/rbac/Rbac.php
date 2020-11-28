@@ -20,6 +20,8 @@ class Rbac extends BaseModel{
         if(is_null($user)){
             $d['menuList'] = [];
             $d['vueRoute'] = [];
+            $d['btnPermission'] = [];
+
         }else{
             if($user->role ==  Role::TYPE_ONE){//超级管理员，直接返回全部的菜单和路由列表
                 $list = (new menu())->find()->where(['status'=>self::MENU_STATUS1])->orderBy('sort ASC')->asArray()->all();
@@ -32,7 +34,9 @@ class Rbac extends BaseModel{
                 $d['menuList'] = $permissionMenuList['menuList'];
                 $d['vueRoute'] = $permissionMenuList['vueRoute'];
             }
+            $d['btnPermission'] = self::getRoleBtnPermission($user);
         }
+//        p($d);
         return $d;
     }
     /**
@@ -68,9 +72,9 @@ class Rbac extends BaseModel{
                 $arr[$index]['meta']['needLogin'] = true;
                 $arr[$index]['meta']['keepAlive'] = true;
                 $arr[$index]['meta']['title'] = $v['title'];
+                //$arr[$index]['meta']['btnPermission'] = $v['btnPermission'];
                 $index++;
             }
-
         }
         return $arr;
     }
@@ -88,6 +92,22 @@ class Rbac extends BaseModel{
             $rolePermissionUrl  = array_column($pagePermissionItem, 'url');
             return $rolePermissionUrl;
         }
+    }
+    /**
+     * 获取用户的按钮权限标识
+     */
+    public static function getRoleBtnPermission($user){
+        if($user->role ==  Role::TYPE_ONE){//超级管理员，直接查询page_permission表
+            $list = PagePermission::find()->asArray()->select('identification')->all();
+        }else{
+            $subQuery1 = RolePermissionItem::find()->where(['role_id'=>$user->role]);
+            $list = (new Query())->from(['rolePermissionItem' => $subQuery1]) // 在这里使用了子查询
+            ->leftJoin(['page_permission' => PagePermission::tableName()], 'rolePermissionItem.page_permission_id = page_permission.id')
+                ->createCommand()
+                ->queryAll();
+        }
+
+        return array_column($list,'identification');
     }
     /**
      * 获取用户是否对请求的url有权限

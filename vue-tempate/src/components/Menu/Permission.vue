@@ -5,6 +5,12 @@
             <p slot="title">
                 页面权限组
             </p>
+            <Alert type="warning" show-icon>
+                注意
+                <template slot="desc">
+                    <p>1、保存权限组之后，角色需要重新分配此页面的权限</p>
+                </template>
+            </Alert>
             <Card :dis-hover="true" :bordered="true" style="margin-bottom: 10px;" v-for="(item, index) in tabs.items" :key="index" >
                 <p slot="title">{{item.title}}</p>
                 <p slot="extra">
@@ -99,7 +105,7 @@
                 that.tabs.loadning = true;
                 let successCallback = function(res){
                     that.$Message.info({
-                        content:'保存成功',
+                        content:'保存成功，你需要去重新分配此页面的权限',
                         onClose:function () {
                             that.tabs.loadingText = '保存权限组';
                             that.tabs.loadning = false;

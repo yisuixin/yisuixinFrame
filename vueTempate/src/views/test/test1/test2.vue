@@ -1,1 +1,0 @@
-<template><div>This is test2</div></template>

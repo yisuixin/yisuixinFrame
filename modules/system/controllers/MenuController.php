@@ -13,7 +13,7 @@ use app\models\rbac\RolePermissionItem;
 use app\models\rbac\PagePermission;
 use app\models\rbac\PagePermissionItem;
 use app\common\lib\ModelHelper;
-
+use yii\db\Query;
 class MenuController extends ApiController{
     /**
      * 菜单列表
@@ -150,7 +150,7 @@ class MenuController extends ApiController{
         $post     = Yii::$app->request->post();
         $menuId   = $post['menuId'];
         $data     = $post['data'];
-//        p($data);
+        //p($data);
         if($menuId == '' || !is_array($data) || empty($data)){
             return $this->ajaxFail('保存失败,参数异常');
         }

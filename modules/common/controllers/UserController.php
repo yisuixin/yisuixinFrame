@@ -40,6 +40,7 @@ class UserController extends ApiController{
                     $permissionList = Rbac::getLayoutMenu($user);
                     $d['menuList'] = $permissionList['menuList'];
                     $d['vueRoute'] = $permissionList['vueRoute'];
+                    $d['btnPermission'] = $permissionList['btnPermission'];
                     User::addLoginLog(2,$post);
                     $transaction->commit();
                     return $this->ajaxSuccess('登录成功',$d);
