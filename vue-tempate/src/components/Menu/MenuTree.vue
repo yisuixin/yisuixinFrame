@@ -94,7 +94,13 @@
                                             click: () => {
                                                 this.$emit('addMenuPage',1,root,data);//点击子组件的添加菜单按钮父组件显示右侧内容
                                             }
-                                        }
+                                        },
+                                        directives:[
+                                            {
+                                                name:'auth',
+                                                value:'add_menu',
+                                            }
+                                        ]
                                     })
                                 ])
                             ]);
@@ -155,7 +161,13 @@
                                         click: () => {
                                             this.$emit('addMenuPage',1,root,data);//点击子组件的添加菜单按钮父组件显示右侧内容
                                         }
-                                    }
+                                    },
+                                    directives:[
+                                        {
+                                            name:'auth',
+                                            value:'add_menu',
+                                        }
+                                    ]
                                 }),
                                 //添加权限
                                 h('Button', {
@@ -177,7 +189,7 @@
                                     directives:[
                                         {
                                             name:'auth',
-                                            value:'view-permission',
+                                            value:'view_permission',
                                         }
                                     ],
                                 }),
@@ -196,7 +208,13 @@
                                         click: () => {
                                             this.$emit('addMenuPage',2,root,data);//点击子组件的添加菜单按钮父组件显示右侧内容
                                         }
-                                    }
+                                    },
+                                    directives:[
+                                        {
+                                            name:'auth',
+                                            value:'edit_menu',
+                                        }
+                                    ]
                                 }),
                                 //删除按钮
                                 h('Poptip', {

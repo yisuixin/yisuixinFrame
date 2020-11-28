@@ -173,6 +173,7 @@ class MenuController extends ApiController{
                 $_model = clone $pagePermission;
                 $_model->menuId = $menuId;
                 $_model->title = $v['title'];
+                $_model->identification = $v['identification'];
                 $_model->created_at = time();
                 $_model->updated_at = time();
                 $_model->save();
