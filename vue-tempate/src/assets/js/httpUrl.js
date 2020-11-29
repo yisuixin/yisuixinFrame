@@ -58,6 +58,7 @@ module.exports = {
             ADD_MANAGER:'/system/manager/add-manager',
             GET_USER_LIST:'/system/manager/get-manager-list',
             EDIT_MANAGER:'/system/manager/edit-manager',
+            CHANGE_MANAGER_ROLE:'/system/manager/change-manager-role',
         },
         ROLE:{//管理员角色管理相关接口
             ADD_ROLE:'/system/role/add-role',

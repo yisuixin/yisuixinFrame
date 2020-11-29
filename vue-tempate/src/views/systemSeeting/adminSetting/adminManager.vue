@@ -210,9 +210,39 @@
                         },
                         {
                             title: '所属角色',
-                            key: 'roleName',
+                            key: 'roleId',
                             width:200,
                             align:'left',
+                            render: (h, params) => {
+                                if(params.row.roleType == 1){
+                                    return h('span', {
+                                        style: {
+                                            color:'#c5c8ce'
+                                        },
+                                    }, '超级管理员无法操作')
+                                }else{
+                                    return h('Select', {
+                                        props: {
+                                            value: params.row.roleId, // 获取选择的下拉框的值
+                                            size: 'default',
+                                            transfer:true
+                                        },
+                                        on: {
+                                            'on-change': e => {
+                                                this.changeMangerRole(params.row.id,e);
+                                            }
+                                        }
+                                    }, this.modeAdd.role.list.map((item) => { // this.productTypeList下拉框里的data
+                                        return h('Option', { // 下拉框的值
+                                            props: {
+                                                value: item.id.toString(),
+                                                label: item.name
+                                            }
+                                        })
+                                    }))
+                                }
+
+                            }
                         },
                         {
                             title: '最后登录IP',
@@ -272,6 +302,7 @@
         },
         activated() {
             this.getUserList();
+            this.getRoleList();
         },
         methods: {
             //点击加载更多角色列表
@@ -356,7 +387,6 @@
             },
             //修改状态
             setStatus:function (id,index,type,value) {//type == 1重置密码，2修改状态，3删除
-                console.log(value)
                 const that = this;
                 let successCallback = function(res){
                     that.$Message.info({
@@ -420,7 +450,35 @@
                     this.$refs["search"].resetFields();//重置表单
                     this.getUserList();
                 }
-            }
+            },
+            //修改管理员角色
+            changeMangerRole:function(userId,roleId){
+                const that = this;
+                that.$Modal.confirm({
+                    title: '更管理员所属角色',
+                    content: '确定要更换此管理员所属角色吗？',
+                    loading: true,
+                    onOk: () => {
+                        let successCallback = function(res){
+                            that.$Message.info({
+                                content:res.data.message,
+                                onClose:function () {
+                                    that.getUserList();
+                                    that.$Modal.remove();
+                                }
+                            })
+                        }
+                        let failCallback = function(res){
+                            that.$Message.error({
+                                content:res.data.message,
+                            })
+                        }
+                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MANAGER.CHANGE_MANAGER_ROLE,{userId:userId,roleId:roleId},successCallback,failCallback);
+                    }
+                });
+
+
+             }
 
         }
     }
