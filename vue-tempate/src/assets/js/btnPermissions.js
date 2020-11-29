@@ -6,7 +6,7 @@ Vue.directive('auth', {
         const value = binding.value;
         const auths = JSON.parse(sessionStorage.getItem('btnPermission'))  || '';
         const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))  || '';
-        if (userInfo.role != '' && !auths.includes(value)) {
+        if (userInfo.roleId != '' && !auths.includes(value)) {
             el.parentNode.removeChild(el);
         }
     }

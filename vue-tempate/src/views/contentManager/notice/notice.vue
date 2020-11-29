@@ -113,7 +113,7 @@
             <Alert show-icon closable>通知公告一经发布，不能再进行编辑；如果需要编辑，请删除之后再重新发布即可</Alert>
             <Spin size="large" fix v-if="notice.loading"></Spin>
             <Row :gutter="15">
-                <Col span="6"  v-auth="`add-notice`">
+                <Col span="6"  v-auth="`add_notice`">
                     <Card :bordered="false"  class="notice-list">
                         <div style="height: 250px;width: auto;" >
                             <Button type="dashed"

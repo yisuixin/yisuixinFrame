@@ -48,7 +48,7 @@
                     <Input type="text" v-model="editPermissionModel.formInline.title" maxlength="10" placeholder="最多10个字符"></Input>
                 </FormItem>
                 <FormItem label="标识" prop="identification">
-                    <Input type="text" v-model="editPermissionModel.formInline.identification" maxlength="15" placeholder="最多15个字符"></Input>
+                    <Input type="text" v-model="editPermissionModel.formInline.identification" maxlength="20" placeholder="最多20个字符"></Input>
                 </FormItem>
             </Form>
             <div slot="footer">
@@ -97,7 +97,7 @@
                         ],
                         identification: [
                             { required: true, message: '请输入权限组标识', trigger: 'blur' },
-                            { type: 'string', max: 15, message: '权限组标识最多15个字符', trigger: 'blur' },
+                            { type: 'string', max: 20, message: '权限组标识最多20个字符', trigger: 'blur' },
                             { required: true, trigger: 'blur', validator: validateEnglish }
                         ],
                     },

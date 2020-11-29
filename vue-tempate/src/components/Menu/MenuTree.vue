@@ -38,7 +38,7 @@
                                     }),
                                     h('span', data.title)
                                 ]),
-                                //菜单排序按钮
+                                //刷新菜单按钮
                                 h('span', {
                                     domProps: {
                                         title: '刷新菜单'
@@ -47,7 +47,13 @@
                                         display: 'inline-block',
                                         float: 'right',
                                         marginRight: '40px'
-                                    }
+                                    },
+                                    directives:[
+                                        {
+                                            name:'auth',
+                                            value:'view_menu',
+                                        }
+                                    ]
                                 }, [
                                     h('Button', {
                                         props: Object.assign({}, this.buttonProps, {
@@ -62,13 +68,7 @@
                                                 this.getMenuList();
                                                 //this.$emit('addMenuPage',1,root,data);//点击子组件的添加菜单按钮父组件显示右侧内容
                                             }
-                                        },
-                                        directives:[
-                                            {
-                                                name:'auth',
-                                                value:'view_menu',
-                                            }
-                                        ]
+                                        }
                                     })
                                 ]),
                                 //添加一级菜单按钮
@@ -272,7 +272,7 @@
                                     directives:[
                                         {
                                             name:'auth',
-                                            value:'sort-menu',
+                                            value:'sort_menu',
                                         }
                                     ]
                                 }),

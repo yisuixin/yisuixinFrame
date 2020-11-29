@@ -30,7 +30,7 @@
         </Card>
         <Card :bordered="false" dis-hover>
             <div class="category-btn-list">
-                <Button type="primary" icon="md-add" style="margin-right: 10px;" @click="addModeShow(1)">添加管理员</Button>
+                <Button type="primary" icon="md-add" style="margin-right: 10px;" @click="addModeShow(1)" v-auth="`add_manager`">添加管理员</Button>
             </div>
             <Table :border="false" :columns="managerData.columns" :data="managerData.list" :loading="managerData.loading">
                 <template slot-scope="{ row, index }" slot="action">
@@ -99,7 +99,7 @@
                     <Input type="textarea" v-model="modeAdd.formInline.mark" placeholder="最多10个英文字符"></Input>
                 </FormItem>
                 <FormItem label="所属角色" prop="role">
-                    <Select v-model="modeAdd.formInline.role">
+                    <Select v-model="modeAdd.formInline.roleId">
                         <Option :value="item.id" :label="item.name" v-for="(item,index) in modeAdd.role.list" :key="index">
                             <span>{{item.name}}</span>
                         </Option>
@@ -151,7 +151,7 @@
                         password: '',
                         email: '',
                         mark: '',
-                        role:'',
+                        roleId:'',
                         status: '10'
                     },
                     ruleValidate: {
@@ -178,7 +178,7 @@
                         mark: [
                             { type: 'string', max: 20, message: '管理员备注最多20个字符', trigger: 'blur' }
                         ],
-                        role: [
+                        roleId: [
                             { type: 'number',trigger: 'change' },
                             { required: true, message: '请选择所属角色组', trigger: 'blur',type: 'number' },
                         ],
