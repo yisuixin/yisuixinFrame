@@ -66,7 +66,7 @@
                                         directives:[
                                             {
                                                 name:'auth',
-                                                value:'view-menu',
+                                                value:'view_menu',
                                             }
                                         ]
                                     })
@@ -245,7 +245,7 @@
                                         directives:[
                                             {
                                                 name:'auth',
-                                                value:'del-menu',
+                                                value:'del_menu',
                                             }
                                         ],
                                     })

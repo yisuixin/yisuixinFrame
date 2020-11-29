@@ -6,7 +6,7 @@
                     <Row>
                         <Col span="6">
                             <FormItem label="关键字："prop="keys">
-                                <Input type="text" v-model="managerData.search.keys" placeholder="请输入关键字"></Input>
+                                <Input type="text" v-model="managerData.search.keys" clearable placeholder="请输入关键字"></Input>
                             </FormItem>
                         </Col>
                         <Col span="6">
