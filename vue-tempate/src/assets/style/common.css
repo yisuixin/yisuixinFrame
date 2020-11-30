@@ -119,3 +119,8 @@ ul,li{
     animation: dot 3s infinite step-start;
 }
 /*实现省略号的闪烁结束*/
+
+
+.disable {
+    pointer-events: none;
+}

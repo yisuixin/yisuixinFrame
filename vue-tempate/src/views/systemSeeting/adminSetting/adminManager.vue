@@ -33,12 +33,24 @@
                 <Button type="primary" icon="md-add" style="margin-right: 10px;" @click="addModeShow(1)" v-auth="`add_manager`">添加管理员</Button>
             </div>
             <Table :border="false" :columns="managerData.columns" :data="managerData.list" :loading="managerData.loading">
+                <template slot-scope="{ row, index }" slot="role">
+                    <div v-if="row.roleType == 1">
+                        <span style="color: #c5c8ce;">超级管理员无法操作</span>
+                    </div>
+                    <div v-else>
+                        <Select v-model="row.roleId" v-auth-select="`change_manager_role`" transfer>
+                            <Option :value="item.id.toString()" :label="item.name" v-for="(item,index) in modeAdd.role.list" :key="index">
+                                <span>{{item.name}}</span>
+                            </Option>
+                        </Select>
+                    </div>
+                </template>
                 <template slot-scope="{ row, index }" slot="action">
                     <div v-if="row.roleType == 1">
                         <span style="color: #c5c8ce;">超级管理员无法操作</span>
                     </div>
                     <div v-else>
-                        <Poptip
+                        <Poptip   v-auth="`edit_manager`"
                                 transfer
                                 confirm
                                 title="确定重置此管理员的密码?"
@@ -46,7 +58,7 @@
                             <span class="span-but-list">重置密码</span>
                         </Poptip> |
 
-                        <Poptip transfer>
+                        <Poptip transfer   v-auth="`edit_manager`">
                             <a>修改状态</a>
                             <div slot="content">
                                 <RadioGroup v-model="modeAdd.formInline.status" @on-change="setStatus(row.id,index,2,$event)">
@@ -55,7 +67,7 @@
                                 </RadioGroup>
                             </div>
                         </Poptip>&nbsp;|
-                        <Poptip
+                        <Poptip   v-auth="`edit_manager`"
                                 transfer
                                 confirm
                                 title="确定删除此管理员?"
@@ -210,39 +222,50 @@
                         },
                         {
                             title: '所属角色',
+                            slot: 'role',
                             key: 'roleId',
                             width:200,
                             align:'left',
-                            render: (h, params) => {
-                                if(params.row.roleType == 1){
-                                    return h('span', {
-                                        style: {
-                                            color:'#c5c8ce'
-                                        },
-                                    }, '超级管理员无法操作')
-                                }else{
-                                    return h('Select', {
-                                        props: {
-                                            value: params.row.roleId, // 获取选择的下拉框的值
-                                            size: 'default',
-                                            transfer:true
-                                        },
-                                        on: {
-                                            'on-change': e => {
-                                                this.changeMangerRole(params.row.id,e);
-                                            }
-                                        }
-                                    }, this.modeAdd.role.list.map((item) => { // this.productTypeList下拉框里的data
-                                        return h('Option', { // 下拉框的值
-                                            props: {
-                                                value: item.id.toString(),
-                                                label: item.name
-                                            }
-                                        })
-                                    }))
-                                }
-
-                            }
+                            // render: (h, params) => {
+                            //     if(params.row.roleType == 1){
+                            //         return h('span', {
+                            //             style: {
+                            //                 color:'#c5c8ce'
+                            //             },
+                            //         }, '超级管理员无法操作')
+                            //     }else{
+                            //         return h('Select', {
+                            //             props: {
+                            //                 value: params.row.roleId, // 获取选择的下拉框的值
+                            //                 size: 'default',
+                            //                 transfer:true
+                            //             },
+                            //             on: {
+                            //                 'on-change': e => {
+                            //                     this.changeMangerRole(params.row.id,e);
+                            //                 }
+                            //             },
+                            //             directives:[
+                            //                 {
+                            //                     name:'auth',
+                            //                     value:'change_role',
+                            //                     text: {
+                            //                         show:false,
+                            //                         text:'foo'
+                            //                     },
+                            //                 }
+                            //             ]
+                            //         }, this.modeAdd.role.list.map((item) => { // this.productTypeList下拉框里的data
+                            //             return h('Option', { // 下拉框的值
+                            //                 props: {
+                            //                     value: item.id.toString(),
+                            //                     label: item.name
+                            //                 }
+                            //             })
+                            //         }))
+                            //     }
+                            //
+                            // }
                         },
                         {
                             title: '最后登录IP',

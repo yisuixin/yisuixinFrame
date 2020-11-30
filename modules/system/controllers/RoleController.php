@@ -63,7 +63,7 @@ class RoleController extends ApiController{
         $sql->andFilterWhere(['=','status',$status]);
 
         $d['count'] = (int)$sql->count();
-        $d['list'] =  $sql->orderBy('created_at DESC')
+        $d['list'] =  $sql->orderBy('id DESC,created_at DESC')
             ->limit($pageSize)
             ->offset($offset)
             ->all();

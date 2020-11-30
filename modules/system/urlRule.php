@@ -25,6 +25,7 @@ return [
             'POST  add-manager' => 'add-manager',
             'GET  get-manager-list' => 'get-manager-list',
             'POST  edit-manager' => 'edit-manager',
+            'POST  change-manager-role' => 'change-manager-role',
         ]
     ],
     [//角色管理url

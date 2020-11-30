@@ -3,13 +3,15 @@ import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
 import ViewUI from 'view-design'
+import $ from 'jquery'
+Vue.prototype.$ = $;   // 当然还有这句话 给vue原型上添加 $
 import 'view-design/dist/styles/iview.css';
 import commonJs from "./assets/js/common.js"; //公共操作显示文本配置文件
 import "./assets/style/common.css"; //公共样式文件
 Vue.prototype.COMMONJS=commonJs;//公共js文件挂载
 
-import has from './assets/js/btnPermissions.js';//权限按钮自定义指令
-
+import btnPermissions from './assets/js/btnPermissions.js';//权限按钮自定义指令
+import selectPermissions from './assets/js/selectPermissions.js';//权限按钮自定义指令
 import less from 'less'
 Vue.use(less)
 

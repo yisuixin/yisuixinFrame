@@ -45,7 +45,7 @@ class User extends BaseModel implements IdentityInterface
         $s = parent::scenarios();
         $s['edit_user']  = ['nickname','avatar','email','mark'];//编辑信息规则
         $s['edit_pass']  = ['oldPass','newPass','newPassAgain'];//修改密码规则
-        $s['add_manager']  = ['username','role','nickname','password','email','mark','status'];//增加管理员规则
+        $s['add_manager']  = ['username','roleId','nickname','password','email','mark','status'];//增加管理员规则
         $s['edit_manager']  = ['id','type','value'];//修改管理员规则
         return $s;
     }
@@ -67,7 +67,7 @@ class User extends BaseModel implements IdentityInterface
             [['oldPass'], 'validationOldPass','on'=>['edit_pass']],
             [['newPass','newPassAgain'], 'validationnewPassAgain','on'=>['edit_pass']],
             //增加管理员规则
-            ['role', 'required', 'message' => '请选择管理员所属角色','on'=>['add_manager']],
+            ['roleId', 'required', 'message' => '请选择管理员所属角色','on'=>['add_manager']],
             ['username', 'validationOnlyName','on'=>['add_manager']],
             ['username', 'required', 'message' => '请输入管理员登录名','on'=>['add_manager']],
             ['username','match','pattern'=>'/^[a-zA-Z\s]+$/','message'=>'管理员登录名必须为英文'],
@@ -149,7 +149,7 @@ class User extends BaseModel implements IdentityInterface
      * @return array|null|ActiveRecord
      */
     public static function findByUsername($username){
-        return static::find()->where('username = :username', [':username' => $username])->one();
+        return static::find()->where('username = :username', [':username' => $username])->joinWith('role')->one();
     }
     /**
      * @inheritdoc
@@ -220,7 +220,7 @@ class User extends BaseModel implements IdentityInterface
         $d['avatar'] = $userInfo['avatar'];
         $d['email'] = $userInfo['email'];
         $d['mark'] = $userInfo['mark'];
-        $d['role'] = $userInfo['role'] ==  Role::TYPE_ONE ? '' : 1;//返回空则是超级管理员，否则是角色
+        $d['role'] = $userInfo['roleId'] ==  Role::TYPE_ONE ? '' : 1;//返回空则是超级管理员，否则是角色
         return $d;
     }
     /** 添加登录日志
@@ -236,6 +236,10 @@ class User extends BaseModel implements IdentityInterface
           (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录成功',
               ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录成功']
           );
+      }elseif ($status == 3){
+          (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录失败.账号所属角色被禁用',
+              ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录成功']
+          );
       }else{
           (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录失败,账号或者密码错误',
               ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录失败,账号或者密码错误']
@@ -243,7 +247,6 @@ class User extends BaseModel implements IdentityInterface
       }
     }
     public function getRole(){
-        //return $this->hasOne(Customer::className(), ['id' => 'customer_id'])->asArray();
-        return $this->hasOne(Role::className(),['id'=>'role'])->select('id,name')->asArray();
+        return $this->hasOne(Role::className(),['id'=>'roleId'])->select('id,name,status');
     }
 }

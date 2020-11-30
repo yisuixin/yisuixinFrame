@@ -39,10 +39,10 @@ class QuickOperationController extends ApiController{
      */
     public function actionGetUserMenuList(){
         $user = $this->user;
-        if($user->role ==  Role::TYPE_ONE){//超级管理员，直接返回全部的菜单和路由列表
+        if($user->roleId ==  Role::TYPE_ONE){//超级管理员，直接返回全部的菜单和路由列表
             $list = (new menu())->find()->where(['status'=>menu::MENU_STATUS1,'type'=>Menu::MENU_TYPE1])->orderBy('sort ASC')->asArray()->all();
         }else{//不是超级管理员的话，先去查询permission_item表中有哪些权限，再返回
-            $where['role_id'] = $user->role;
+            $where['role_id'] = $user->roleId;
             $subQuery = RoleMenuItem::find()->where($where);
             $list = (new Query())->from(['roleMenuItems' => $subQuery])->andwhere(['type'=>Menu::MENU_TYPE1]) // 在这里使用了子查询
             ->leftJoin(['menu' => Menu::tableName()], 'roleMenuItems.menu_id = menu.id')

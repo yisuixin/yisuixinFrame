@@ -23,13 +23,13 @@ class Rbac extends BaseModel{
             $d['btnPermission'] = [];
 
         }else{
-            if($user->role ==  Role::TYPE_ONE){//超级管理员，直接返回全部的菜单和路由列表
+            if($user->roleId ==  Role::TYPE_ONE){//超级管理员，直接返回全部的菜单和路由列表
                 $list = (new menu())->find()->where(['status'=>self::MENU_STATUS1])->orderBy('sort ASC')->asArray()->all();
                 $data = Tree::manyArray($list,$pid = 0,'parent_id','id');
                 $d['menuList'] = $data;
                 $d['vueRoute'] = self::getVueRoute($list);
             }else{//不是超级管理员的话，先去查询permission_item表中有哪些权限，再返回
-                $where['role_id'] = $user->role;
+                $where['role_id'] = $user->roleId;
                 $permissionMenuList = self::getPermissionMenu($where);
                 $d['menuList'] = $permissionMenuList['menuList'];
                 $d['vueRoute'] = $permissionMenuList['vueRoute'];
@@ -82,10 +82,10 @@ class Rbac extends BaseModel{
      * 获取用户角色拥有的全部权限url
      */
     public static function getRoleUrlPermission($user){
-        if($user->role ==  Role::TYPE_ONE){//超级管理员，直接返回true
+        if($user->roleId ==  Role::TYPE_ONE){//超级管理员，直接返回true
             return true;
         }else{
-            $rolePermissionItem = (new RolePermissionItem())->find()->where(['role_id'=>$user->role])->asArray()->all();
+            $rolePermissionItem = (new RolePermissionItem())->find()->where(['role_id'=>$user->roleId])->asArray()->all();
             $rolePermissionIds  = array_column($rolePermissionItem, 'page_permission_id');
             //通过角色的权限组id查找所有的权限url
             $pagePermissionItem =  (new PagePermissionItem())->find()->where(['page_permission_id'=>$rolePermissionIds])->asArray()->all();
@@ -97,10 +97,10 @@ class Rbac extends BaseModel{
      * 获取用户的按钮权限标识
      */
     public static function getRoleBtnPermission($user){
-        if($user->role ==  Role::TYPE_ONE){//超级管理员，直接查询page_permission表
+        if($user->roleId ==  Role::TYPE_ONE){//超级管理员，直接查询page_permission表
             $list = PagePermission::find()->asArray()->select('identification')->all();
         }else{
-            $subQuery1 = RolePermissionItem::find()->where(['role_id'=>$user->role]);
+            $subQuery1 = RolePermissionItem::find()->where(['role_id'=>$user->roleId]);
             $list = (new Query())->from(['rolePermissionItem' => $subQuery1]) // 在这里使用了子查询
             ->leftJoin(['page_permission' => PagePermission::tableName()], 'rolePermissionItem.page_permission_id = page_permission.id')
                 ->createCommand()

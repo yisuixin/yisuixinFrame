@@ -30,27 +30,23 @@
         </Card>
         <Card :bordered="false" dis-hover>
             <div class="category-btn-list">
-                <Button type="primary" icon="md-add" style="margin-right: 10px;" @click="addModeShow(1,'')">添加角色</Button>
+                <Button type="primary" icon="md-add" style="margin-right: 10px;" @click="addModeShow(1,'')" v-auth="`add_role`">添加角色</Button>
             </div>
             <Table :border="false" :columns="roleData.columns" :data="roleData.list" :loading="roleData.loading">
-                <template slot-scope="{ row, index }" slot="action">
-                    <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">编辑</Button>
-                    <Button type="error" size="small" @click="remove(index)">删除</Button>
-                </template>
                 <template slot-scope="{ row, index }" slot="action">
                     <div v-if="row.type == 1">
                         <span style="color: #c5c8ce;">超级管理员无法操作</span>
                     </div>
                     <div v-else>
-                        <span class="span-but-list" @click="addModeShow(2,row.id)">编辑</span>&nbsp;| &nbsp;
-                        <Poptip
+                        <span class="span-but-list" @click="addModeShow(2,row.id)"  v-auth="`add_role`">编辑 &nbsp;| &nbsp;</span>
+                        <Poptip   v-auth="`del_role`"
                                 transfer
                                 confirm
                                 title="确定删除此角色?"
                                 @on-ok="deleteMenu(row.id,index)">
                             <span class="span-but-list">删除</span>
                         </Poptip>&nbsp;| &nbsp;
-                        <span class="span-but-list" @click="showWebRoleModel(1,row.id);">整站权限设置</span>&nbsp;| &nbsp;
+                        <span class="span-but-list" @click="showWebRoleModel(1,row.id);"   v-auth="`add_role_permis`">整站权限设置&nbsp;| &nbsp;</span>
                         <span class="span-but-list">栏目权限设置</span>
                     </div>
                 </template>

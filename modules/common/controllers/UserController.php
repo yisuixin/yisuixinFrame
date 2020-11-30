@@ -2,6 +2,7 @@
 namespace app\modules\common\controllers;
 
 
+use app\models\rbac\Role;
 use Yii;
 use app\components\ApiController;
 use app\models\User;
@@ -26,10 +27,12 @@ class UserController extends ApiController{
                 }
                 $user  = $model->login();//登录查询用户
                 if($user){
-                    //查询账号是否被禁用或者删除
-                    if($user->status != User::STATUS_ACTIVE){
+                    if($user->status != User::STATUS_ACTIVE){ //查询账号是否被禁用或者删除
                         User::addLoginLog(1,$post);
                         return $this->ajaxFail('登录失败,该账号已被禁用或者已被删除');
+                    }elseif ($user->role->status == Role::TYPE_TWO){//查询角色是否被禁用或者删除
+                        User::addLoginLog(3,$post);
+                        return $this->ajaxFail('登录失败,该账号所属角色组已被禁用');
                     }else{
                         $user->last_ip = getIPaddress();//更新最后登录ip
                         $user->save();

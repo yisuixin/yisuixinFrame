@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-11-27 17:02:02
+Date: 2020-11-30 12:57:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,7 +23,7 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `nickname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `role` int(11) unsigned NOT NULL COMMENT '//用户所属角色组',
+  `roleId` int(11) unsigned NOT NULL COMMENT '//用户所属角色组',
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `api_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -36,17 +36,19 @@ CREATE TABLE `admin` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `roleId` (`role`) USING BTREE,
-  CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `roleId` (`roleId`) USING BTREE,
+  CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', '他们都叫我小明', '1', 'http://yisuixinframe.com/uploads/2020-11-22/20201122173411387.png', 'EtK3J6K_OJyEjWNvM-ZD8A1oMaZ5f0MA_1606466252', 'DogXMXfvKsRaZwJ4VQLjyrHVDWQFEnqA', '$2y$13$1xEsALQ8BXbPm27ea9NdKOTpd.iQD4I7GUFCQiU77yWzmKW3bpqVS', null, '1036753791@qq.com', '天下第一帅？', '10', '127.0.0.1', '1598173301', '1606466252');
-INSERT INTO `admin` VALUES ('3', 'newManager', '测试新增管理员', '4', 'http://vuepermission.com/uploads/2020-10-19/20201019160628359.png', '-Z-vscwix-NOm7IiGAFnXJ_qAW7kDCfi_1606466536', 'g8Hww8DWQ4viqj9-ODrsnWiCyTW2re2B', '$2y$13$S7shP4X258SFIhBrgP.X2.ID2nZFlLymnEIZ18Tt/YeMgTw.e38Fm', null, '', '', '10', '127.0.0.1', '1600760210', '1606466536');
-INSERT INTO `admin` VALUES ('5', 'test', '测试用户', '4', 'http://vuepermission.com/uploads/2020-10-19/20201019160628359.png', 'HLYx_CBnVRYd9birMZzhe73xGjfRcDgP_1603094680', 'NKQ8C3_Stc30xV3htr1glf_sDJQHbpjC', '$2y$13$MSIyMBe10Onnv47pQNaKPupaESbp3xMZxTSNTvrvwYnM034AqKgGi', null, 'test@qq.com', '', '10', '127.0.0.1', '1603094666', '1606018406');
+INSERT INTO `admin` VALUES ('1', 'admin', '他们都叫我小明', '1', 'http://yisuixinframe.com/uploads/2020-11-22/20201122173411387.png', '8O-C_HgYLt34tW0G-FYt0XNkDVYsFyI0_1606700075', 'DogXMXfvKsRaZwJ4VQLjyrHVDWQFEnqA', '$2y$13$1xEsALQ8BXbPm27ea9NdKOTpd.iQD4I7GUFCQiU77yWzmKW3bpqVS', null, '1036753791@qq.com', '天下第一帅？', '10', '127.0.0.1', '1598173301', '1606700075');
+INSERT INTO `admin` VALUES ('3', 'newManager', '测试新增管理员', '4', 'http://vuepermission.com/uploads/2020-10-19/20201019160628359.png', 'a1l13bCqF4O2dPqed-AM6Lh_evxJIbOP_1606700297', 'g8Hww8DWQ4viqj9-ODrsnWiCyTW2re2B', '$2y$13$S7shP4X258SFIhBrgP.X2.ID2nZFlLymnEIZ18Tt/YeMgTw.e38Fm', null, '', '', '10', '127.0.0.1', '1600760210', '1606700297');
+INSERT INTO `admin` VALUES ('5', 'test', '测试用户', '4', 'http://vuepermission.com/uploads/2020-10-19/20201019160628359.png', 'HLYx_CBnVRYd9birMZzhe73xGjfRcDgP_1603094680', 'NKQ8C3_Stc30xV3htr1glf_sDJQHbpjC', '$2y$13$MSIyMBe10Onnv47pQNaKPupaESbp3xMZxTSNTvrvwYnM034AqKgGi', null, 'test@qq.com', '', '0', '127.0.0.1', '1603094666', '1606639659');
 INSERT INTO `admin` VALUES ('6', 'QQQQQQQ', '222222', '4', null, null, 'r767RY72MXMsYF3O3HzvfKtWn9aHiPyz', '$2y$13$q1r6b4jL5JWGvpfDoLSRt.wjk1H5c9zj151Q0d82mzaIEU1rSUiIm', null, '222222@QQ.COM', '', '0', null, '1606034934', '1606034955');
+INSERT INTO `admin` VALUES ('7', 'roleAdmin', 'adminT', '5', null, 'z41np5306HIv_m4CFioYpEQaqHdPmT1M_1606551533', 'TKNJN2vb39jg21rqM9-jmbWK5Y3QTdwU', '$2y$13$/7uWcJcRULl20B1IyM.0jO2cF.56MHFOI8wGHyJB7tbRlybFMr/H.', null, 'roleAdmin@qq.com', '', '0', '127.0.0.1', '1606551482', '1606625961');
+INSERT INTO `admin` VALUES ('8', 'roleer', 'roleer', '5', null, 'wFaclmqAL8Npa-b6OfTRlUm53nyfydPl_1606711349', '1C7tKqXXo0YK9AdLlphWB81XxsXwafPH', '$2y$13$2SyVS4q01qttFyA/u94.1e.DVi00q8YGaQJWI4AhcdjADpZ4/jlqK', null, '', '', '10', '127.0.0.1', '1606639606', '1606711349');
 
 -- ----------------------------
 -- Table structure for admincountdata
@@ -96,7 +98,7 @@ CREATE TABLE `log` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=575 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=631 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -144,6 +146,62 @@ INSERT INTO `log` VALUES ('571', null, '1', '登录成功', 'http://yisuixinfram
 INSERT INTO `log` VALUES ('572', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466252', '1606466252');
 INSERT INTO `log` VALUES ('573', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466410', '1606466410');
 INSERT INTO `log` VALUES ('574', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466536', '1606466536');
+INSERT INTO `log` VALUES ('575', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606468513', '1606468513');
+INSERT INTO `log` VALUES ('576', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606468646', '1606468646');
+INSERT INTO `log` VALUES ('577', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606529416', '1606529416');
+INSERT INTO `log` VALUES ('578', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606529978', '1606529978');
+INSERT INTO `log` VALUES ('579', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606540064', '1606540064');
+INSERT INTO `log` VALUES ('580', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606541603', '1606541603');
+INSERT INTO `log` VALUES ('581', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548334', '1606548334');
+INSERT INTO `log` VALUES ('582', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548402', '1606548402');
+INSERT INTO `log` VALUES ('583', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548470', '1606548470');
+INSERT INTO `log` VALUES ('584', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548524', '1606548524');
+INSERT INTO `log` VALUES ('585', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548670', '1606548670');
+INSERT INTO `log` VALUES ('586', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548761', '1606548761');
+INSERT INTO `log` VALUES ('587', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549081', '1606549081');
+INSERT INTO `log` VALUES ('588', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549128', '1606549128');
+INSERT INTO `log` VALUES ('589', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549137', '1606549137');
+INSERT INTO `log` VALUES ('590', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549710', '1606549710');
+INSERT INTO `log` VALUES ('591', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550009', '1606550009');
+INSERT INTO `log` VALUES ('592', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550085', '1606550085');
+INSERT INTO `log` VALUES ('593', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550168', '1606550168');
+INSERT INTO `log` VALUES ('594', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550199', '1606550199');
+INSERT INTO `log` VALUES ('595', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550220', '1606550220');
+INSERT INTO `log` VALUES ('596', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550276', '1606550276');
+INSERT INTO `log` VALUES ('597', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550734', '1606550734');
+INSERT INTO `log` VALUES ('598', null, '1', '登录失败,账号或者密码错误', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"adminT\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1606551498', '1606551498');
+INSERT INTO `log` VALUES ('599', null, '1', '登录失败,账号或者密码错误', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"adminT\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1606551516', '1606551516');
+INSERT INTO `log` VALUES ('600', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:9:\"roleAdmin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606551533', '1606551533');
+INSERT INTO `log` VALUES ('601', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552741', '1606552741');
+INSERT INTO `log` VALUES ('602', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552865', '1606552865');
+INSERT INTO `log` VALUES ('603', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552993', '1606552993');
+INSERT INTO `log` VALUES ('604', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606553479', '1606553479');
+INSERT INTO `log` VALUES ('605', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606553511', '1606553511');
+INSERT INTO `log` VALUES ('606', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606554608', '1606554608');
+INSERT INTO `log` VALUES ('607', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606556959', '1606556959');
+INSERT INTO `log` VALUES ('608', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606557100', '1606557100');
+INSERT INTO `log` VALUES ('609', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606614476', '1606614476');
+INSERT INTO `log` VALUES ('610', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606614519', '1606614519');
+INSERT INTO `log` VALUES ('611', null, '1', '登录失败.账号所属角色被禁用', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637612', '1606637612');
+INSERT INTO `log` VALUES ('612', null, '1', '登录失败.账号所属角色被禁用', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637637', '1606637637');
+INSERT INTO `log` VALUES ('613', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637669', '1606637669');
+INSERT INTO `log` VALUES ('614', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637842', '1606637842');
+INSERT INTO `log` VALUES ('615', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606638209', '1606638209');
+INSERT INTO `log` VALUES ('616', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606638957', '1606638957');
+INSERT INTO `log` VALUES ('617', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606639697', '1606639697');
+INSERT INTO `log` VALUES ('618', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606639812', '1606639812');
+INSERT INTO `log` VALUES ('619', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606641907', '1606641907');
+INSERT INTO `log` VALUES ('620', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606642190', '1606642190');
+INSERT INTO `log` VALUES ('621', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700076', '1606700076');
+INSERT INTO `log` VALUES ('622', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700215', '1606700215');
+INSERT INTO `log` VALUES ('623', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700256', '1606700256');
+INSERT INTO `log` VALUES ('624', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700297', '1606700297');
+INSERT INTO `log` VALUES ('625', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700644', '1606700644');
+INSERT INTO `log` VALUES ('626', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606703415', '1606703415');
+INSERT INTO `log` VALUES ('627', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606703503', '1606703503');
+INSERT INTO `log` VALUES ('628', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606710984', '1606710984');
+INSERT INTO `log` VALUES ('629', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606711098', '1606711098');
+INSERT INTO `log` VALUES ('630', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606711349', '1606711349');
 
 -- ----------------------------
 -- Table structure for menu
@@ -165,12 +223,12 @@ CREATE TABLE `menu` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES ('137', '0', '内容管理', 'contentManager', '2', 'ios-analytics', 'contentManager', 'contentManager', '1', '1', '1', '2', '1600161029', '1606459662');
+INSERT INTO `menu` VALUES ('137', '0', '内容管理', 'contentManager', '2', 'ios-analytics', 'contentManager', 'contentManager', '1', '1', '1', '2', '1600161029', '1606639081');
 INSERT INTO `menu` VALUES ('138', '137', '内容管理', 'contentManager', '2', 'md-list-box', 'contentManager', 'contentManager/contentManager', '2', '1', '1', '2', '1600161070', '1604047752');
 INSERT INTO `menu` VALUES ('139', '138', '管理内容', 'contentManager', '1', 'md-list-box', 'contentManager', 'contentManager/contentManager/contentManager', '3', '1', '1', '2', '1600161094', '1604047752');
 INSERT INTO `menu` VALUES ('140', '137', '内容相关管理', 'contentRelevant', '2', 'md-link', 'contentRelevant', 'contentManager/contentRelevant', '2', '1', '1', '2', '1600161297', '1604047752');
@@ -192,9 +250,8 @@ INSERT INTO `menu` VALUES ('155', '154', '模板管理', 'themeManger', '2', 'md
 INSERT INTO `menu` VALUES ('156', '155', '主题设置', 'themeManager', '1', 'md-compass', 'themeManager', 'themeManager/themeManger/themeManager', '3', '2', '1', '2', '1600161936', '1604047752');
 INSERT INTO `menu` VALUES ('176', '137', '通知管理', 'notice', '2', 'ios-notifications', 'notice', 'contentManager/notice', '2', '1', '1', '2', '1603781227', '1604047752');
 INSERT INTO `menu` VALUES ('177', '176', '通知管理', 'notice', '1', 'ios-notifications-outline', 'notice', 'contentManager/notice/notice', '3', '4', '1', '1', '1603781263', '1604047752');
-INSERT INTO `menu` VALUES ('207', '0', '测试', 'test', '2', 'ios-add', 'test', 'test', '1', '1', '1', '2', '1606455978', '1606455978');
-INSERT INTO `menu` VALUES ('210', '207', '测试二级菜单1', 'test2-1', '2', 'ios-add', 'test2-1', 'test/test2-1', '2', '1', '1', '2', '1606456160', '1606456160');
-INSERT INTO `menu` VALUES ('211', '210', '测试三级菜单1', 'test3-1', '1', 'ios-add-circle', 'test3-1', 'test/test2-1/test3-1', '3', '1', '1', '1', '1606456226', '1606456226');
+INSERT INTO `menu` VALUES ('212', '0', '测试菜单', 'test', '2', 'ios-add-circle', 'test', 'test', '1', '1', '1', '2', '1606468385', '1606468385');
+INSERT INTO `menu` VALUES ('213', '212', '测试二级菜单', 'test2-1', '2', 'ios-add-circle', 'test2-1', 'test/test2-1', '2', '2', '1', '2', '1606468401', '1606540005');
 
 -- ----------------------------
 -- Table structure for modules
@@ -259,7 +316,7 @@ CREATE TABLE `notice_user` (
   KEY `user_id` (`user_id`) USING BTREE,
   KEY `notice_id` (`notice_id`) USING BTREE,
   CONSTRAINT `notice_user_ibfk_1` FOREIGN KEY (`notice_id`) REFERENCES `notice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notice_user
@@ -271,6 +328,7 @@ INSERT INTO `notice_user` VALUES ('52', '3', '49', '2', '1604028935', '160646765
 INSERT INTO `notice_user` VALUES ('53', '1', '49', '2', '1604028935', '1604029067');
 INSERT INTO `notice_user` VALUES ('54', '1', '50', '2', '1606032998', '1606032998');
 INSERT INTO `notice_user` VALUES ('55', '1', '50', '2', '1606467648', '1606467648');
+INSERT INTO `notice_user` VALUES ('56', '1', '50', '2', '1606711729', '1606711729');
 
 -- ----------------------------
 -- Table structure for page_permission
@@ -280,20 +338,36 @@ CREATE TABLE `page_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuId` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
+  `identification` varchar(200) DEFAULT NULL COMMENT '//标识，用来控制前端按钮',
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menuId`) USING BTREE,
   CONSTRAINT `page_permission_ibfk_1` FOREIGN KEY (`menuId`) REFERENCES `menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of page_permission
 -- ----------------------------
-INSERT INTO `page_permission` VALUES ('141', '139', '查看', '1606381574', '1606381574');
-INSERT INTO `page_permission` VALUES ('142', '139', '新增', '1606381574', '1606381574');
-INSERT INTO `page_permission` VALUES ('143', '146', '查看3', '1606445427', '1606445427');
-INSERT INTO `page_permission` VALUES ('144', '146', '新增', '1606445427', '1606445427');
+INSERT INTO `page_permission` VALUES ('238', '177', '发布通知', 'add_notice', '1606556864', '1606556864');
+INSERT INTO `page_permission` VALUES ('239', '177', '置顶通知', 'top_notice', '1606556864', '1606556864');
+INSERT INTO `page_permission` VALUES ('240', '177', '删除通知', 'del_notice', '1606556864', '1606556864');
+INSERT INTO `page_permission` VALUES ('241', '177', '查看通知', 'view_notice', '1606556864', '1606556864');
+INSERT INTO `page_permission` VALUES ('248', '147', '查看菜单', 'view_menu', '1606556921', '1606556921');
+INSERT INTO `page_permission` VALUES ('249', '147', '查看权限组', 'view_permission', '1606556921', '1606556921');
+INSERT INTO `page_permission` VALUES ('250', '147', '删除菜单', 'del_menu', '1606556921', '1606556921');
+INSERT INTO `page_permission` VALUES ('251', '147', '菜单排序', 'sort_menu', '1606556921', '1606556921');
+INSERT INTO `page_permission` VALUES ('252', '147', '添加菜单', 'add_menu', '1606556921', '1606556921');
+INSERT INTO `page_permission` VALUES ('253', '147', '编辑菜单', 'edit_menu', '1606556921', '1606556921');
+INSERT INTO `page_permission` VALUES ('258', '149', '新增角色', 'add_role', '1606639222', '1606639222');
+INSERT INTO `page_permission` VALUES ('259', '149', '查看角色', 'view_role', '1606639222', '1606639222');
+INSERT INTO `page_permission` VALUES ('260', '149', '删除角色', 'del_role', '1606639222', '1606639222');
+INSERT INTO `page_permission` VALUES ('261', '149', '设置整站权限', 'add_role_permis', '1606639222', '1606639222');
+INSERT INTO `page_permission` VALUES ('277', '150', '添加管理员', 'add_manager', '1606703476', '1606703476');
+INSERT INTO `page_permission` VALUES ('278', '150', '查看管理员', 'view_manager', '1606703476', '1606703476');
+INSERT INTO `page_permission` VALUES ('279', '150', '编辑管理员', 'edit_manager', '1606703476', '1606703476');
+INSERT INTO `page_permission` VALUES ('280', '150', '设置管理员角色', 'change_manager_role', '1606703476', '1606703476');
+INSERT INTO `page_permission` VALUES ('281', '152', '查看日志', 'view_login_log', '1606711633', '1606711633');
 
 -- ----------------------------
 -- Table structure for page_permission_item
@@ -306,21 +380,38 @@ CREATE TABLE `page_permission_item` (
   PRIMARY KEY (`id`),
   KEY `menuId` (`page_permission_id`),
   CONSTRAINT `menuId` FOREIGN KEY (`page_permission_id`) REFERENCES `page_permission` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=412 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of page_permission_item
 -- ----------------------------
-INSERT INTO `page_permission_item` VALUES ('90', '141', 'content/content/get-list');
-INSERT INTO `page_permission_item` VALUES ('91', '142', 'content/content/add-content');
-INSERT INTO `page_permission_item` VALUES ('92', '143', 'get/list1');
-INSERT INTO `page_permission_item` VALUES ('93', '143', 'get/list2');
-INSERT INTO `page_permission_item` VALUES ('94', '143', 'get/list1');
-INSERT INTO `page_permission_item` VALUES ('95', '143', 'get/list');
-INSERT INTO `page_permission_item` VALUES ('96', '144', 'add/index1');
-INSERT INTO `page_permission_item` VALUES ('97', '144', 'add/index2');
-INSERT INTO `page_permission_item` VALUES ('98', '144', 'add/index3');
-INSERT INTO `page_permission_item` VALUES ('99', '144', 'add/index4');
+INSERT INTO `page_permission_item` VALUES ('358', '238', 'system/role/get-role-list');
+INSERT INTO `page_permission_item` VALUES ('359', '238', 'system/manager/get-manager-list');
+INSERT INTO `page_permission_item` VALUES ('360', '238', 'content/notice/add-notice');
+INSERT INTO `page_permission_item` VALUES ('361', '239', 'content/add/topping-notice');
+INSERT INTO `page_permission_item` VALUES ('362', '239', 'content/add/topping-notice');
+INSERT INTO `page_permission_item` VALUES ('363', '239', 'content/add/topping-notice');
+INSERT INTO `page_permission_item` VALUES ('364', '240', 'content/add/del-notice');
+INSERT INTO `page_permission_item` VALUES ('365', '240', 'content/add/del-notice');
+INSERT INTO `page_permission_item` VALUES ('366', '240', 'content/add/del-notice');
+INSERT INTO `page_permission_item` VALUES ('367', '241', 'content/notice/get-admin-notice-list');
+INSERT INTO `page_permission_item` VALUES ('375', '248', 'system/menu/list');
+INSERT INTO `page_permission_item` VALUES ('376', '249', 'system/menu/get-page-permission-list');
+INSERT INTO `page_permission_item` VALUES ('377', '250', 'system/menu/delete-menu');
+INSERT INTO `page_permission_item` VALUES ('378', '251', 'system/menu/sort-menu');
+INSERT INTO `page_permission_item` VALUES ('379', '252', 'system/menu/add-or-edit');
+INSERT INTO `page_permission_item` VALUES ('380', '253', 'system/menu/add-or-edit');
+INSERT INTO `page_permission_item` VALUES ('381', '253', 'system/menu/get-only-menu');
+INSERT INTO `page_permission_item` VALUES ('387', '258', 'system/role/add-role');
+INSERT INTO `page_permission_item` VALUES ('388', '259', 'system/role/get-role-info');
+INSERT INTO `page_permission_item` VALUES ('389', '259', 'system/role/get-role-list');
+INSERT INTO `page_permission_item` VALUES ('390', '260', 'system/role/delete-role');
+INSERT INTO `page_permission_item` VALUES ('391', '261', 'system/role/add-role-permission');
+INSERT INTO `page_permission_item` VALUES ('407', '277', 'system/manager/add-manager');
+INSERT INTO `page_permission_item` VALUES ('408', '278', 'system/manager/get-manager-list');
+INSERT INTO `page_permission_item` VALUES ('409', '279', 'system/manager/edit-manager');
+INSERT INTO `page_permission_item` VALUES ('410', '280', 'system/manager/change-manager-role');
+INSERT INTO `page_permission_item` VALUES ('411', '281', 'system/login-log/list');
 
 -- ----------------------------
 -- Table structure for quick_operation
@@ -335,7 +426,7 @@ CREATE TABLE `quick_operation` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`) USING BTREE,
   KEY `user_id` (`user_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of quick_operation
@@ -352,6 +443,7 @@ INSERT INTO `quick_operation` VALUES ('71', '1', '153', '1603788400', '160378840
 INSERT INTO `quick_operation` VALUES ('72', '1', '142', '1603788400', '1603788400');
 INSERT INTO `quick_operation` VALUES ('73', '1', '143', '1603788400', '1603788400');
 INSERT INTO `quick_operation` VALUES ('74', '1', '139', '1603788400', '1603788400');
+INSERT INTO `quick_operation` VALUES ('75', '8', '177', '1606641813', '1606641813');
 
 -- ----------------------------
 -- Table structure for role
@@ -366,13 +458,14 @@ CREATE TABLE `role` (
   `created_at` int(10) DEFAULT NULL,
   `updated_at` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', '超级管理员', '1', '超级管理员描述', '1', '1600754204', '1600828113');
-INSERT INTO `role` VALUES ('4', '文章发布角色', '2', '专门用来发布文章的角色', '1', '1600754204', '1606014849');
+INSERT INTO `role` VALUES ('4', '菜单管理员', '2', '菜单管理员', '1', '1600754204', '1606639649');
+INSERT INTO `role` VALUES ('5', '管理员管理', '2', '管理员管理', '1', '1606551367', '1606642158');
 
 -- ----------------------------
 -- Table structure for role_menu_item
@@ -384,17 +477,20 @@ CREATE TABLE `role_menu_item` (
   `menu_id` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=173 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=327 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role_menu_item
 -- ----------------------------
-INSERT INTO `role_menu_item` VALUES ('172', '4', '146');
-INSERT INTO `role_menu_item` VALUES ('171', '4', '145');
-INSERT INTO `role_menu_item` VALUES ('170', '4', '144');
-INSERT INTO `role_menu_item` VALUES ('169', '4', '139');
-INSERT INTO `role_menu_item` VALUES ('168', '4', '138');
-INSERT INTO `role_menu_item` VALUES ('167', '4', '137');
+INSERT INTO `role_menu_item` VALUES ('306', '4', '150');
+INSERT INTO `role_menu_item` VALUES ('305', '4', '148');
+INSERT INTO `role_menu_item` VALUES ('326', '5', '150');
+INSERT INTO `role_menu_item` VALUES ('304', '4', '147');
+INSERT INTO `role_menu_item` VALUES ('303', '4', '145');
+INSERT INTO `role_menu_item` VALUES ('302', '4', '144');
+INSERT INTO `role_menu_item` VALUES ('325', '5', '149');
+INSERT INTO `role_menu_item` VALUES ('324', '5', '148');
+INSERT INTO `role_menu_item` VALUES ('323', '5', '144');
 
 -- ----------------------------
 -- Table structure for role_permission_item
@@ -407,15 +503,25 @@ CREATE TABLE `role_permission_item` (
   PRIMARY KEY (`id`),
   KEY `page_permission_id` (`page_permission_id`),
   CONSTRAINT `page_permission_id` FOREIGN KEY (`page_permission_id`) REFERENCES `page_permission` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role_permission_item
 -- ----------------------------
-INSERT INTO `role_permission_item` VALUES ('198', '141', '4');
-INSERT INTO `role_permission_item` VALUES ('199', '142', '4');
-INSERT INTO `role_permission_item` VALUES ('200', '143', '4');
-INSERT INTO `role_permission_item` VALUES ('201', '144', '4');
+INSERT INTO `role_permission_item` VALUES ('326', '248', '4');
+INSERT INTO `role_permission_item` VALUES ('327', '249', '4');
+INSERT INTO `role_permission_item` VALUES ('328', '250', '4');
+INSERT INTO `role_permission_item` VALUES ('329', '251', '4');
+INSERT INTO `role_permission_item` VALUES ('330', '252', '4');
+INSERT INTO `role_permission_item` VALUES ('331', '253', '4');
+INSERT INTO `role_permission_item` VALUES ('365', '258', '5');
+INSERT INTO `role_permission_item` VALUES ('366', '259', '5');
+INSERT INTO `role_permission_item` VALUES ('367', '260', '5');
+INSERT INTO `role_permission_item` VALUES ('368', '261', '5');
+INSERT INTO `role_permission_item` VALUES ('369', '277', '5');
+INSERT INTO `role_permission_item` VALUES ('370', '278', '5');
+INSERT INTO `role_permission_item` VALUES ('371', '279', '5');
+INSERT INTO `role_permission_item` VALUES ('372', '280', '5');
 
 -- ----------------------------
 -- Table structure for todo
@@ -433,11 +539,13 @@ CREATE TABLE `todo` (
   `updated_at` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of todo
 -- ----------------------------
-INSERT INTO `todo` VALUES ('32', '1', '联系邱总', '联系邱总，询问三个柜子是否需要', '1605888000', '1605888000', '3', '1605928110', '1606032006');
-INSERT INTO `todo` VALUES ('30', '1', '联系大单买家送橙子', '联系大单买家送橙子', '1605888000', '1605974400', '3', '1605416818', '1606026586');
-INSERT INTO `todo` VALUES ('33', '1', '问发货时间', '问发货时间', '1606320000', '1606406399', '2', '1606381702', '1606381702');
+INSERT INTO `todo` VALUES ('32', '1', '联系邱总', '联系邱总，询问三个柜子是否需要', '1605888000', '1605888000', '3', '1605928110', '1606711690');
+INSERT INTO `todo` VALUES ('30', '1', '联系大单买家送橙子', '联系大单买家送橙子', '1605888000', '1605974400', '3', '1605416818', '1606711698');
+INSERT INTO `todo` VALUES ('33', '1', '问发货时间', '问发货时间', '1606320000', '1606406399', '3', '1606381702', '1606711683');
+INSERT INTO `todo` VALUES ('34', '3', '测试管理员', '测试管理员', '1606406400', '1606579199', '2', '1606467874', '1606467892');
+INSERT INTO `todo` VALUES ('35', '1', '发新中式茶桌', '发新中式茶桌', '1606492800', '1606751999', '3', '1606529896', '1606711665');

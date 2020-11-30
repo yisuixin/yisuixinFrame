@@ -7,6 +7,7 @@ use app\components\ApiController;
 use app\models\User;
 use yii\db\Query;
 use app\models\rbac\Role;
+use yii\db\Expression;
 class ManagerController extends ApiController{
 
     /**
@@ -36,10 +37,8 @@ class ManagerController extends ApiController{
         $page      = $this->get('page', 0);
         $pageSize  = $this->get('pageSize', $this->getParams('default_page_size'));
         $offset    = ($page - 1) * $pageSize;
-
-        $keys  = $this->get('keys', '');
-        $status  = $this->get('status', '');
-
+        $keys      = $this->get('keys', '');
+        $status    = $this->get('status', '');
 
         $sql = (new Query())->select(
             [
@@ -56,22 +55,21 @@ class ManagerController extends ApiController{
                 'role.id AS roleId',
                 'role.name AS roleName'
             ])->from(User::tableName().' AS user');
-        $sql->leftJoin(Role::tableName(), 'role.id = user.role');
-        $sql->andWhere(['<>','user.status',User::STATUS_DELETED]);
-        $sql->andFilterWhere(['like','username','%'.$keys.'%',false]);
-        $sql->orFilterWhere(['like','nickname','%'.$keys.'%',false]);
-        $sql->orFilterWhere(['like','user.mark','%'.$keys.'%',false]);
-        $sql->andFilterWhere(['=','user.status',$status]);
-
-
-
+        $sql->leftJoin(Role::tableName(), 'role.id = user.roleId');
+        $where = "(`user`.`status` <> 0) 
+        AND ((`username` LIKE '%".$keys."%') OR (`nickname` LIKE '%".$keys."%') OR (`user`.`mark` LIKE '%".$keys."%')  OR (`role`.`NAME` LIKE '%".$keys."%'))";
+        if($status != ''){
+            $where .= "AND (`user`.`status` = ".$status.")";
+        }
+        $expression = new Expression($where);
+        $sql->where($expression);
 
         $d['count'] = (int)$sql->count();
-        $d['list'] =  $sql->orderBy('user.created_at DESC')
+        $d['list'] =  $sql->orderBy('user.roleId DESC,user.created_at DESC')
             ->limit($pageSize)
             ->offset($offset)
             ->all();
-
+            //p($this->printSql($sql));
         return $this->ajaxSuccess('获取成功',$d);
     }
     /**
@@ -88,7 +86,7 @@ class ManagerController extends ApiController{
         if(is_null($model)){
             return $this->ajaxFail('操作失败.未找到管理员信息');
         }
-        if($model->role == Role::TYPE_ONE){
+        if($model->roleId == Role::TYPE_ONE){
             return $this->ajaxFail('操作失败,超级管理员无法操作');
         }
         $model->setScenario('edit_manager');
@@ -108,6 +106,29 @@ class ManagerController extends ApiController{
             return $this->ajaxFail('操作失败,未知错误');
         }else{
             return $this->ajaxSuccess($info);
+        }
+    }
+    /**
+     *修改管理员角色
+     */
+    public function actionChangeManagerRole(){
+        $post     = Yii::$app->request->post();
+        $userId    = $post['userId'];
+        $roleId    = $post['roleId'];
+
+        //p($post);
+        $model = (new User())->findOne($userId);
+        if(is_null($model)){
+            return $this->ajaxFail('操作失败.未找到管理员信息');
+        }
+        if($model->roleId == Role::TYPE_ONE){
+            return $this->ajaxFail('操作失败,超级管理员无法操作');
+        }
+        $model->roleId = $roleId;
+        if(!$model->save(false)){
+            return $this->ajaxFail('操作失败,未知错误');
+        }else{
+            return $this->ajaxSuccess('修改成功');
         }
     }
 
