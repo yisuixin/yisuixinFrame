@@ -2,31 +2,31 @@
     <div>
         <Card :bordered="false" dis-hover style="margin-bottom: 10px;">
             <div class="category-btn-list">
-                <Form ref="search" :model="search" :label-width="100">
+                <Form ref="search" :model="operationLog.search" :label-width="100">
                     <Row>
-                        <Col span="6">
-                            <FormItem label="操作用户："prop="userName">
-                                <Input type="text" v-model="search.userName" placeholder="请输入操作用户"></Input>
+                        <Col span="5">
+                            <FormItem label="关键字："prop="searchKey">
+                                <Input type="text" v-model="operationLog.search.searchKey" placeholder="请输入操作用户"></Input>
                             </FormItem>
                         </Col>
-                        <Col span="6">
+                        <Col span="5">
                             <FormItem label="操作时间：" prop="loginTime">
-                                <DatePicker type="daterange" placeholder="请选择操作时间" v-model="search.loginTime":editable="false" style="width: 100%;"></DatePicker>
+                                <DatePicker type="daterange" placeholder="请选择操作时间" @on-change ="selectLogDate" v-model="operationLog.search.loginTime":editable="false" style="width: 100%;"></DatePicker>
                             </FormItem>
                         </Col>
-                        <Col span="6">
+                        <Col span="5">
                             <FormItem label="操作状态：" prop="loginStatus" >
-                                <Select v-model="search.loginStatus" placeholder="请选择操作状态">
+                                <Select v-model="operationLog.search.status" placeholder="请选择操作状态">
                                     <Option value="" >全部</Option>
                                     <Option value="1" >操作成功</Option>
-                                    <Option value="2" >操作失败</Option>
+                                    <Option value="0" >操作失败</Option>
                                 </Select>
                             </FormItem>
                         </Col>
-                        <Col span="6">
+                        <Col span="8">
                             <FormItem>
-                                <Button type="primary" @click="handleSubmit('search')">搜索</Button>
-                                <Button type="default" @click="handleSubmit('search')">重置</Button>
+                                <Col span="4"><Button type="primary" @click="handleSubmit(1)">搜索</Button></Col>
+                                <Col span="4"><Button type="default" @click="handleSubmit(2)">重置</Button></Col>
                             </FormItem>
                         </Col>
                     </Row>
@@ -34,137 +34,194 @@
             </div>
         </Card>
         <Card :bordered="false" dis-hover>
-            <Table :border="false" :columns="categoryColumns" :data="categoryData" >
+            <Table :border="false" :columns="operationLog.columns" :data="operationLog.list"  :loading="operationLog.loading">
                 <template slot-scope="{ row, index }" slot="action">
-                    <!--                      <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">预览</Button>-->
-                    <Button type="error" size="small" @click="remove(index)">删除</Button>
+                    <Poptip   v-auth="`edit_manager`"
+                              transfer
+                              confirm
+                              title="确定删除此管理员?"
+                              @on-ok="deleteOperationLog(row.id,index,3)">
+                        <Button type="error" size="small">删除</Button>
+                    </Poptip>
                 </template>
             </Table>
-            <div class="page-box"><Page :total="100" show-elevator show-sizer :transfer="true"/></div>
+            <div class="page-box">
+                <Page :total="operationLog.count"
+                        show-elevator
+                        show-total
+                        :page-size ="operationLog.search.pageSize"
+                        @on-change="loginLogPageChange"
+                        @on-page-size-change = "loginLogPageSizeChange"/>
+            </div>
         </Card>
     </div>
 </template>
+
 <script>
     export default {
         data () {
             return {
-                search: {
-                    userName: '',
-                    loginTime: '',
-                    loginStatus:'',
-                },
-
-                categoryColumns: [
-                    {
-                        title: 'ID',
-                        key: 'id',
-                        width:100,
-                        align:'center',
-                        sortable: true
+                operationLog:{
+                    loading:true,
+                    search:{
+                        status:'',
+                        page:1,
+                        searchKey:'',
+                        pageSize:this.COMMONJS.pageSize,
+                        startTime:'',
+                        endTime:'',
                     },
-                    {
-                        title: '操作用户',
-                        key: 'userName',
-                        width:120,
-                        align:'center'
-                    },
-                    {
-                        title: '操作URL',
-                        key: 'url',
-                        width:300,
-                        align:'left',
-                        // render: (h, params) => {
-                        //   return h('div', {style:{paddingLeft:this.categoryData[params.index].id+'px'}}, this.categoryData[params.index].name)
-                        // }
-                    },
-                    {
-                        title: '操作备注',
-                        key: 'mark',
-                        width:550,
-                        align:'left'
-                    },
-                    {
-                        title: '操作IP',
-                        key: 'IP',
-                        width:120,
-                        align:'left'
-                    },
-                    {
-                        title: '操作时间',
-                        key: 'loginTime',
-                        width:150,
-                        align:'center',
-                        sortable: true
-                    },
-                    {
-                        title: '操作状态',
-                        key: 'loginStatus',
-                        width:120,
-                        align:'center',
-                        render: (h, params) => {
-                            const categoryData = this.categoryData;
-                            if(categoryData[params.index].status == 1){
-                                return h('Tag', {
-                                    props: {
-                                        color:'success'
-                                    },
-                                }, '操作成功')
-                            }else{
-                                return h('Tag', {
-                                    props: {
-                                        color:'error'
-                                    },
-                                }, '操作失败')
+                    count: 0,
+                    list: [],
+                    columns: [
+                        {
+                            title: 'ID',
+                            key: 'id',
+                            width:80,
+                            align:'center',
+                            sortable: true
+                        },
+                        {
+                            title: '操作用户',
+                            key: 'userName',
+                            width:150,
+                            align:'center',
+                            render: (h, params) => {
+                                const user = this.operationLog.list[params.index].user;
+                                return h('span', user.username)
                             }
+                        },
+                        {
+                            title: '操作URL',
+                            key: 'url',
+                            width:300,
+                            align:'left',
+                        },
+                        {
+                            title: '操作备注',
+                            key: 'mark',
+                            width:450,
+                            align:'left',
+                            render: (h, params) => {
+                                const list = this.operationLog.list[params.index].desc;
+                                return h('span', '请求方式：'+list.type+';模块：'+ list.model+';控制器：'+ list.controller+';方法：'+ list.action+';操作提示：'+list.message)
+                            }
+                        },
+                        {
+                            title: '操作IP',
+                            key: 'ip',
+                            width:120,
+                            align:'left'
+                        },
+                        {
+                            title: '操作时间',
+                            key: 'loginTime',
+                            width:250,
+                            align:'center',
+                            sortable: true,
+                            render: (h, params) => {
+                                const time = this.operationLog.list[params.index].created_at;
+                                return h('span', this.$options.filters.formatTime10(time))
+                            }
+                        },
+                        {
+                            title: '操作状态',
+                            key: 'status',
+                            width:120,
+                            align:'center',
+                            render: (h, params) => {
+                                const list = this.operationLog.list;
+                                if(list[params.index].status == 1){
+                                    return h('Tag', {
+                                        props: {
+                                            color:'success'
+                                        },
+                                    }, '操作成功')
+                                }else{
+                                    return h('Tag', {
+                                        props: {
+                                            color:'error'
+                                        },
+                                    }, '操作失败')
+                                }
+                            }
+                        },
+                        {
+                            title: '管理操作',
+                            slot: 'action',
+                            align: 'center',
+                            key: 'action'
                         }
-                    },
-                    {
-                        title: '管理操作',
-                        slot: 'action',
-                        align: 'center',
-                        key: 'action'
-                    }
-                ],
-                categoryData: [
-                    {
-                        id: 1,
-                        userName:'张三',
-                        url:'http://ysuixin.cn/admin.php?m=Logs&a=loginlog&menuid=32',
-                        mark:'提示语：删除登陆日志成功！' +
-                            '模块：Admin,控制器：Logs,方法：deleteloginlog' +
-                            '请求方式：GET',
-                        IP:'127.0.0.1',
-                        loginTime:'2020-8-15 11:23',
-                        loginStatus:'1',
-                    },
-                    {
-                        id: 2,
-                        userName:'李四',
-                        url:'http://ysuixin.cn/admin.php?m=Management&a=adminadd&menuid=22',
-                        mark:'提示语：用户名不能为空！\n' +
-                            '模块：Admin,控制器：Management,方法：adminadd\n' +
-                            '请求方式：Ajax',
-                        IP:'127.0.0.1',
-                        loginTime:'2020-8-15 11:23',
-                        loginStatus:'2',
-                    },
-                ],
+                    ]
+                },
             }
         },
+        activated() {
+            this.getOperationLog();
+        },
         methods: {
-            //点击排序
-            updateSort:function(){
-                console.log(3333)
-            }
-            // show (index) {
-            //     this.$Modal.info({
-            //         title: 'User Info',
-            //         content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`
-            //     })
-            // },
-            // remove (index) {
-            //     this.data6.splice(index, 1);
-            // }
+            //选择登录日志筛选时间
+            selectLogDate(date){
+                this.operationLog.search.startTime = date[0];
+                this.operationLog.search.endTime = date[1];
+                // this.getLoginLog();
+            },
+            //分页
+            loginLogPageChange(page){
+                this.operationLog.loading = true;
+                this.operationLog.search.page = page;
+                this.getOperationLog();
+            },
+            //切换条数
+            loginLogPageSizeChange(pageSize){
+                this.operationLog.loading = true;
+                this.operationLog.search.pageSize = pageSize;
+                this.getOperationLog();
+            },
+            //获取登录日志列表
+            getOperationLog() {
+                const that =this;
+                let successCallback = function(res){
+                    that.operationLog.loading = false;
+                    that.operationLog.list = res.data.data.list;
+                    that.operationLog.count = res.data.data.count;
+                }
+                let failCallback = function(res){
+                    that.operationLog.loading = false;
+                    that.operationLog.list = [];
+                }
+                let otherCallback = function(res){
+                    that.operationLog.loading = false;
+                    that.operationLog.list = [];
+                }
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.LOG.OPERATION_LOG,that.operationLog.search,successCallback,failCallback,otherCallback);
+            },
+            //点击搜索或者重置
+            handleSubmit(type){
+                if(type == 1){
+                    this.getOperationLog();
+                }else{
+                    this.$refs['search'].resetFields();
+                }
+            },
+            //删除日志
+            deleteOperationLog (id,index){
+                const that = this;
+                let successCallback = function(res){
+                    that.$Message.info({
+                        content:'删除成功',
+                        onClose:function () {
+                            that.getOperationLog();
+                        }
+                    })
+                }
+                let failCallback = function(res){
+                    that.$Message.error({
+                        content:res.data.message,
+                    })
+                }
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.LOG.OPERATION_LOG_DEL,{id:id},successCallback,failCallback);
+            },
         }
     }
 </script>

@@ -40,7 +40,7 @@ module.exports = {
             TOPPING_NOTICE:'/content/notice/topping-notice',
         },
     },
-    SYSTEM_SRRTING:{//系统设置管理模块相关接口列表
+    SYSTEM_SEETING:{//系统设置管理模块相关接口列表
         MENU:{//后台菜单相关接口列表
             LIST : '/system/menu/list',//全部菜单列表
             GET_ROLE_MENU_LIST : '/system/menu/get-role-menu-list',//整站权限菜单列表
@@ -69,6 +69,8 @@ module.exports = {
         },
         LOG:{//日志相关接口列表
             LOGIN_LOG : '/system/login-log/list',
+            OPERATION_LOG : '/system/operation-log/list',
+            OPERATION_LOG_DEL : '/system/operation-log/del',
         },
     },
 

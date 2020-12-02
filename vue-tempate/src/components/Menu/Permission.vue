@@ -194,7 +194,7 @@
                     that.tabs.loadingText = '保存权限组';
                     that.tabs.loadning = false;
                 }
-                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.ADD_PAGE_PERMISSION,parms,successCallback,failCallback,otherCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MENU.ADD_PAGE_PERMISSION,parms,successCallback,failCallback,otherCallback);
 
             },
             //获取权限列表数据
@@ -214,7 +214,7 @@
                     that.loading = false;
                 }
 
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.MENU.GET_PAGE_PERMISSION_ITEM,{menuId:this.treeData.id},successCallback,failCallback,otherCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.MENU.GET_PAGE_PERMISSION_ITEM,{menuId:this.treeData.id},successCallback,failCallback,otherCallback);
             },
             //通过父组件访问此方法//用来保存tree菜单的数据
             setParent(parentList,parentData){

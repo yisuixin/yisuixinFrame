@@ -1,14 +1,13 @@
 <?php
-
 namespace app\models\log;
 
 use Yii;
 use app\models\BaseModel;
 //username、password、desc、ip、login_time
-class Log extends BaseModel{
+class LoginLog extends BaseModel{
     const LOGIN_LOG = 1;//登录日志
     public static function tableName(){
-        return "{{%Log}}";
+        return "{{%login_log}}";
     }
     public function scenarios(){
         $s = parent::scenarios();

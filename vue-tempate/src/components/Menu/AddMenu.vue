@@ -223,7 +223,7 @@
                         let otherCallback = function(res){
                             that.loading = false;
                         }
-                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MENU.ADD_OR_EDIT,that.formInline,successCallback,failCallback,otherCallback);
+                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MENU.ADD_OR_EDIT,that.formInline,successCallback,failCallback,otherCallback);
                     }
                 })
             },
@@ -259,7 +259,7 @@
                     that.formInline.id     = id;
                     that.formInline.is_add = 2;
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.MENU.GET_ONLY_LMANU,{id:id},successCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.MENU.GET_ONLY_LMANU,{id:id},successCallback);
             },
         }
     }

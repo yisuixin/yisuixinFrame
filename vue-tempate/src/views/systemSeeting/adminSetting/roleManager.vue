@@ -217,7 +217,7 @@
                 let failCallback = function(res){
                     that.roleData.loading = false;
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.ROLE.GET_ROLE_LIST,that.roleData.search,successCallback,failCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.ROLE.GET_ROLE_LIST,that.roleData.search,successCallback,failCallback);
             },
             //点击添加角色
             addModeShow:function(type,id){
@@ -247,7 +247,7 @@
                         content:'数据获取失败'
                     })
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.ROLE.GET_ROLE_INFO,{id:id},successCallback,failCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.ROLE.GET_ROLE_INFO,{id:id},successCallback,failCallback);
             },
             //增加或者编辑角色
             addMode:function(name){
@@ -273,7 +273,7 @@
                                 }
                             })
                         }
-                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.ROLE.ADD_ROLE,that.modeAdd.formInline,successCallback,failCallback);
+                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.ROLE.ADD_ROLE,that.modeAdd.formInline,successCallback,failCallback);
                     }
                 })
             },
@@ -291,7 +291,7 @@
                 let failCallback = function(res){
                     that.$Message.error(res.data.message);
                 }
-                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.ROLE.DELETE_ROLE,{id:id},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.ROLE.DELETE_ROLE,{id:id},successCallback,failCallback);
             },
             //点击搜索 type == 1搜索，2重置
             searchClick:function (type) {

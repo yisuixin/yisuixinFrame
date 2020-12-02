@@ -148,7 +148,7 @@
                     that.loginLog.loading = false;
                     that.loginLog.list = [];
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.LOG.LOGIN_LOG,that.loginLog.search,successCallback,failCallback,otherCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.LOG.LOGIN_LOG,that.loginLog.search,successCallback,failCallback,otherCallback);
             },
             //点击搜索或者重置
             handleSubmit(type){

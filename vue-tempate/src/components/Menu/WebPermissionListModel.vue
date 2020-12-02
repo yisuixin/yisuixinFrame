@@ -66,7 +66,7 @@
                         content:'权限列表菜单数据获取失败'
                     })
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.MENU.GET_ROLE_PAGE_PERMISSION_ITEM,{roleId:RoleId},successCallback,failCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.MENU.GET_ROLE_PAGE_PERMISSION_ITEM,{roleId:RoleId},successCallback,failCallback);
             },
             //添加角色权限
             addRolePermission(){
@@ -90,7 +90,7 @@
                         }
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.ROLE.ADD_ROLE_PERMISSION,{roleId:that.roleId,permissionsData:that.permissionsData},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.ROLE.ADD_ROLE_PERMISSION,{roleId:that.roleId,permissionsData:that.permissionsData},successCallback,failCallback);
             },
             //获取勾选权限的id
             getCheckMenuId(){

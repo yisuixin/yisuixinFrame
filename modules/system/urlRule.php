@@ -48,4 +48,13 @@ return [
             'GET  list' => 'list',
         ]
     ],
+    [//后台操作日志
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['system/operation-log'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'GET  list' => 'list',
+            'POST  del' => 'del',
+        ]
+    ],
 ];

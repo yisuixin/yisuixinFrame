@@ -344,7 +344,7 @@
                 let failCallback = function(res){
                     that.modeAdd.role.list = [];
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.ROLE.GET_ROLE_LIST,that.modeAdd.role.search,successCallback,failCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.ROLE.GET_ROLE_LIST,that.modeAdd.role.search,successCallback,failCallback);
             },
             //分页
             managerPageChange(page){
@@ -368,7 +368,7 @@
                 let failCallback = function(res){
                     that.managerData.loading = false;
                 }
-                that.HTTPJS.get(that.HTTPURL.SYSTEM_SRRTING.MANAGER.GET_USER_LIST,that.managerData.search,successCallback,failCallback);
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.MANAGER.GET_USER_LIST,that.managerData.search,successCallback,failCallback);
             },
             //点击添加管理员
             addModeShow:function(type){
@@ -404,7 +404,7 @@
                                 }
                             })
                         }
-                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MANAGER.ADD_MANAGER,that.modeAdd.formInline,successCallback,failCallback);
+                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MANAGER.ADD_MANAGER,that.modeAdd.formInline,successCallback,failCallback);
                     }
                 })
             },
@@ -424,7 +424,7 @@
                         content:res.data.message,
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MANAGER.EDIT_MANAGER,{editManagerId:id,editManagerType:type,editManagerValue:value},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MANAGER.EDIT_MANAGER,{editManagerId:id,editManagerType:type,editManagerValue:value},successCallback,failCallback);
             },
             //重置密码
             setDefaultPass (id,index,type){
@@ -439,7 +439,7 @@
                         content:res.data.message,
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MANAGER.EDIT_MANAGER,{editManagerId:id,editManagerType:type,editManagerValue:''},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MANAGER.EDIT_MANAGER,{editManagerId:id,editManagerType:type,editManagerValue:''},successCallback,failCallback);
             },
             //删除管理员
             deleteManager (id,index,type){
@@ -457,7 +457,7 @@
                         content:res.data.message,
                     })
                 }
-                that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MANAGER.EDIT_MANAGER,{editManagerId:id,editManagerType:type,editManagerValue:''},successCallback,failCallback);
+                that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MANAGER.EDIT_MANAGER,{editManagerId:id,editManagerType:type,editManagerValue:''},successCallback,failCallback);
             },
             //点击搜索 type == 1搜索，2重置
             searchClick:function (type) {
@@ -496,7 +496,7 @@
                                 content:res.data.message,
                             })
                         }
-                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SRRTING.MANAGER.CHANGE_MANAGER_ROLE,{userId:userId,roleId:roleId},successCallback,failCallback);
+                        that.HTTPJS.post(that.HTTPURL.SYSTEM_SEETING.MANAGER.CHANGE_MANAGER_ROLE,{userId:userId,roleId:roleId},successCallback,failCallback);
                     }
                 });
 

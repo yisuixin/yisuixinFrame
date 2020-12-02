@@ -11,6 +11,8 @@ use yii\filters\auth\HttpBearerAuth;
 use yii\web\ForbiddenHttpException;
 use app\models\rbac\Rbac;
 use app\models\rbac\Role;
+use app\models\log\SystemLog;
+
 
 class ApiController extends ActiveController{
     public $modelClass = '';
@@ -69,6 +71,17 @@ class ApiController extends ActiveController{
      * @return                        [type]          [description]
      */
     protected function formatResponse($status, $message = '', $data = [], $url = ''){
+        $requestType = getRequestType();
+        if($requestType != 'GET'){//如果操作不是获取列表的话，就添加操作日志
+            $log['model']      = Yii::$app->controller->module->id;
+            $log['controller'] = Yii::$app->controller->id;
+            $log['action']     = Yii::$app->controller->action->id;
+            $log['message']    = $message;
+            $log['url']        = Yii::$app->request->getHostInfo().Yii::$app->request->url;
+            $log['status']     = $status;
+            $log['type']       = getRequestType();
+            (new SystemLog())->addLog($log);
+        }
         return ['status' => $status, 'message' => $message, 'url' => $url, 'data' => $data];
     }
     /**
@@ -90,6 +103,7 @@ class ApiController extends ActiveController{
      */
     protected function ajaxSuccess($message = '', $data = [], $url = ''){
         $this->setAjaxResponse();
+
         return $this->formatResponse(self::STATUS_CODE_SUCC, $message, $data, $url);
     }
     /**

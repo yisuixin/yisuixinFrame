@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-11-30 12:57:30
+Date: 2020-12-02 15:59:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,12 +43,12 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', '他们都叫我小明', '1', 'http://yisuixinframe.com/uploads/2020-11-22/20201122173411387.png', '8O-C_HgYLt34tW0G-FYt0XNkDVYsFyI0_1606700075', 'DogXMXfvKsRaZwJ4VQLjyrHVDWQFEnqA', '$2y$13$1xEsALQ8BXbPm27ea9NdKOTpd.iQD4I7GUFCQiU77yWzmKW3bpqVS', null, '1036753791@qq.com', '天下第一帅？', '10', '127.0.0.1', '1598173301', '1606700075');
+INSERT INTO `admin` VALUES ('1', 'admin', '他们都叫我小明', '1', 'http://yisuixinframe.com/uploads/2020-11-22/20201122173411387.png', 'aVod1AMEEnaME2GhusXocDFBnnNG8wET_1606877807', 'DogXMXfvKsRaZwJ4VQLjyrHVDWQFEnqA', '$2y$13$1xEsALQ8BXbPm27ea9NdKOTpd.iQD4I7GUFCQiU77yWzmKW3bpqVS', null, '1036753791@qq.com', '天下第一帅？', '10', '127.0.0.1', '1598173301', '1606877807');
 INSERT INTO `admin` VALUES ('3', 'newManager', '测试新增管理员', '4', 'http://vuepermission.com/uploads/2020-10-19/20201019160628359.png', 'a1l13bCqF4O2dPqed-AM6Lh_evxJIbOP_1606700297', 'g8Hww8DWQ4viqj9-ODrsnWiCyTW2re2B', '$2y$13$S7shP4X258SFIhBrgP.X2.ID2nZFlLymnEIZ18Tt/YeMgTw.e38Fm', null, '', '', '10', '127.0.0.1', '1600760210', '1606700297');
 INSERT INTO `admin` VALUES ('5', 'test', '测试用户', '4', 'http://vuepermission.com/uploads/2020-10-19/20201019160628359.png', 'HLYx_CBnVRYd9birMZzhe73xGjfRcDgP_1603094680', 'NKQ8C3_Stc30xV3htr1glf_sDJQHbpjC', '$2y$13$MSIyMBe10Onnv47pQNaKPupaESbp3xMZxTSNTvrvwYnM034AqKgGi', null, 'test@qq.com', '', '0', '127.0.0.1', '1603094666', '1606639659');
 INSERT INTO `admin` VALUES ('6', 'QQQQQQQ', '222222', '4', null, null, 'r767RY72MXMsYF3O3HzvfKtWn9aHiPyz', '$2y$13$q1r6b4jL5JWGvpfDoLSRt.wjk1H5c9zj151Q0d82mzaIEU1rSUiIm', null, '222222@QQ.COM', '', '0', null, '1606034934', '1606034955');
 INSERT INTO `admin` VALUES ('7', 'roleAdmin', 'adminT', '5', null, 'z41np5306HIv_m4CFioYpEQaqHdPmT1M_1606551533', 'TKNJN2vb39jg21rqM9-jmbWK5Y3QTdwU', '$2y$13$/7uWcJcRULl20B1IyM.0jO2cF.56MHFOI8wGHyJB7tbRlybFMr/H.', null, 'roleAdmin@qq.com', '', '0', '127.0.0.1', '1606551482', '1606625961');
-INSERT INTO `admin` VALUES ('8', 'roleer', 'roleer', '5', null, 'wFaclmqAL8Npa-b6OfTRlUm53nyfydPl_1606711349', '1C7tKqXXo0YK9AdLlphWB81XxsXwafPH', '$2y$13$2SyVS4q01qttFyA/u94.1e.DVi00q8YGaQJWI4AhcdjADpZ4/jlqK', null, '', '', '10', '127.0.0.1', '1606639606', '1606711349');
+INSERT INTO `admin` VALUES ('8', 'roleer', 'roleer', '5', null, 'wFaclmqAL8Npa-b6OfTRlUm53nyfydPl_1606711349', 'z-piSFbDIkcztndGNMOPrhRpd4gYaQTl', '$2y$13$.kfKjoUfeJA9eYm3ujycbumXhzw/bu0Xgm1iZBArUaijWLS1vUV6.', null, '', '', '10', '127.0.0.1', '1606639606', '1606895286');
 
 -- ----------------------------
 -- Table structure for admincountdata
@@ -84,10 +84,10 @@ CREATE TABLE `frontendcountperson` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for log
+-- Table structure for login_log
 -- ----------------------------
-DROP TABLE IF EXISTS `log`;
-CREATE TABLE `log` (
+DROP TABLE IF EXISTS `login_log`;
+CREATE TABLE `login_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uId` int(11) DEFAULT NULL,
   `type` tinyint(2) DEFAULT NULL,
@@ -98,110 +98,111 @@ CREATE TABLE `log` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=631 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=632 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of log
+-- Records of login_log
 -- ----------------------------
-INSERT INTO `log` VALUES ('532', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603174133', '1603174133');
-INSERT INTO `log` VALUES ('533', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603178122', '1603178122');
-INSERT INTO `log` VALUES ('534', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603248108', '1603248108');
-INSERT INTO `log` VALUES ('535', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603249643', '1603249643');
-INSERT INTO `log` VALUES ('536', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603329354', '1603329354');
-INSERT INTO `log` VALUES ('537', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603334614', '1603334614');
-INSERT INTO `log` VALUES ('538', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603345693', '1603345693');
-INSERT INTO `log` VALUES ('539', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603416074', '1603416074');
-INSERT INTO `log` VALUES ('540', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603421030', '1603421030');
-INSERT INTO `log` VALUES ('541', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603503842', '1603503842');
-INSERT INTO `log` VALUES ('542', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603507487', '1603507487');
-INSERT INTO `log` VALUES ('543', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603676082', '1603676082');
-INSERT INTO `log` VALUES ('544', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603694963', '1603694963');
-INSERT INTO `log` VALUES ('545', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603762646', '1603762646');
-INSERT INTO `log` VALUES ('546', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603781287', '1603781287');
-INSERT INTO `log` VALUES ('547', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603847840', '1603847840');
-INSERT INTO `log` VALUES ('548', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603849190', '1603849190');
-INSERT INTO `log` VALUES ('549', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603861975', '1603861975');
-INSERT INTO `log` VALUES ('550', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603938028', '1603938028');
-INSERT INTO `log` VALUES ('551', null, '1', '登录失败,账号或者密码错误', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1604021603', '1604021603');
-INSERT INTO `log` VALUES ('552', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604021612', '1604021612');
-INSERT INTO `log` VALUES ('553', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604024771', '1604024771');
-INSERT INTO `log` VALUES ('554', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604048806', '1604048806');
-INSERT INTO `log` VALUES ('555', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604049148', '1604049148');
-INSERT INTO `log` VALUES ('556', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604108140', '1604108140');
-INSERT INTO `log` VALUES ('557', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604111543', '1604111543');
-INSERT INTO `log` VALUES ('558', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604112454', '1604112454');
-INSERT INTO `log` VALUES ('559', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604113107', '1604113107');
-INSERT INTO `log` VALUES ('560', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604282049', '1604282049');
-INSERT INTO `log` VALUES ('561', null, '1', '登录成功', 'http://yisuixinframe.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604301581', '1604301581');
-INSERT INTO `log` VALUES ('562', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1605407654', '1605407654');
-INSERT INTO `log` VALUES ('563', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1605853851', '1605853851');
-INSERT INTO `log` VALUES ('564', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1605926567', '1605926567');
-INSERT INTO `log` VALUES ('565', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606009972', '1606009972');
-INSERT INTO `log` VALUES ('566', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606030646', '1606030646');
-INSERT INTO `log` VALUES ('567', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606031996', '1606031996');
-INSERT INTO `log` VALUES ('568', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606037613', '1606037613');
-INSERT INTO `log` VALUES ('569', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606096752', '1606096752');
-INSERT INTO `log` VALUES ('570', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606356420', '1606356420');
-INSERT INTO `log` VALUES ('571', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606442090', '1606442090');
-INSERT INTO `log` VALUES ('572', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466252', '1606466252');
-INSERT INTO `log` VALUES ('573', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466410', '1606466410');
-INSERT INTO `log` VALUES ('574', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466536', '1606466536');
-INSERT INTO `log` VALUES ('575', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606468513', '1606468513');
-INSERT INTO `log` VALUES ('576', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606468646', '1606468646');
-INSERT INTO `log` VALUES ('577', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606529416', '1606529416');
-INSERT INTO `log` VALUES ('578', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606529978', '1606529978');
-INSERT INTO `log` VALUES ('579', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606540064', '1606540064');
-INSERT INTO `log` VALUES ('580', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606541603', '1606541603');
-INSERT INTO `log` VALUES ('581', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548334', '1606548334');
-INSERT INTO `log` VALUES ('582', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548402', '1606548402');
-INSERT INTO `log` VALUES ('583', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548470', '1606548470');
-INSERT INTO `log` VALUES ('584', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548524', '1606548524');
-INSERT INTO `log` VALUES ('585', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548670', '1606548670');
-INSERT INTO `log` VALUES ('586', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548761', '1606548761');
-INSERT INTO `log` VALUES ('587', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549081', '1606549081');
-INSERT INTO `log` VALUES ('588', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549128', '1606549128');
-INSERT INTO `log` VALUES ('589', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549137', '1606549137');
-INSERT INTO `log` VALUES ('590', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549710', '1606549710');
-INSERT INTO `log` VALUES ('591', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550009', '1606550009');
-INSERT INTO `log` VALUES ('592', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550085', '1606550085');
-INSERT INTO `log` VALUES ('593', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550168', '1606550168');
-INSERT INTO `log` VALUES ('594', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550199', '1606550199');
-INSERT INTO `log` VALUES ('595', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550220', '1606550220');
-INSERT INTO `log` VALUES ('596', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550276', '1606550276');
-INSERT INTO `log` VALUES ('597', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550734', '1606550734');
-INSERT INTO `log` VALUES ('598', null, '1', '登录失败,账号或者密码错误', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"adminT\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1606551498', '1606551498');
-INSERT INTO `log` VALUES ('599', null, '1', '登录失败,账号或者密码错误', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"adminT\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1606551516', '1606551516');
-INSERT INTO `log` VALUES ('600', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:9:\"roleAdmin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606551533', '1606551533');
-INSERT INTO `log` VALUES ('601', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552741', '1606552741');
-INSERT INTO `log` VALUES ('602', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552865', '1606552865');
-INSERT INTO `log` VALUES ('603', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552993', '1606552993');
-INSERT INTO `log` VALUES ('604', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606553479', '1606553479');
-INSERT INTO `log` VALUES ('605', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606553511', '1606553511');
-INSERT INTO `log` VALUES ('606', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606554608', '1606554608');
-INSERT INTO `log` VALUES ('607', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606556959', '1606556959');
-INSERT INTO `log` VALUES ('608', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606557100', '1606557100');
-INSERT INTO `log` VALUES ('609', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606614476', '1606614476');
-INSERT INTO `log` VALUES ('610', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606614519', '1606614519');
-INSERT INTO `log` VALUES ('611', null, '1', '登录失败.账号所属角色被禁用', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637612', '1606637612');
-INSERT INTO `log` VALUES ('612', null, '1', '登录失败.账号所属角色被禁用', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637637', '1606637637');
-INSERT INTO `log` VALUES ('613', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637669', '1606637669');
-INSERT INTO `log` VALUES ('614', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637842', '1606637842');
-INSERT INTO `log` VALUES ('615', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606638209', '1606638209');
-INSERT INTO `log` VALUES ('616', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606638957', '1606638957');
-INSERT INTO `log` VALUES ('617', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606639697', '1606639697');
-INSERT INTO `log` VALUES ('618', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606639812', '1606639812');
-INSERT INTO `log` VALUES ('619', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606641907', '1606641907');
-INSERT INTO `log` VALUES ('620', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606642190', '1606642190');
-INSERT INTO `log` VALUES ('621', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700076', '1606700076');
-INSERT INTO `log` VALUES ('622', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700215', '1606700215');
-INSERT INTO `log` VALUES ('623', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700256', '1606700256');
-INSERT INTO `log` VALUES ('624', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700297', '1606700297');
-INSERT INTO `log` VALUES ('625', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700644', '1606700644');
-INSERT INTO `log` VALUES ('626', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606703415', '1606703415');
-INSERT INTO `log` VALUES ('627', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606703503', '1606703503');
-INSERT INTO `log` VALUES ('628', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606710984', '1606710984');
-INSERT INTO `log` VALUES ('629', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606711098', '1606711098');
-INSERT INTO `log` VALUES ('630', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606711349', '1606711349');
+INSERT INTO `login_log` VALUES ('532', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603174133', '1603174133');
+INSERT INTO `login_log` VALUES ('533', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603178122', '1603178122');
+INSERT INTO `login_log` VALUES ('534', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603248108', '1603248108');
+INSERT INTO `login_log` VALUES ('535', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603249643', '1603249643');
+INSERT INTO `login_log` VALUES ('536', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603329354', '1603329354');
+INSERT INTO `login_log` VALUES ('537', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603334614', '1603334614');
+INSERT INTO `login_log` VALUES ('538', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603345693', '1603345693');
+INSERT INTO `login_log` VALUES ('539', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603416074', '1603416074');
+INSERT INTO `login_log` VALUES ('540', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603421030', '1603421030');
+INSERT INTO `login_log` VALUES ('541', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603503842', '1603503842');
+INSERT INTO `login_log` VALUES ('542', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603507487', '1603507487');
+INSERT INTO `login_log` VALUES ('543', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603676082', '1603676082');
+INSERT INTO `login_log` VALUES ('544', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603694963', '1603694963');
+INSERT INTO `login_log` VALUES ('545', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603762646', '1603762646');
+INSERT INTO `login_log` VALUES ('546', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603781287', '1603781287');
+INSERT INTO `login_log` VALUES ('547', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603847840', '1603847840');
+INSERT INTO `login_log` VALUES ('548', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603849190', '1603849190');
+INSERT INTO `login_log` VALUES ('549', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603861975', '1603861975');
+INSERT INTO `login_log` VALUES ('550', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1603938028', '1603938028');
+INSERT INTO `login_log` VALUES ('551', null, '1', '登录失败,账号或者密码错误', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1604021603', '1604021603');
+INSERT INTO `login_log` VALUES ('552', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604021612', '1604021612');
+INSERT INTO `login_log` VALUES ('553', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604024771', '1604024771');
+INSERT INTO `login_log` VALUES ('554', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604048806', '1604048806');
+INSERT INTO `login_log` VALUES ('555', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604049148', '1604049148');
+INSERT INTO `login_log` VALUES ('556', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604108140', '1604108140');
+INSERT INTO `login_log` VALUES ('557', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604111543', '1604111543');
+INSERT INTO `login_log` VALUES ('558', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604112454', '1604112454');
+INSERT INTO `login_log` VALUES ('559', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604113107', '1604113107');
+INSERT INTO `login_log` VALUES ('560', null, '1', '登录成功', 'http://ysuixincms.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604282049', '1604282049');
+INSERT INTO `login_log` VALUES ('561', null, '1', '登录成功', 'http://yisuixinframe.com/api/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1604301581', '1604301581');
+INSERT INTO `login_log` VALUES ('562', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1605407654', '1605407654');
+INSERT INTO `login_log` VALUES ('563', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1605853851', '1605853851');
+INSERT INTO `login_log` VALUES ('564', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1605926567', '1605926567');
+INSERT INTO `login_log` VALUES ('565', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606009972', '1606009972');
+INSERT INTO `login_log` VALUES ('566', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606030646', '1606030646');
+INSERT INTO `login_log` VALUES ('567', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606031996', '1606031996');
+INSERT INTO `login_log` VALUES ('568', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606037613', '1606037613');
+INSERT INTO `login_log` VALUES ('569', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606096752', '1606096752');
+INSERT INTO `login_log` VALUES ('570', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606356420', '1606356420');
+INSERT INTO `login_log` VALUES ('571', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606442090', '1606442090');
+INSERT INTO `login_log` VALUES ('572', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466252', '1606466252');
+INSERT INTO `login_log` VALUES ('573', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466410', '1606466410');
+INSERT INTO `login_log` VALUES ('574', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606466536', '1606466536');
+INSERT INTO `login_log` VALUES ('575', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606468513', '1606468513');
+INSERT INTO `login_log` VALUES ('576', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606468646', '1606468646');
+INSERT INTO `login_log` VALUES ('577', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606529416', '1606529416');
+INSERT INTO `login_log` VALUES ('578', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606529978', '1606529978');
+INSERT INTO `login_log` VALUES ('579', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606540064', '1606540064');
+INSERT INTO `login_log` VALUES ('580', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606541603', '1606541603');
+INSERT INTO `login_log` VALUES ('581', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548334', '1606548334');
+INSERT INTO `login_log` VALUES ('582', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548402', '1606548402');
+INSERT INTO `login_log` VALUES ('583', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548470', '1606548470');
+INSERT INTO `login_log` VALUES ('584', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548524', '1606548524');
+INSERT INTO `login_log` VALUES ('585', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548670', '1606548670');
+INSERT INTO `login_log` VALUES ('586', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606548761', '1606548761');
+INSERT INTO `login_log` VALUES ('587', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549081', '1606549081');
+INSERT INTO `login_log` VALUES ('588', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549128', '1606549128');
+INSERT INTO `login_log` VALUES ('589', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549137', '1606549137');
+INSERT INTO `login_log` VALUES ('590', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606549710', '1606549710');
+INSERT INTO `login_log` VALUES ('591', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550009', '1606550009');
+INSERT INTO `login_log` VALUES ('592', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550085', '1606550085');
+INSERT INTO `login_log` VALUES ('593', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550168', '1606550168');
+INSERT INTO `login_log` VALUES ('594', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550199', '1606550199');
+INSERT INTO `login_log` VALUES ('595', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550220', '1606550220');
+INSERT INTO `login_log` VALUES ('596', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550276', '1606550276');
+INSERT INTO `login_log` VALUES ('597', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606550734', '1606550734');
+INSERT INTO `login_log` VALUES ('598', null, '1', '登录失败,账号或者密码错误', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"adminT\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1606551498', '1606551498');
+INSERT INTO `login_log` VALUES ('599', null, '1', '登录失败,账号或者密码错误', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"adminT\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:37:\"登录失败,账号或者密码错误\";}', '127.0.0.1', '1606551516', '1606551516');
+INSERT INTO `login_log` VALUES ('600', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:9:\"roleAdmin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606551533', '1606551533');
+INSERT INTO `login_log` VALUES ('601', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552741', '1606552741');
+INSERT INTO `login_log` VALUES ('602', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552865', '1606552865');
+INSERT INTO `login_log` VALUES ('603', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606552993', '1606552993');
+INSERT INTO `login_log` VALUES ('604', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606553479', '1606553479');
+INSERT INTO `login_log` VALUES ('605', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606553511', '1606553511');
+INSERT INTO `login_log` VALUES ('606', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606554608', '1606554608');
+INSERT INTO `login_log` VALUES ('607', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606556959', '1606556959');
+INSERT INTO `login_log` VALUES ('608', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606557100', '1606557100');
+INSERT INTO `login_log` VALUES ('609', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606614476', '1606614476');
+INSERT INTO `login_log` VALUES ('610', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606614519', '1606614519');
+INSERT INTO `login_log` VALUES ('611', null, '1', '登录失败.账号所属角色被禁用', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637612', '1606637612');
+INSERT INTO `login_log` VALUES ('612', null, '1', '登录失败.账号所属角色被禁用', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637637', '1606637637');
+INSERT INTO `login_log` VALUES ('613', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637669', '1606637669');
+INSERT INTO `login_log` VALUES ('614', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606637842', '1606637842');
+INSERT INTO `login_log` VALUES ('615', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606638209', '1606638209');
+INSERT INTO `login_log` VALUES ('616', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606638957', '1606638957');
+INSERT INTO `login_log` VALUES ('617', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606639697', '1606639697');
+INSERT INTO `login_log` VALUES ('618', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606639812', '1606639812');
+INSERT INTO `login_log` VALUES ('619', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606641907', '1606641907');
+INSERT INTO `login_log` VALUES ('620', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606642190', '1606642190');
+INSERT INTO `login_log` VALUES ('621', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700076', '1606700076');
+INSERT INTO `login_log` VALUES ('622', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700215', '1606700215');
+INSERT INTO `login_log` VALUES ('623', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700256', '1606700256');
+INSERT INTO `login_log` VALUES ('624', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:10:\"newManager\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700297', '1606700297');
+INSERT INTO `login_log` VALUES ('625', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606700644', '1606700644');
+INSERT INTO `login_log` VALUES ('626', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606703415', '1606703415');
+INSERT INTO `login_log` VALUES ('627', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606703503', '1606703503');
+INSERT INTO `login_log` VALUES ('628', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606710984', '1606710984');
+INSERT INTO `login_log` VALUES ('629', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606711098', '1606711098');
+INSERT INTO `login_log` VALUES ('630', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:6:\"roleer\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606711349', '1606711349');
+INSERT INTO `login_log` VALUES ('631', null, '1', '登录成功', 'http://yisuixinframe.com/common/user/login', 'a:3:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:12:\"密码保密\";s:7:\"content\";s:12:\"登录成功\";}', '127.0.0.1', '1606877807', '1606877807');
 
 -- ----------------------------
 -- Table structure for menu
@@ -251,7 +252,6 @@ INSERT INTO `menu` VALUES ('156', '155', '主题设置', 'themeManager', '1', 'm
 INSERT INTO `menu` VALUES ('176', '137', '通知管理', 'notice', '2', 'ios-notifications', 'notice', 'contentManager/notice', '2', '1', '1', '2', '1603781227', '1604047752');
 INSERT INTO `menu` VALUES ('177', '176', '通知管理', 'notice', '1', 'ios-notifications-outline', 'notice', 'contentManager/notice/notice', '3', '4', '1', '1', '1603781263', '1604047752');
 INSERT INTO `menu` VALUES ('212', '0', '测试菜单', 'test', '2', 'ios-add-circle', 'test', 'test', '1', '1', '1', '2', '1606468385', '1606468385');
-INSERT INTO `menu` VALUES ('213', '212', '测试二级菜单', 'test2-1', '2', 'ios-add-circle', 'test2-1', 'test/test2-1', '2', '2', '1', '2', '1606468401', '1606540005');
 
 -- ----------------------------
 -- Table structure for modules
@@ -522,6 +522,32 @@ INSERT INTO `role_permission_item` VALUES ('369', '277', '5');
 INSERT INTO `role_permission_item` VALUES ('370', '278', '5');
 INSERT INTO `role_permission_item` VALUES ('371', '279', '5');
 INSERT INTO `role_permission_item` VALUES ('372', '280', '5');
+
+-- ----------------------------
+-- Table structure for system_log
+-- ----------------------------
+DROP TABLE IF EXISTS `system_log`;
+CREATE TABLE `system_log` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL DEFAULT '0',
+  `url` varchar(255) DEFAULT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1成功，0失败',
+  `desc` longtext,
+  `ip` varchar(255) DEFAULT NULL,
+  `created_at` int(10) NOT NULL,
+  `updated_at` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of system_log
+-- ----------------------------
+INSERT INTO `system_log` VALUES ('2', '1', 'system/manager/edit-manager', '1', 'a:5:{s:7:\"message\";s:45:\"重置密码成功，重置密码为：123456\";s:5:\"model\";s:6:\"system\";s:10:\"controller\";s:7:\"manager\";s:6:\"action\";s:12:\"edit-manager\";s:4:\"type\";s:4:\"POST\";}', '127.0.0.1', '1606890370', '1606890370');
+INSERT INTO `system_log` VALUES ('3', '1', 'system/manager/edit-manager', '1', 'a:5:{s:7:\"message\";s:45:\"重置密码成功，重置密码为：123456\";s:5:\"model\";s:6:\"system\";s:10:\"controller\";s:7:\"manager\";s:6:\"action\";s:12:\"edit-manager\";s:4:\"type\";s:4:\"POST\";}', '127.0.0.1', '1606890558', '1606890558');
+INSERT INTO `system_log` VALUES ('4', '1', 'system/manager/edit-manager', '0', 'a:5:{s:7:\"message\";s:45:\"重置密码成功，重置密码为：123456\";s:5:\"model\";s:6:\"system\";s:10:\"controller\";s:7:\"manager\";s:6:\"action\";s:12:\"edit-manager\";s:4:\"type\";s:4:\"POST\";}', '127.0.0.1', '1606890624', '1606890624');
+INSERT INTO `system_log` VALUES ('5', '1', 'http://yisuixinframe.com/system/manager/edit-manager', '1', 'a:5:{s:7:\"message\";s:45:\"重置密码成功，重置密码为：123456\";s:5:\"model\";s:6:\"system\";s:10:\"controller\";s:7:\"manager\";s:6:\"action\";s:12:\"edit-manager\";s:4:\"type\";s:4:\"POST\";}', '127.0.0.1', '1606895286', '1606895286');
+INSERT INTO `system_log` VALUES ('7', '1', 'http://yisuixinframe.com/system/operation-log/del', '1', 'a:5:{s:7:\"message\";s:12:\"删除成功\";s:5:\"model\";s:6:\"system\";s:10:\"controller\";s:13:\"operation-log\";s:6:\"action\";s:3:\"del\";s:4:\"type\";s:4:\"POST\";}', '127.0.0.1', '1606895779', '1606895779');
+INSERT INTO `system_log` VALUES ('8', '1', 'http://yisuixinframe.com/system/menu/delete-menu', '1', 'a:5:{s:7:\"message\";s:12:\"删除成功\";s:5:\"model\";s:6:\"system\";s:10:\"controller\";s:4:\"menu\";s:6:\"action\";s:11:\"delete-menu\";s:4:\"type\";s:4:\"POST\";}', '127.0.0.1', '1606895929', '1606895929');
 
 -- ----------------------------
 -- Table structure for todo

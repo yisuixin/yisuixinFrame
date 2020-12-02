@@ -8,7 +8,7 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 use OAuth2\Storage\UserCredentialsInterface;
-use app\models\log\Log;
+use app\models\log\LoginLog;
 use app\models\BaseModel;
 use app\models\rbac\Role;
 class User extends BaseModel implements IdentityInterface
@@ -229,19 +229,19 @@ class User extends BaseModel implements IdentityInterface
      */
     public static function addLoginLog($status,$post){
       if($status == 1){
-          (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录失败.账号被禁用或者删除',
+          (new LoginLog())->addLog('add_login_log',LoginLog::LOGIN_LOG,'登录失败.账号被禁用或者删除',
               ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录失败.账号被禁用或者删除']
           );
       }elseif ($status == 2){
-          (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录成功',
+          (new LoginLog())->addLog('add_login_log',LoginLog::LOGIN_LOG,'登录成功',
               ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录成功']
           );
       }elseif ($status == 3){
-          (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录失败.账号所属角色被禁用',
+          (new LoginLog())->addLog('add_login_log',LoginLog::LOGIN_LOG,'登录失败.账号所属角色被禁用',
               ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录成功']
           );
       }else{
-          (new Log())->addLog('add_login_log',Log::LOGIN_LOG,'登录失败,账号或者密码错误',
+          (new LoginLog())->addLog('add_login_log',LoginLog::LOGIN_LOG,'登录失败,账号或者密码错误',
               ['username'=>$post['username'], 'password'=>'密码保密','content'=>'登录失败,账号或者密码错误']
           );
       }

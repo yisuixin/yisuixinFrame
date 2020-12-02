@@ -357,3 +357,11 @@ function base64EncodeImage ($image_file) {
     $base64_image = 'data:' . $image_info['mime'] . ';base64,' . chunk_split(base64_encode($image_data));
     return $base64_image;
 }
+function getRequestType(){
+    $request = Yii::$app->request;
+    if ($request->isAjax) { return 'AJAX';}
+    if ($request->isGet)  {  return 'GET';/* 请求方法是 GET */ }
+    if ($request->isPost) {  return 'POST';/* 请求方法是 POST */ }
+    if ($request->isPut)  {  return 'PUT';/* 请求方法是 PUT */ }
+    return '';
+}
