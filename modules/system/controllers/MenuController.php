@@ -188,7 +188,7 @@ class MenuController extends ApiController{
                 return $this->ajaxSuccess('保存成功');
             }else{
                 $transaction->rollBack();
-                return $this->ajaxFail('保存失败.'.current($model->getErrors())[0]);
+                return $this->ajaxFail('保存失败,未知错误');
             }
         }catch (Exception $e) {
             $transaction->rollBack();

@@ -150,7 +150,13 @@
                             title: '管理操作',
                             slot: 'action',
                             align: 'center',
-                            key: 'action'
+                            key: 'action',
+                            directives:[
+                                {
+                                    name:'auth',
+                                    value:'del_operation_log',
+                                }
+                            ]
                         }
                     ]
                 },

@@ -24,7 +24,7 @@ class ToDo extends BaseModel{
         return [
             [['user_id'], 'required', 'message' => '待办事项用户参数异常','on'=>['add_todo','edit_todo']],
             [['title'], 'required', 'message' => '待办事项标题不能为空','on'=>['add_todo','edit_todo']],
-            [['desc'], 'required', 'message' => '待办事项描述不能为空','on'=>['add_todo','edit_todo']],
+//            [['desc'], 'required', 'message' => '待办事项描述不能为空','on'=>['add_todo','edit_todo']],
             [['start'], 'required', 'message' => '待办事项开始时间不能为空','on'=>['add_todo','edit_todo']],
             [['end'], 'required', 'message' => '待办事项完成时间不能为空','on'=>['add_todo','edit_todo']],
             [['id'], 'required', 'message' => '待办事项ID不能为空','on'=>['edit_todo']],

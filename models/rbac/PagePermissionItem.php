@@ -39,6 +39,9 @@ class PagePermissionItem extends BaseModel{
      */
     public function addPageMissionItem($pageMissionId,$arr=[]){
         $data = [];
+        if(empty($arr)){
+            return false;
+        }
         foreach ($arr as $k =>$v){
             $data[$k]['page_permission_id'] = $pageMissionId;
             $data[$k]['url']   = $v['url'];
