@@ -77,36 +77,7 @@
         bottom: 0;
         left: 18px;
     }
-    /deep/ .fc-cardTitle-button{
-        background: none !important;
-        border: none !important;
-        color: #17233d !important;
-        left: 30px;
-        position: absolute;
-    }
-    /deep/ .fc-cardTitleIcon-button{
-        background: none !important;
-        border: none !important;
-        color: #17233d !important;
-        display: inline-block;
-        font-family: Ionicons;
-        speak: none;
-        font-style: normal;
-        font-weight: 400;
-        font-variant: normal;
-        text-transform: none;
-        text-rendering: optimizeLegibility;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        vertical-align: -.125em;
-        text-align: center;
-        font-size: 18px;
-        color: #2d8cf0 !important;
-    }
-    /deep/ .fc-cardTitleIcon-button:before{
-        content: "\F16D" !important;
-    }
+
     /deep/ .toDolistMoreCss{
         display: block;
         text-align: right !important;
@@ -115,11 +86,64 @@
         padding-left: 5px;
         cursor: pointer;
     }
+    /deep/ .not-start{
+        border: 2px solid #2db7f5 !important;
+        color: #000000 !important;
+        background: #ffffff !important;
+    }
+    /deep/ .doing{
+        border: 2px solid #2b85e4 !important;
+        color: #000000 !important;
+        background: #ffffff !important;
+    }
+    /deep/ .finsh{
+        border: 2px solid #19be6b !important;
+        color: #000000 !important;
+        background: #ffffff !important;
+    }
+    /deep/ .overdue{
+        color: #000000 !important;
+        border: 2px solid #ed4014 !important;
+        background: #ffffff !important;
+    }
+    /deep/ .not-start .fc-event-main,/deep/ .doing .fc-event-main,/deep/ .finsh .fc-event-main,/deep/ .overdue .fc-event-main {
+        color: #000000 !important;
+    }
+    /deep/ .fc-eventBadge_not_start_icon-button,/deep/ .fc-eventBadge_doing_icon-button,/deep/ .fc-eventBadge_finsh_icon-button,/deep/ .fc-eventBadge_overdue_icon-button {
+        width: 14px  !important;
+        height: 14px  !important;
+        font: 12px/18px Arial  !important;
+        display: inline-block  !important;
+        vertical-align: middle  !important;
+        position: relative  !important;
+        border: none;
+        margin-top: 10px;
+    }
+    /deep/ .fc-eventBadge_not_start_icon-button{
+        background: #2db7f5 !important;
+    }
+    /deep/ .fc-eventBadge_doing_icon-button{
+        background: #2b85e4 !important;
+    }
+    /deep/ .fc-eventBadge_finsh_icon-button{
+        background: #19be6b !important;
+    }
+    /deep/ .fc-eventBadge_overdue_icon-button{
+        background: #ed4014 !important;
+    }
+    /deep/ .fc-eventBadge_not_start-button,/deep/ .fc-eventBadge_doing-button,/deep/ .fc-eventBadge_finsh-button,/deep/ .fc-eventBadge_overdue-button{
+        background: #ffffff !important;
+        color: #0e0620;
+        border: none;
+    }
 
 </style>
 <template>
     <div>
         <Card style="height: 830px;">
+            <p slot="title" class="card-title-slot">
+                <Icon type="ios-locate-outline"  size="18" color="#2d8cf0"></Icon> 待办事项
+            </p>
             <div>
                 <!--<Spin size="large" fix v-if="toDoList.loading"></Spin>-->
                 <FullCalendar ref="fullCalendar" :options="calendarOptions">
@@ -231,7 +255,7 @@
     import listPlugin from '@fullcalendar/list';
     export default {
         components: {
-            FullCalendar // make the <FullCalendar> tag available
+            FullCalendar
         },
         data() {
             let that = this;
@@ -247,12 +271,30 @@
                                 that.addToDoModelShow(1);
                             }
                         },
-                        cardTitleIcon: {
+                        eventBadge_not_start_icon: {
                             text: '',
                         },
-                        cardTitle: {
-                            text: '待办事项',
-                        }
+                        eventBadge_not_start: {
+                            text: '未开始',
+                        },
+                        eventBadge_doing_icon: {
+                            text: '',
+                        },
+                        eventBadge_doing: {
+                            text: '进行中',
+                        },
+                        eventBadge_finsh_icon: {
+                            text: '',
+                        },
+                        eventBadge_finsh: {
+                            text: '已完成',
+                        },
+                        eventBadge_overdue_icon: {
+                            text: '',
+                        },
+                        eventBadge_overdue: {
+                            text: '已过期',
+                        },
                     },
                     buttonText: {
                         addScheduleBtn:'新建事项',
@@ -265,7 +307,7 @@
                     noEventsText:'暂时没有待办事项',
                     height: '800px',
                     headerToolbar: {
-                        left: 'cardTitleIcon cardTitle',
+                        left:  'eventBadge_not_start_icon,eventBadge_not_start,eventBadge_doing_icon,eventBadge_doing,eventBadge_finsh_icon,eventBadge_finsh,eventBadge_overdue_icon,eventBadge_overdue',
                         center: '',
                         right: 'prev,title,next,today,dayGridMonth,timeGridWeek,timeGridDay,listYear,addScheduleBtn'
                     },
@@ -426,18 +468,15 @@
                     let list = res.data.data.list;
                     list.map((item, index, arr) => {
                         if(item.status == 1){
-                            item.backgroundColor = '#2db7f5';
-                            item.color = '#2db7f5';
+                            item.className = 'not-start';
                         }else if(item.status == 2){
-                            item.backgroundColor = '#2d8cf0';
-                            item.color = '#2d8cf0';
+                            item.className = 'doing';
                         }else if(item.status == 3){
-                            item.backgroundColor = '#19be6b';
-                            item.color = '#19be6b';
-                        }else{
-                            item.backgroundColor = '#ed4014';
-                            item.color = '#ed4014';
+                            item.className = 'finsh';
+                        }else if(item.status == 4){
+                            item.className = 'overdue';
                         }
+
                         calendarApi.addEvent(item)//这里一定要用日历组件自带的方法，不能直接赋值，否则会死循环
                     })
                 }
