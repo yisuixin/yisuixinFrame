@@ -136,11 +136,16 @@
         color: #0e0620;
         border: none;
     }
+    /deep/ .fc-eventBadge_not_start-button:hover,/deep/ .fc-eventBadge_doing-button:hover,/deep/ .fc-eventBadge_finsh-button:hover,/deep/ .fc-eventBadge_overdue-button:hover{
+        background: #ffffff !important;
+        color: #0e0620;
+        border: none;
+    }
 
 </style>
 <template>
     <div>
-        <Card style="height: 830px;">
+        <Card style="height: 900px;">
             <p slot="title" class="card-title-slot">
                 <Icon type="ios-locate-outline"  size="18" color="#2d8cf0"></Icon> 待办事项
             </p>
