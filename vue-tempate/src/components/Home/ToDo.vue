@@ -273,14 +273,8 @@
                     moreLinkClassNames:'toDolistMoreCss',
                     moreLinkContent:'+查看更多',
                     dayMaxEvents: true, // for all non-TimeGrid views
-                    events: [
-                        { id:'1',title: 'event 1',color:'green' ,start: '2020-11-14 10:30:00',end: '2020-11-17 11:30:00'},
-                        // { id:'2',title: 'event 2',color:'red' ,start:'2020-11-13',end:'2020-11-17'},
-                        // { id:'3',title: '准备李医生的货',color:'red' ,start:'2020-10-01 0000:0000:0000',end:'2020-11-01 0000:0000:0000'},
-                    ],
-                    // dateClick: this.eventDayClick,//每日点击事件
-                    // eventClick:this.toDoClick,//待办事项点击事件
-                    datesSet:this.changeDate,//日历视图改变事件
+                    events: [],
+                    datesSet:this.changeDateView,//日历视图改变事件
                 },
                 toDoList:{
                     loading:false,
@@ -405,56 +399,47 @@
                 that.HTTPJS.post(that.HTTPURL.COMMON.TODO.DELETETODO,{id:id},successCallback);
             },
             //改变日历日期事件
-            changeDate(dateInfo){
+            changeDateView(type){
                 let that = this;
-                let calendarApi = this.$refs.fullCalendar.getApi()
-                //console.log(calendarApi);
-                let type = calendarApi.getCurrentData().currentViewType;
-                if(type == 'dayGridMonth'){//获取月的事项
-                    this.toDoList.search.type = 1;
-                }else if(type == 'timeGridWeek'){//获取周的事项
-                    this.toDoList.search.type = 2;
-                }else{//获取天的的事项   timeGridDay
-                    this.toDoList.search.type = 3;
-                }
+                let calendarApi = this.$refs.fullCalendar.getApi();
                 this.toDoList.search.startDate = calendarApi.getCurrentData().viewApi.currentStart;
                 this.toDoList.search.endtDate = calendarApi.getCurrentData().viewApi.currentEnd;
                 this.toDoList.search.date = calendarApi.getCurrentData().viewTitle;
                 that.getToDoList();
             },
-            // eventDayClick (arg) {//点击日历上的每天，添加点击时间的待办事项
-            //     let calendarApi = this.$refs.fullCalendar.getApi()
-            //     console.log(arg);
-            //     this.toDoAdd.formInline.start = arg.dateStr +' 00:00:00';
-            //     this.addToDoModelShow(1);
-            // },
             //获取待办事项详情
             getToDoView:function (parms,successCallback,failCallback) {
                 this.HTTPJS.get(this.HTTPURL.COMMON.TODO.VIEWTODO,parms,successCallback,failCallback);
             },
             //获取待办事项列表
-            getToDoList:function () {
+            getToDoList:function (dateInfo) {
                 const that =this;
-                that.toDoList.loading = true;
+                let calendarApi = this.$refs.fullCalendar.getApi();
+                let events = calendarApi.getEvents();
+                if (events.length > 0) {
+                    events.map((item, index, arr) => {//这里一定要用日历组件自带的方法，不能直接赋值，否则会死循环
+                        item.remove()
+                    })
+                }
                 let successCallback = function(res){
                     that.toDoList.loading = false;
                     let list = res.data.data.list;
                     list.map((item, index, arr) => {
                         if(item.status == 1){
                             item.backgroundColor = '#2db7f5';
-                            item.backgroundColor = '#2db7f5';
+                            item.color = '#2db7f5';
                         }else if(item.status == 2){
                             item.backgroundColor = '#2d8cf0';
-                            item.backgroundColor = '#2d8cf0';
+                            item.color = '#2d8cf0';
                         }else if(item.status == 3){
                             item.backgroundColor = '#19be6b';
-                            item.backgroundColor = '#19be6b';
+                            item.color = '#19be6b';
                         }else{
                             item.backgroundColor = '#ed4014';
-                            item.backgroundColor = '#ed4014';
+                            item.color = '#ed4014';
                         }
+                        calendarApi.addEvent(item)//这里一定要用日历组件自带的方法，不能直接赋值，否则会死循环
                     })
-                    that.calendarOptions.events = list;
                 }
                 let failCallback = function(res){
                     that.toDoList.loading = false;
@@ -465,6 +450,7 @@
                     that.calendarOptions.events = [];
                 }
                 that.HTTPJS.get(that.HTTPURL.COMMON.TODO.LIST,that.toDoList.search,successCallback,failCallback,otherCallback);
+                return
             },
             //点击添加事项,显示model
             addToDoModelShow:function(type,id){
