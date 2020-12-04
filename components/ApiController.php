@@ -48,7 +48,7 @@ class ApiController extends ActiveController{
         $controllerId = Yii::$app->controller->id;
         $actionId     = Yii::$app->controller->action->id;
         $url = $modelId.'/'. $controllerId.'/'.$actionId;
-        if($this->user->role == Role::TYPE_ONE || $modelId == $this->getParams('commonId')){//超级管理员或者是公共模块的直接返回true
+        if($this->user->role == Role::TYPE_ONE || in_array($modelId,$this->getParams('notValidationPermissionModules'))){//超级管理员或者是属于不需要验证的模块的直接返回true
             return true;
         }else{
             $validationPermission =  Rbac::validationRolePermission($this->user,$url);
