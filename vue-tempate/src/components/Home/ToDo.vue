@@ -150,7 +150,7 @@
                 <Icon type="ios-locate-outline"  size="18" color="#2d8cf0"></Icon> 待办事项
             </p>
             <div>
-                <!--<Spin size="large" fix v-if="toDoList.loading"></Spin>-->
+                <Spin size="large" fix v-if="toDoList.loading"></Spin>
                 <FullCalendar ref="fullCalendar" :options="calendarOptions">
                     <template v-slot:eventContent='arg'>
                         <span style="font-size: 14px;">
@@ -321,6 +321,9 @@
                     moreLinkContent:'+查看更多',
                     dayMaxEvents: true, // for all non-TimeGrid views
                     events: [],
+                    loading: function(isLoading) {
+                        that.toDoList.loading = isLoading;
+                    },
                     datesSet:this.changeDateView,//日历视图改变事件
                 },
                 toDoList:{
@@ -381,7 +384,6 @@
         },
         mounted:function(){
             let that = this;
-
         },
         methods: {
             //编辑待办事项
@@ -461,15 +463,17 @@
             //获取待办事项列表
             getToDoList:function (dateInfo) {
                 const that =this;
+                // that.toDoList.loading = true;
                 let calendarApi = this.$refs.fullCalendar.getApi();
                 let events = calendarApi.getEvents();
+                // console.log(events)
                 if (events.length > 0) {
                     events.map((item, index, arr) => {//这里一定要用日历组件自带的方法，不能直接赋值，否则会死循环
                         item.remove()
                     })
                 }
                 let successCallback = function(res){
-                    that.toDoList.loading = false;
+                    // that.toDoList.loading = false;
                     let list = res.data.data.list;
                     list.map((item, index, arr) => {
                         if(item.status == 1){
@@ -481,16 +485,16 @@
                         }else if(item.status == 4){
                             item.className = 'overdue';
                         }
-
-                        calendarApi.addEvent(item)//这里一定要用日历组件自带的方法，不能直接赋值，否则会死循环
+                        calendarApi.addEvent(item)
+                        //calendarApi.addEvent(item)//这里一定要用日历组件自带的方法，不能直接赋值，否则会死循环
                     })
                 }
                 let failCallback = function(res){
-                    that.toDoList.loading = false;
+                    // that.toDoList.loading = false;
                     that.calendarOptions.events = [];
                 }
                 let otherCallback = function(res){
-                    that.toDoList.loading = false;
+                    // that.toDoList.loading = false;
                     that.calendarOptions.events = [];
                 }
                 that.HTTPJS.get(that.HTTPURL.COMMON.TODO.LIST,that.toDoList.search,successCallback,failCallback,otherCallback);
