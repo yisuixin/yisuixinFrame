@@ -38,7 +38,7 @@
                         <span style="color: #c5c8ce;">超级管理员无法操作</span>
                     </div>
                     <div v-else>
-                        <Select v-model="row.roleId" v-auth-select="`change_manager_role`" transfer>
+                        <Select v-model="row.roleId" v-auth-select="`change_manager_role`" transfer @on-change="changeMangerRole($event,row.id)">
                             <Option :value="item.id.toString()" :label="item.name" v-for="(item,index) in modeAdd.role.list" :key="index">
                                 <span>{{item.name}}</span>
                             </Option>
@@ -475,7 +475,7 @@
                 }
             },
             //修改管理员角色
-            changeMangerRole:function(userId,roleId){
+            changeMangerRole:function(roleId,userId){
                 const that = this;
                 that.$Modal.confirm({
                     title: '更管理员所属角色',
