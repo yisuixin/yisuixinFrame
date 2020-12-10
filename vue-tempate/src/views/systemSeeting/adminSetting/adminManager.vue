@@ -226,46 +226,6 @@
                             key: 'roleId',
                             width:200,
                             align:'left',
-                            // render: (h, params) => {
-                            //     if(params.row.roleType == 1){
-                            //         return h('span', {
-                            //             style: {
-                            //                 color:'#c5c8ce'
-                            //             },
-                            //         }, '超级管理员无法操作')
-                            //     }else{
-                            //         return h('Select', {
-                            //             props: {
-                            //                 value: params.row.roleId, // 获取选择的下拉框的值
-                            //                 size: 'default',
-                            //                 transfer:true
-                            //             },
-                            //             on: {
-                            //                 'on-change': e => {
-                            //                     this.changeMangerRole(params.row.id,e);
-                            //                 }
-                            //             },
-                            //             directives:[
-                            //                 {
-                            //                     name:'auth',
-                            //                     value:'change_role',
-                            //                     text: {
-                            //                         show:false,
-                            //                         text:'foo'
-                            //                     },
-                            //                 }
-                            //             ]
-                            //         }, this.modeAdd.role.list.map((item) => { // this.productTypeList下拉框里的data
-                            //             return h('Option', { // 下拉框的值
-                            //                 props: {
-                            //                     value: item.id.toString(),
-                            //                     label: item.name
-                            //                 }
-                            //             })
-                            //         }))
-                            //     }
-                            //
-                            // }
                         },
                         {
                             title: '最后登录IP',
