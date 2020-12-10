@@ -39,7 +39,7 @@
                     <Poptip   v-auth="`edit_manager`"
                               transfer
                               confirm
-                              title="确定删除此管理员?"
+                              title="确定删除此操作日志?"
                               @on-ok="deleteOperationLog(row.id,index,3)">
                         <Button type="error" size="small">删除</Button>
                     </Poptip>

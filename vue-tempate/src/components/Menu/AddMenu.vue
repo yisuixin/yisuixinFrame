@@ -95,8 +95,8 @@
                         </Row>
                     </div>
                     <RadioGroup v-model="formInline.create_template">
-                        <Radio label="1">是</Radio>
-                        <Radio label="2">否</Radio>
+                        <Radio label="1" :disabled="formInline.type == 2">是</Radio>
+                        <Radio label="2" :disabled="formInline.type == 2">否</Radio>
                     </RadioGroup>
                 </FormItem>
             </Card>

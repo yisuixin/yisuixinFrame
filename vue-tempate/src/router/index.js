@@ -4,7 +4,6 @@ Vue.use(Router)
 import ViewUI, {Message} from 'view-design';
 Vue.use(ViewUI);
 
-
 let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
