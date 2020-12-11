@@ -124,3 +124,34 @@ ul,li{
 .disable {
     pointer-events: none;
 }
+/*实现九宫格开始*/
+.grid{
+    height: 200px;
+    width: 200px;
+}
+.grid > li{
+    box-sizing: border-box;
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: -1px;
+    margin-top: -1px;
+    line-height: 60px;
+    text-align: center;
+    list-style: none;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.grid > li:hover{
+    border-color: #2d8cf0;
+    background: #2d8cf0;
+    color: #ffffff;
+}
+.grid > .selected{
+    border-color: #2d8cf0;
+    background: #2d8cf0;
+    color: #ffffff;
+}
+
+
+/*实现九宫格结束*/
