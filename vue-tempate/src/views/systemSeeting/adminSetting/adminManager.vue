@@ -438,7 +438,7 @@
             changeMangerRole:function(roleId,userId){
                 const that = this;
                 that.$Modal.confirm({
-                    title: '更管理员所属角色',
+                    title: '更改所属角色',
                     content: '确定要更换此管理员所属角色吗？',
                     loading: true,
                     onOk: () => {
