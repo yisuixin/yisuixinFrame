@@ -72,6 +72,9 @@ module.exports = {
             OPERATION_LOG : '/system/operation-log/list',
             OPERATION_LOG_DEL : '/system/operation-log/del',
         },
+        CONFIG:{//站点配置相关接口列表
+            EDIT_CONFIG : '/system/web-config/edit-config',//修改配置
+        },
     },
 
 

@@ -4,11 +4,11 @@
             <div class="xfind-line" v-if="!isCollapsed">
                 <div class="line-h"></div>
             </div>
-            <div v-if="!isCollapsed" class="logo-saiqu">
-                <Avatar icon="ios-person" size="large"/>
-                <span class="user-name">YsuixinCMS</span>
+            <div v-if="!isCollapsed" class="logo-saiqu" style="width: 230px;height: 60px;">
+                <!--<Avatar icon="ios-person" size="large"/>-->
+                <span class="user-name" :style="{backgroundImage: 'url(' + logo + ')'}"></span>
             </div>
-            <Avatar icon="ios-person" size="large" v-else/>
+            <Avatar size="large" style="color:#0d58ab;background-color: #ffffff;margin-left: 20px;"  v-else>U</Avatar>
         </div>
                 <Menu
                         ref="side_menu"
@@ -173,10 +173,12 @@
 <style src="../../assets/style/layout.css" scoped></style>
 
 <script>
+    import logo from '@/assets/img/logo.png';
     import event from "../../assets/js/event";
     export default {
         data(){
             return{
+                logo:logo,
                 isCollapsed: false,
                 openMenuName:['info','adminData'],
                 leftMenuActive:'info',

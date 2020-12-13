@@ -33,7 +33,7 @@
                                 <span> 头像</span>
                             </div>
                             <!--单图片上传组件-->
-                            <UploadOneImg :img="formInline.avatar" @uploadImg="uploadImg"></UploadOneImg>
+                            <UploadOneImg :img="formInline.avatar" form="avatar"  uploadBtnText ="上传头像" @uploadImg="uploadImg"></UploadOneImg>
                         </FormItem>
                     </Col>
                 </Row>

@@ -57,4 +57,12 @@ return [
             'POST  del' => 'del',
         ]
     ],
+    [//站点配置
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['system/web-config'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'POST  edit-config' => 'edit-config'
+        ]
+    ],
 ];
