@@ -8,7 +8,7 @@
                 <!--<Avatar icon="ios-person" size="large"/>-->
                 <span class="user-name" :style="{backgroundImage: 'url(' + logo + ')'}"></span>
             </div>
-            <Avatar size="large" style="color:#0d58ab;background-color: #ffffff;margin-left: 20px;"  v-else>U</Avatar>
+            <Avatar size="large" style="color:#0d58ab;background-color: #ffffff;margin-left: 20px;"  v-else>Y</Avatar>
         </div>
                 <Menu
                         ref="side_menu"

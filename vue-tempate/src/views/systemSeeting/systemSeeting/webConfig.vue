@@ -8,9 +8,9 @@
                 </TabPane>
                 <!--站点配置结束-->
                 <!--附件配置开始-->
-                <TabPane label="后台配置" :disabled="disabledTabs">
-                    <Backend ref="backend" @fun="setSubmitStatus"></Backend>
-                </TabPane>
+<!--                <TabPane label="后台配置" :disabled="disabledTabs">-->
+<!--                    <Backend ref="backend" @fun="setSubmitStatus"></Backend>-->
+<!--                </TabPane>-->
                 <!--附件配置结束-->
             </Tabs>
         </Card>
@@ -36,11 +36,17 @@
         },
         mounted:function(){
             let that = this;
+            this.$refs['frontend'].getConfig();
         },
         methods: {
-            //切换选项卡
-            changeTabs(name){
-                this.activeTabs = name;
+            changeTabs(name){//切换选项卡
+                let that = this;
+                that.activeTabs = name;
+                if(that.activeTabs == 0){//获取前台配置
+                   // this.$refs['frontend'].getConfig();
+                }else if(that.activeTabs == 1){//获取后台配置
+                   // this.$refs['backend'].getConfig();
+                 }
             },
             //点击编辑验证
             submitValidate(){

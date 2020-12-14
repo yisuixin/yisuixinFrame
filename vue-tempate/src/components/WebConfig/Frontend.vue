@@ -1,11 +1,12 @@
 <template>
     <div>
+        <Spin v-if="loading" class="spinClass"></Spin>
         <Form ref="frontedForm"
               :label-width="250"
               :model="formInline"
               :rules="formRule"
               label-position="left"
-              :hide-required-mark="true">
+              :hide-required-mark="true" v-else>
             <Card style="margin-bottom: 10px;">
                 <p slot="title">基础配置</p>
                 <FormItem prop="closeWeb">
@@ -203,6 +204,7 @@
                 }
             };
             return {
+                loading:false,
                 type:1,//1前台，2后台
                 formInline:{
                     closeWeb:'2',
@@ -213,8 +215,8 @@
                     allowType:'jpg|jpeg|gif|bmp|png',
                     allowSize:2048,
                     openWatermark:'2',
-                    watermarkMin:'500',
-                    watermarkMax:'150',
+                    watermarkMin:'300',
+                    watermarkMax:'100',
                     watermarkPath:'',//require('../../assets/img/watermark.jpg')
                     watermarkTransparency:'80',
                     watermarkQuality:'85',
@@ -256,6 +258,18 @@
             //选择水印位置
             selectWatermarkLocation(value){
                this.formInline.watermarkLocation = value;
+            },
+            //获取配置数据
+            getConfig(){
+                const that =this;
+                that.loading = true;
+                let successCallback = function(res){
+                    if(res.data.data.length != 0){
+                        that.formInline = res.data.data;
+                    }
+                    that.loading = false;
+                }
+                that.HTTPJS.get(that.HTTPURL.SYSTEM_SEETING.CONFIG.GET_CONFIG,{type:that.type},successCallback);
             },
             //提交配置数据
             submit(){

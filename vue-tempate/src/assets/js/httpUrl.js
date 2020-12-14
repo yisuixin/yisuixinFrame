@@ -74,6 +74,7 @@ module.exports = {
         },
         CONFIG:{//站点配置相关接口列表
             EDIT_CONFIG : '/system/web-config/edit-config',//修改配置
+            GET_CONFIG : '/system/web-config/get-config',//获取配置
         },
     },
 

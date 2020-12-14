@@ -62,6 +62,7 @@ return [
         'controller' => ['system/web-config'],
         'pluralize' => false,
         'extraPatterns' => [
+            'GET   get-config' => 'get-config',
             'POST  edit-config' => 'edit-config'
         ]
     ],

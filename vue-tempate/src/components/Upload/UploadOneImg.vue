@@ -55,7 +55,6 @@
                 </Col>
             </Row>
         </div>
-
         <Modal title="查看图片" v-model="visible" :draggable="true" :footer-hide="true">
             <div class="view-pic-box">
                 <img :src="img" v-if="visible" style="width: 100%">

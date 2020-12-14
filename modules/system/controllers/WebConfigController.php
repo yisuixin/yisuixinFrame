@@ -9,6 +9,24 @@ use app\common\lib\ModelHelper;
 
 class WebConfigController extends ApiController{
     /**
+     * 获取后台配置
+     * @return int[]
+     */
+    public function actionGetConfig(){
+            $get     = Yii::$app->request->get();
+            $type = $get['type'];
+
+            $configList = (new WebConfig())->find()->where(['type'=>$type])->asArray()->all();
+            if(!empty($configList)){
+                foreach ($configList as $k => $v){
+                    $data[$v['name']] = $v['value'];
+                }
+            }else{
+                $data = [];
+            }
+            return $this->ajaxSuccess('获取成功',$data);
+    }
+    /**
      * 编辑后台配置
      * @return int[]
      */
@@ -39,11 +57,5 @@ class WebConfigController extends ApiController{
             $transaction->rollBack();
             return $this->ajaxFail('修改失败,未知错误');
         }
-
-
-
-
-
-
     }
 }
