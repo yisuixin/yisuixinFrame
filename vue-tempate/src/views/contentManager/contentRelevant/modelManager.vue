@@ -312,10 +312,10 @@
             //点击搜索或者重置
             handleSubmit(type){
                 if(type == 1){
-                    this.getLoginLog();
+                    this.getModelList();
                 }else{
                     this.$refs['search'].resetFields();
-                    this.getLoginLog();
+                    this.getModelList();
                 }
             }
         }

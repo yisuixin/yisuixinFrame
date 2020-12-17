@@ -21,7 +21,8 @@ class ModelController extends ApiController{
         $sql = (new Model())->find();
         $sql->andFilterWhere(['or',
             ['like', 'name', $searchKey],
-            ['like', 'table_name', $searchKey]
+            ['like', 'table_name', $searchKey],
+            ['like', 'desc', $searchKey]
         ]);
         $sql->andFilterWhere(['=','status',$status]);
 
