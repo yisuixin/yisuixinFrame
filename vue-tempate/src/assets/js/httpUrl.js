@@ -39,6 +39,13 @@ module.exports = {
             DEL_NOTICE:'/content/notice/delete-notice',
             TOPPING_NOTICE:'/content/notice/topping-notice',
         },
+        MODEL:{//模型管理
+            GET_MODEL_INFO:'/content/model/get-model-info',
+            GET_MODEL_LIST:'/content/model/get-model-list',
+            ADD_MODEL:'/content/model/add-model',
+            EDIT_MODEL:'/content/model/edit-model',
+            DEL_NOTICE:'/content/model/delete-model',
+        },
     },
     SYSTEM_SEETING:{//系统设置管理模块相关接口列表
         MENU:{//后台菜单相关接口列表
